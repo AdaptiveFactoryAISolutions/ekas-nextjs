@@ -55,9 +55,15 @@ const FooterSection = () => (
         <div className="col-span-2 md:col-span-4 lg:col-span-1">
           <img src="/ekas-logo.svg" alt="EKAS" className="h-11 mb-4" />
           <p className="text-fine text-muted-text mt-2">Michigan, USA</p>
-          <p className="text-accent text-body-sm mt-3">
+          <a
+            href="mailto:pat@adaptivefactory.net"
+            className="text-body-sm transition-colors duration-150 inline-block mt-3"
+            style={{ color: "#8A9BBF" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#00c8ff")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "#8A9BBF")}
+          >
             pat@adaptivefactory.net
-          </p>
+          </a>
         </div>
 
         {/* Link columns */}
