@@ -1,0 +1,32 @@
+version: 1
+# AWS Amplify Build Specification for EKAS B2B Website (Next.js)
+# Application: EKAS B2B Marketing Website
+# Framework: Next.js 15.1.0
+# Deployment Type: Server-Side Rendered (SSR) Application
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "=== EKAS B2B Website (Next.js) - Pre-Build Phase ==="
+        - echo "Node version:"
+        - node --version
+        - echo "npm version:"
+        - npm --version
+        - echo "Installing dependencies..."
+        - npm ci
+        - echo "Dependencies installed successfully"
+    build:
+      commands:
+        - echo "=== EKAS B2B Website (Next.js) - Build Phase ==="
+        - echo "Running Next.js build..."
+        - npm run build
+        - echo "Build completed successfully"
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
