@@ -83,7 +83,38 @@ export const navigationConfig: NavItem[] = [
   {
     label: "Roles",
     href: "/roles",
-    // No children - single page with inline role sections
+    children: [
+      {
+        label: "Plant Managers",
+        href: "/roles#plant-managers",
+        description: "Real-time visibility into downtime, OEE, and quality losses",
+      },
+      {
+        label: "Operations Leaders",
+        href: "/roles#operations-leaders",
+        description: "Performance trending and cost driver analysis",
+      },
+      {
+        label: "Manufacturing Engineering",
+        href: "/roles#manufacturing-engineering",
+        description: "Failure mode attribution and root cause analysis",
+      },
+      {
+        label: "Quality Leaders",
+        href: "/roles#quality-leaders",
+        description: "FPY tracking with full audit trail traceability",
+      },
+      {
+        label: "Finance Leaders",
+        href: "/roles#finance-leaders",
+        description: "Cost variance tracking and operational loss quantification",
+      },
+      {
+        label: "Executive / PE Operations",
+        href: "/roles#executive-operations",
+        description: "Portfolio intelligence across multi-site facilities",
+      },
+    ],
   },
   {
     label: "Industries",
@@ -119,7 +150,23 @@ export const navigationConfig: NavItem[] = [
   {
     label: "Security",
     href: "/security",
-    // No children - single page with hash-link subsections
+    children: [
+      {
+        label: "Governance",
+        href: "/security/governance",
+        description: "Versioned metrics and full data provenance",
+      },
+      {
+        label: "Data Handling",
+        href: "/security/data-handling",
+        description: "How production data is collected and protected",
+      },
+      {
+        label: "Architecture",
+        href: "/security/architecture",
+        description: "AWS-native with SOC 2 Type II controls",
+      },
+    ],
   },
   {
     label: "Resources",
