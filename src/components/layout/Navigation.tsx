@@ -1,25 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-interface NavItem {
-  label: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
-  { label: "Platform", href: "/platform" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Roles", href: "/roles" },
-  { label: "Industries", href: "/industries" },
-  { label: "Security", href: "/security" },
-  { label: "Resources", href: "/resources" },
-  { label: "Company", href: "/about" },
-];
+import { navigationConfig, hasChildren, isActiveNavItem } from "@/config/navigation";
+import NavFlyout from "@/components/navigation/NavFlyout";
+import MobileNavAccordion from "@/components/navigation/MobileNavAccordion";
 
 interface NavigationProps {
   onDemoClick?: () => void;
@@ -28,20 +16,89 @@ interface NavigationProps {
 const Navigation = ({ onDemoClick }: NavigationProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openFlyout, setOpenFlyout] = useState<string | null>(null);
   const pathname = usePathname();
+  const flyoutTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
 
+  // Handle scroll effects
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
+    setOpenFlyout(null);
   }, [pathname]);
+
+  // Close fly-out when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpenFlyout(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Handle fly-out hover with delay
+  const handleMouseEnter = (itemLabel: string, itemHasChildren: boolean) => {
+    if (!itemHasChildren) return;
+
+    // Clear any pending close timeout
+    if (flyoutTimeoutRef.current) {
+      clearTimeout(flyoutTimeoutRef.current);
+      flyoutTimeoutRef.current = null;
+    }
+
+    // Open after small delay to prevent accidental triggers
+    flyoutTimeoutRef.current = setTimeout(() => {
+      setOpenFlyout(itemLabel);
+    }, 150);
+  };
+
+  const handleMouseLeave = () => {
+    // Clear any pending open timeout
+    if (flyoutTimeoutRef.current) {
+      clearTimeout(flyoutTimeoutRef.current);
+      flyoutTimeoutRef.current = null;
+    }
+
+    // Close after grace period
+    flyoutTimeoutRef.current = setTimeout(() => {
+      setOpenFlyout(null);
+    }, 200);
+  };
+
+  const handleFlyoutMouseEnter = () => {
+    // Keep flyout open when hovering over it
+    if (flyoutTimeoutRef.current) {
+      clearTimeout(flyoutTimeoutRef.current);
+      flyoutTimeoutRef.current = null;
+    }
+  };
+
+  // Handle keyboard navigation
+  const handleKeyDown = (event: React.KeyboardEvent, itemLabel: string, itemHasChildren: boolean) => {
+    if (event.key === "Escape") {
+      setOpenFlyout(null);
+      return;
+    }
+
+    if (itemHasChildren && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      setOpenFlyout(openFlyout === itemLabel ? null : itemLabel);
+    }
+  };
 
   return (
     <nav
+      ref={navRef}
       className="fixed top-0 left-0 right-0 transition-all duration-300"
       style={{
         height: 80,
@@ -60,41 +117,79 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium transition-colors duration-200"
-              style={{
-                color: pathname === item.href ? "#00c8ff" : "#e8f4ff",
-              }}
-              onMouseEnter={(e) => {
-                if (pathname !== item.href) {
-                  e.currentTarget.style.color = "#00c8ff";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (pathname !== item.href) {
-                  e.currentTarget.style.color = "#e8f4ff";
-                }
-              }}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navigationConfig.map((item) => {
+            const itemHasChildren = hasChildren(item);
+            const isActive = isActiveNavItem(item.href, pathname);
+            const isFlyoutOpen = openFlyout === item.label;
+
+            return (
+              <div
+                key={item.href}
+                className="relative"
+                onMouseEnter={() => handleMouseEnter(item.label, itemHasChildren)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {itemHasChildren ? (
+                  <>
+                    <button
+                      className="text-sm font-medium transition-colors duration-200"
+                      style={{
+                        color: isActive ? "#00c8ff" : "#e8f4ff",
+                      }}
+                      aria-expanded={isFlyoutOpen}
+                      aria-haspopup="true"
+                      onMouseEnter={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.color = "#00c8ff";
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isActive) {
+                          e.currentTarget.style.color = "#e8f4ff";
+                        }
+                      }}
+                      onKeyDown={(e) => handleKeyDown(e, item.label, itemHasChildren)}
+                    >
+                      {item.label}
+                    </button>
+                    <div onMouseEnter={handleFlyoutMouseEnter} onMouseLeave={handleMouseLeave}>
+                      <NavFlyout
+                        isOpen={isFlyoutOpen}
+                        parentLabel={item.label}
+                        parentHref={item.href}
+                      >
+                        {item.children!}
+                      </NavFlyout>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-sm font-medium transition-colors duration-200"
+                    style={{
+                      color: isActive ? "#00c8ff" : "#e8f4ff",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "#00c8ff";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.color = "#e8f4ff";
+                      }
+                    }}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Desktop CTAs */}
         <div className="hidden lg:flex items-center gap-4">
-          <Link
-            href="/platform"
-            className="text-sm font-medium transition-colors duration-200"
-            style={{ color: "#8A9BBF" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#00c8ff")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#8A9BBF")}
-          >
-            See the Platform
-          </Link>
           <button
             onClick={onDemoClick}
             className="btn-primary btn-sm"
@@ -109,6 +204,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
           className="lg:hidden p-2 rounded-md transition-colors"
           style={{ color: "#e8f4ff" }}
           aria-label="Toggle mobile menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -129,28 +225,16 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
               borderTop: "1px solid rgba(0,200,255,0.08)",
             }}
           >
-            <div className="container py-6 space-y-4">
-              {navItems.map((item) => (
-                <Link
+            <div className="container py-6 space-y-1">
+              {navigationConfig.map((item) => (
+                <MobileNavAccordion
                   key={item.href}
-                  href={item.href}
-                  className="block py-3 text-base font-medium transition-colors"
-                  style={{
-                    color: pathname === item.href ? "#00c8ff" : "#e8f4ff",
-                  }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                  item={item}
+                  onLinkClick={() => setMobileOpen(false)}
+                />
               ))}
-              <div className="pt-4 space-y-3 border-t border-white/10">
-                <Link
-                  href="/platform"
-                  className="btn-ghost w-full justify-center"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  See the Platform
-                </Link>
+
+              <div className="pt-4 space-y-3 border-t border-white/10 mt-4">
                 <button
                   onClick={() => {
                     setMobileOpen(false);
