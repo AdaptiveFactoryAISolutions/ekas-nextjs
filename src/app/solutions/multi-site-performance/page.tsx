@@ -32,13 +32,9 @@ export default function MultiSitePerformancePage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Compare performance across facilities with consistent, governed metrics and a single source of truth.
             </p>
-
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
 
@@ -96,12 +92,9 @@ export default function MultiSitePerformancePage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See Multi-Site Intelligence in Action</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Tell us about your portfolio. We'll show you how EKAS creates cross-facility visibility with governed metrics.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

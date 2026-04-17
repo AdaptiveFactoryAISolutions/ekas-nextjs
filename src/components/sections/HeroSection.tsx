@@ -27,15 +27,6 @@ const HeroSection = ({ onDemoClick }: HeroSectionProps) => {
               Answer plant questions, track time variance, and reduce downtime using traceable production data.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <button onClick={onDemoClick} className="btn-primary">
-                Request a Demo →
-              </button>
-              <a href="/platform" className="btn-ghost">
-                See the Platform
-              </a>
-            </div>
-
             <div className="space-y-2">
               {[
                 "Built for manufacturing operations",

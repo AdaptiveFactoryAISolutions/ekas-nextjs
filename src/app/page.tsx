@@ -140,14 +140,9 @@ export default function HomePage() {
             <h2 className="text-h2 text-primary-text mb-4">
               Bring One Plant Problem. We'll Show You How EKAS Approaches It.
             </h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               See how grounded manufacturing intelligence can help your team move faster on downtime, time variance, quality losses, and production visibility.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => setDemoOpen(true)} className="btn-primary">
-                Request a Demo
-              </button>
-            </div>
           </div>
         </section>
 

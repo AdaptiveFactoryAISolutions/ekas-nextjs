@@ -32,13 +32,9 @@ export default function AerospacePage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Aerospace manufacturing operations require full traceability and audit-ready documentation for AS9100 compliance.
             </p>
-
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
 
@@ -69,12 +65,9 @@ export default function AerospacePage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See EKAS for Aerospace</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Request a demo to see how EKAS provenance and traceability architecture supports AS9100 compliance.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

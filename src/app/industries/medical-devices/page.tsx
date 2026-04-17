@@ -32,13 +32,9 @@ export default function MedicalDevicesPage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Medical device manufacturing operations require full traceability and audit-ready documentation for ISO 13485 and FDA 21 CFR Part 11 compliance.
             </p>
-
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
 
@@ -69,12 +65,9 @@ export default function MedicalDevicesPage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See EKAS for Medical Devices</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Request a demo to see how EKAS provenance and traceability architecture supports ISO 13485 and FDA compliance.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

@@ -32,13 +32,9 @@ export default function ManufacturingIntelligencePage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Governed metrics, deterministic computation, and traceable provenance for every production calculation.
             </p>
-
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
 
@@ -167,12 +163,9 @@ export default function ManufacturingIntelligencePage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See Manufacturing Intelligence in Action</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Bring a metric calculation challenge. We will show you how EKAS computes it with governed logic and full provenance.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

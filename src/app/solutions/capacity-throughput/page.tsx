@@ -32,13 +32,9 @@ export default function CapacityThroughputPage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Find where production flow is constrained and size capacity against actual OEE — not theoretical hours.
             </p>
-
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
 
@@ -89,12 +85,9 @@ export default function CapacityThroughputPage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See Capacity Analysis in Action</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Bring a capacity challenge. We'll show you how EKAS sizes real capacity against actual performance.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

@@ -71,7 +71,7 @@ export default function FAQsPage() {
               </h1>
             </div>
 
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               Common questions about EKAS capabilities, implementation, security, and pricing.
             </p>
           </div>
@@ -117,12 +117,9 @@ export default function FAQsPage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">Still Have Questions?</h2>
-            <p className="text-body-base text-secondary-text mb-8">
+            <p className="text-body-base text-secondary-text">
               Request a demo and we will walk you through EKAS capabilities, integration options, and implementation timelines.
             </p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">
-              Request a Demo
-            </button>
           </div>
         </section>
       </PageShell>

@@ -315,8 +315,7 @@ export default function SecurityPage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">Ready to Review the Architecture?</h2>
-            <p className="text-body-base text-secondary-text mb-8">Our security packet is available within 24 hours of a qualification conversation.</p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">Request a Demo</button>
+            <p className="text-body-base text-secondary-text">Our security packet is available within 24 hours of a qualification conversation.</p>
           </div>
         </section>
       </PageShell>

@@ -18,17 +18,9 @@ export default function PlatformPage() {
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
               A Manufacturing Intelligence Layer Built for Operational Decisions
             </h1>
-            <p className="text-body-lg text-secondary-text mb-8">
+            <p className="text-body-lg text-secondary-text">
               EKAS helps teams move from fragmented production data to grounded answers, governed metrics, and faster action.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => setDemoOpen(true)} className="btn-primary">
-                Request a Demo
-              </button>
-              <a href="/security" className="btn-ghost">
-                Review Security
-              </a>
-            </div>
           </div>
         </section>
 
@@ -92,14 +84,9 @@ export default function PlatformPage() {
             <p className="text-body-base text-secondary-text mb-8">
               Bring a plant problem. We'll show you how EKAS approaches it.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => setDemoOpen(true)} className="btn-primary">
-                Request a Demo
-              </button>
-              <a href="/security" className="btn-ghost">
-                Review Security
-              </a>
-            </div>
+            <button onClick={() => setDemoOpen(true)} className="btn-primary">
+              Request a Demo
+            </button>
           </div>
         </section>
       </PageShell>

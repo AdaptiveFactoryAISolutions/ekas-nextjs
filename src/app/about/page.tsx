@@ -49,8 +49,7 @@ export default function AboutPage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See EKAS in Action</h2>
-            <p className="text-body-base text-secondary-text mb-8">Bring a plant problem. We'll show you how EKAS approaches it.</p>
-            <button onClick={() => setDemoOpen(true)} className="btn-primary">Request a Demo</button>
+            <p className="text-body-base text-secondary-text">Bring a plant problem. We'll show you how EKAS approaches it.</p>
           </div>
         </section>
       </PageShell>
