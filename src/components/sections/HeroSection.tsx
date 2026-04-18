@@ -26,7 +26,7 @@ const HeroSection = ({ onDemoClick }: HeroSectionProps) => {
             </h1>
 
             <p className="text-body-lg text-secondary-text mb-8">
-              EKAS delivers governed OEE analytics, financial cost variance, and document intelligence built on your confirmed production data — every answer traced to its source record. No estimates. No period close required. Standard single-site deployment: four weeks.
+              EKAS delivers governed OEE analytics, financial cost variance, and document intelligence built on your confirmed production data — every answer traced to its source record. Built for SME manufacturers (fewer than 250 employees). No estimates. No period close required. Standard single-site deployment: four weeks.
             </p>
 
             <div className="space-y-2">

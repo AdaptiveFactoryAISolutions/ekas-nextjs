@@ -17,7 +17,7 @@ export default function IndustriesPage() {
               Industries
             </h1>
             <p className="text-body-lg text-secondary-text">
-              EKAS is purpose-built for discrete manufacturers in precision metal stamping, automotive Tier supply chain, and industrial manufacturing. Deep domain expertise in these verticals — not generic manufacturing platform coverage applied everywhere.
+              EKAS is purpose-built for SME manufacturers (fewer than 250 employees) in precision metal stamping, fabrication, and industrial manufacturing. Deep domain expertise in these verticals — not generic manufacturing platform coverage applied everywhere.
             </p>
           </div>
         </section>
@@ -27,7 +27,7 @@ export default function IndustriesPage() {
             <div className="space-y-6">
               {[
                 { industry: "Metal Stamping", pain: "High-volume press environments with tight tolerances and scrap rate sensitivity.", fit: "EKAS connects press OEE, die performance, and material yield in one governed analytics layer." },
-                { industry: "Automotive", pain: "Tier 1/2/3 suppliers operating under IATF 16949 with strict traceability requirements.", fit: "EKAS provides the audit trail, provenance architecture, and OEE governance automotive OEMs increasingly require." },
+                { industry: "Automotive", pain: "Tier 2 and below component suppliers operating under IATF 16949 with strict traceability requirements.", fit: "EKAS provides the audit trail, provenance architecture, and OEE governance automotive OEMs increasingly require." },
                 { industry: "Industrial Manufacturing", pain: "Mid-market manufacturers dealing with downtime, scrap, cost variance, and fragmented plant data.", fit: "One grounded decision layer across shifts, workcenters, and facilities." },
               ].map((item) => (
                 <div key={item.industry} className="premium-card">

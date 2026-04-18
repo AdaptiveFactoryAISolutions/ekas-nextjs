@@ -36,7 +36,7 @@ export default function FounderPage() {
               Background
             </h2>
             <p className="text-body-base text-secondary-text mb-4">
-              28 years of experience in manufacturing operations, production planning, quality systems implementation, and plant operations. Holds a degree in Mechanical Engineering Technology. Direct operational experience in automotive Tier 1 supply chain and precision metal stamping environments.
+              28 years of experience in manufacturing operations, production planning, quality systems implementation, and plant operations. Holds a degree in Mechanical Engineering Technology. Direct operational experience in SME precision manufacturing — stamping, fabrication, and metalforming operations serving automotive and aerospace supply chains.
             </p>
             <p className="text-body-base text-secondary-text mb-4">
               EKAS is built on problems experienced firsthand — not learned from customer interviews. The founder understands what it means to answer to IATF 16949 auditors, respond to customer corrective action requests, and explain cost variance to finance teams who do not accept "we think" as an answer.

@@ -3,7 +3,7 @@ import PageShell from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Why EKAS — EKAS by AdaptiveFactory",
-  description: "EKAS delivers governed, traceable manufacturing intelligence with an evidence standard that most platforms cannot meet. Built for operations, not BI teams.",
+  description: "EKAS delivers governed, traceable manufacturing intelligence with an evidence standard that most platforms cannot meet. Built for SME precision manufacturers, not BI teams.",
 };
 
 export default function WhyEkasPage() {
@@ -80,23 +80,29 @@ export default function WhyEkasPage() {
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
             <span className="section-label">Who This Is Built For</span>
-            <h2 className="text-h2 text-primary-text mt-3 mb-12">
+            <h2 className="text-h2 text-primary-text mt-3 mb-6">
               Target Audience
             </h2>
+
+            <div className="max-w-[860px] mx-auto mb-12">
+              <p className="text-body-base text-secondary-text mb-4">
+                EKAS is built for <strong>SME (Small and Medium-sized Enterprise) manufacturers</strong> — industrial firms typically employing fewer than 250 people, with limited turnover, producing goods by transforming raw materials or assembling components. These are the agile, essential shops that form the backbone of local and global supply chains, and they deserve analytics built for how they actually operate — not scaled-down versions of tools built for the Fortune 500.
+              </p>
+            </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Precision Metal Stamping Operations",
-                  body: "High-mix, low-to-medium volume stamping with IATF 16949 requirements. Press OEE, die performance, material yield, First Pass Yield tracking.",
+                  title: "SME Precision Stamping & Metalforming Shops",
+                  body: "High-mix, low-to-medium-volume operations running multiple presses with data fragmented across ERP, MES, and the shop floor. Press-level OEE, die performance, material yield, and First Pass Yield — delivered without the six-figure implementation fee enterprise MES platforms demand.",
                 },
                 {
-                  title: "Automotive Tier Suppliers",
-                  body: "Tier 1 and Tier 2 suppliers who answer to customer production portals, internal audit teams, and quarterly cost reduction requirements.",
+                  title: "Tier 2 and Below Component Suppliers",
+                  body: "Component manufacturers serving automotive, aerospace, appliance, HVAC, medical, and industrial customers. Answering to customer production portals, audit teams, and quarterly cost reduction expectations — with a fraction of the analyst headcount the tier above them has.",
                 },
                 {
-                  title: "Industrial Manufacturing with Regulated Quality",
-                  body: "Any discrete manufacturing environment where traceability, audit readiness, and governed metrics are not optional.",
+                  title: "Discrete Manufacturers with Regulated Quality Requirements",
+                  body: "Shops where traceability, audit readiness, and governed metrics are not optional — whether the driver is IATF 16949, AS9100, ISO 9001, or a customer-specific quality manual. Data integrity is a business requirement, not a nice-to-have.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
