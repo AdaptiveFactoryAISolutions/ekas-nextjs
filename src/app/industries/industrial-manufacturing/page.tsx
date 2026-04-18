@@ -68,7 +68,7 @@ export default function IndustrialManufacturingPage() {
               Built for Discrete Manufacturing with Regulated Quality
             </h2>
             <p className="text-body-base text-secondary-text">
-              EKAS is purpose-built for discrete manufacturing operations where traceability, audit readiness, and governed metrics are compliance requirements — not nice-to-have features. Current deployments are in precision metal stamping and automotive Tier supply chain. If your operation has similar requirements — lot traceability, First Pass Yield tracking, customer audit readiness — EKAS applies directly.
+              EKAS is purpose-built for discrete manufacturing operations where traceability, audit readiness, and governed metrics are compliance requirements — not nice-to-have features. Built for precision metal stamping, fabrication, and metalforming operations. If your operation has similar requirements — lot traceability, First Pass Yield tracking, customer audit readiness — EKAS applies directly.
             </p>
           </div>
         </section>

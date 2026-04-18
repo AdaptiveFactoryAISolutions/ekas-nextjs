@@ -50,14 +50,20 @@ export default function HomePage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)", borderTop: "1px solid rgba(0,200,255,0.1)" }}>
           <div className="container max-w-[1000px]">
             <div className="text-center mb-3">
-              <span className="section-label">In Production</span>
+              <span className="section-label">Built for Precision Manufacturing SMEs</span>
             </div>
             <div className="text-center max-w-[860px] mx-auto">
               <p className="text-body-base text-secondary-text mb-4">
-                EKAS is currently deployed at an automotive Tier 1 precision metal stamping manufacturer — IATF 16949 certified, operating across multiple production sites. OEE calculations are ISO 22400-2 compliant and validated against confirmed production data. Cost variance reporting runs nightly without waiting for period close. Shift handoff intelligence is active across all shifts.
+                EKAS is a purpose-built manufacturing intelligence platform for small and mid-size precision manufacturers — stamping, fabrication, and metalforming shops that need enterprise-grade analytics without enterprise-grade overhead or implementation timelines.
+              </p>
+              <p className="text-body-base text-secondary-text mb-4">
+                OEE calculations follow ISO 22400-2 methodology end-to-end — ratio-of-sums math, shift-aware availability, quality rollups tied to real scrap and rework data. Cost variance reporting runs nightly against your ERP and MES sources — no waiting for period close, no month-end surprises. Shift handoff intelligence surfaces anomalies across every shift, every line, every day, so the incoming team starts informed instead of reactive.
+              </p>
+              <p className="text-body-base text-secondary-text mb-4">
+                Architected to support IATF 16949 quality workflows, CAPA traceability, and the data integrity standards automotive and aerospace supply chains require.
               </p>
               <p className="text-body-sm text-accent">
-                Reference available to qualified prospects on request.
+                Request a walkthrough of the live EKAS environment.
               </p>
             </div>
           </div>

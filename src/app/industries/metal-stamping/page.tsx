@@ -5,7 +5,7 @@ import PageShell from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Metal Stamping — EKAS by AdaptiveFactory",
-  description: "Press OEE, die performance, and material yield tracking for precision metal stamping operations. Deployed at multi-site stampers serving Tier 1 automotive.",
+  description: "Press OEE, die performance, and material yield tracking for precision metal stamping operations.",
 };
 
 export default function MetalStampingPage() {
@@ -63,12 +63,21 @@ export default function MetalStampingPage() {
         {/* Deployment Proof */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
-            <span className="section-label">Deployment Proof</span>
+            <span className="section-label">Built for Precision Stampers</span>
             <h2 className="text-h2 text-primary-text mt-3 mb-4">
-              In Production at a Multi-Site Precision Stamper
+              Press OEE, Die Performance, and Yield Tracking — Governed by Design
             </h2>
-            <p className="text-body-base text-secondary-text">
-              EKAS is deployed at a precision metal stamping operation serving Tier 1 automotive customers. Press OEE tracking across multiple lines, die performance monitoring, material yield variance reporting. Every metric traceable to source. Reference available to qualified prospects on request.
+            <p className="text-body-base text-secondary-text mb-4">
+              EKAS is a purpose-built manufacturing intelligence platform for small and mid-size precision manufacturers — stamping, fabrication, and metalforming shops that need enterprise-grade analytics without enterprise-grade overhead or implementation timelines.
+            </p>
+            <p className="text-body-base text-secondary-text mb-4">
+              OEE calculations follow ISO 22400-2 methodology end-to-end — ratio-of-sums math, shift-aware availability, quality rollups tied to real scrap and rework data. Cost variance reporting runs nightly against your ERP and MES sources — no waiting for period close, no month-end surprises. Shift handoff intelligence surfaces anomalies across every shift, every line, every day, so the incoming team starts informed instead of reactive.
+            </p>
+            <p className="text-body-base text-secondary-text mb-4">
+              Architected to support IATF 16949 quality workflows, CAPA traceability, and the data integrity standards automotive and aerospace supply chains require.
+            </p>
+            <p className="text-body-sm text-accent">
+              Request a walkthrough of the live EKAS environment.
             </p>
           </div>
         </section>
