@@ -1,18 +1,19 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Roles — EKAS by AdaptiveFactory",
+  description: "How EKAS serves plant managers, operations leaders, engineering, quality, finance, and executive teams with role-specific intelligence.",
+};
 
 export default function RolesPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
 
   const roles = [
     {
       id: "plant-managers",
-      title: "Plant Managers",
+      title: "Plant Managers / Operations Directors",
       definition: "Plant managers run daily operations, manage shift performance, and ensure production targets are met. They need real-time visibility into downtime, OEE, and quality losses to run shift reviews and prioritize improvement efforts.",
-      capabilities: "Shift performance dashboards, downtime attribution, cost impact visibility, governed metrics that align with finance reporting."
+      capabilities: "EKAS provides governed OEE metrics, downtime attribution, shift handoff intelligence, and cost variance visibility — all traceable to confirmed production data. Ask questions in plain language. Receive answers with full provenance. No dashboards to configure. No SQL required."
     },
     {
       id: "operations-leaders",
@@ -22,21 +23,21 @@ export default function RolesPage() {
     },
     {
       id: "manufacturing-engineering",
-      title: "Manufacturing Engineering",
+      title: "Engineering / Process Engineering",
       definition: "Manufacturing engineers design processes, troubleshoot recurring failures, and link production events to documented risk assessments. They need to trace downtime to documented failure modes and validate root causes with production data.",
-      capabilities: "Failure mode attribution, supports failure analysis workflows, root cause analysis with production event logs, engineering decision support with full data provenance."
+      capabilities: "Surface downtime patterns, failure modes, and process capability trends from confirmed production data. Connect production events to documented risk assessments and corrective actions. Query production history to support root cause analysis faster and with more confidence."
     },
     {
       id: "quality-leaders",
-      title: "Quality Leaders",
-      definition: "Quality leaders track defect rates, manage non-conformances, and ensure compliance with IATF 16949, ISO 13485, and AS9100. They need full traceability from quality metrics back to source inspection data for customer and regulatory audits.",
-      capabilities: "First Pass Yield tracking, defect trending by part and workcenter, full data provenance for audit trails, quality loss visibility with cost impact."
+      title: "Quality Manager",
+      definition: "Quality leaders track defect rates, manage non-conformances, and ensure compliance with IATF 16949 and other regulatory requirements. They need full traceability from quality metrics back to source inspection data for customer and regulatory audits.",
+      capabilities: "Monitor First Pass Yield, defect patterns, and quality losses by part, machine, and shift. Connect quality events to documented failure modes. Track scrap units, rework hours, and quality hold time across production runs. IATF 16949 audit trail by design."
     },
     {
       id: "finance-leaders",
-      title: "Finance Leaders",
+      title: "Plant Controller / Finance",
       definition: "Finance leaders track cost variance, analyze margin drivers, and reconcile operational performance with financial results. They need governed cost attribution that connects operational losses to dollar impact with logic operations teams trust.",
-      capabilities: "Cost variance tracking by workcenter and shift, burden rate infrastructure, operational loss quantification, governed metrics that align with ERP data."
+      capabilities: "Track scrap cost, downtime cost, and OEE efficiency loss by workcenter — from confirmed production data, any day, without waiting for period close. Cost variance reporting with full data lineage. Burden rate application tracked and auditable. EvidencePacket on every financial answer."
     },
     {
       id: "executive-operations",
@@ -47,8 +48,7 @@ export default function RolesPage() {
   ];
 
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Roles</span>
@@ -91,7 +91,5 @@ export default function RolesPage() {
           </div>
         </section>
       </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

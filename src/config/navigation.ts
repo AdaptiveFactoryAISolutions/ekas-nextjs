@@ -24,28 +24,37 @@ export interface NavItem {
  */
 export const navigationConfig: NavItem[] = [
   {
+    label: "Why EKAS",
+    href: "/why-ekas",
+  },
+  {
     label: "Platform",
     href: "/platform",
     children: [
       {
+        label: "Platform Overview",
+        href: "/platform",
+        description: "Manufacturing AI portfolio built on governed data",
+      },
+      {
         label: "AI Assistant",
         href: "/platform/ai-assistant",
-        description: "Conversational interface with grounded answers",
+        description: "Conversational interface with full provenance",
       },
       {
         label: "Manufacturing Intelligence",
         href: "/platform/manufacturing-intelligence",
-        description: "Governed metrics with full provenance",
+        description: "91 governed metrics across ISA-95 hierarchy",
       },
       {
-        label: "Data Connections",
-        href: "/platform/data-connections",
-        description: "Read-only integration with MES and ERP systems",
+        label: "Financial Intelligence",
+        href: "/platform/financial-intelligence",
+        description: "Cost variance from confirmed production data",
       },
       {
-        label: "Reporting & Analytics",
-        href: "/platform/reporting-analytics",
-        description: "Production-ready dashboards and reports",
+        label: "Document Intelligence",
+        href: "/platform/document-intelligence",
+        description: "Extract and query manufacturing documents",
       },
     ],
   },
@@ -54,19 +63,19 @@ export const navigationConfig: NavItem[] = [
     href: "/solutions",
     children: [
       {
+        label: "Solutions Overview",
+        href: "/solutions",
+        description: "Business outcomes from production intelligence",
+      },
+      {
         label: "Downtime Reduction",
         href: "/solutions/downtime-reduction",
-        description: "Root cause analysis and downtime attribution",
+        description: "Faster visibility into downtime patterns",
       },
       {
         label: "Scrap & Quality Visibility",
         href: "/solutions/scrap-quality-visibility",
-        description: "Quality loss tracking and FPY monitoring",
-      },
-      {
-        label: "Capacity & Throughput",
-        href: "/solutions/capacity-throughput",
-        description: "Capacity planning with actual OEE data",
+        description: "Surface defect patterns before margin erosion",
       },
       {
         label: "Cost Driver Analysis",
@@ -74,45 +83,9 @@ export const navigationConfig: NavItem[] = [
         description: "Cost attribution by workcenter and shift",
       },
       {
-        label: "Multi-Site Performance",
-        href: "/solutions/multi-site-performance",
-        description: "Portfolio-level performance comparison",
-      },
-    ],
-  },
-  {
-    label: "Roles",
-    href: "/roles",
-    children: [
-      {
-        label: "Plant Managers",
-        href: "/roles#plant-managers",
-        description: "Real-time visibility into downtime, OEE, and quality losses",
-      },
-      {
-        label: "Operations Leaders",
-        href: "/roles#operations-leaders",
-        description: "Performance trending and cost driver analysis",
-      },
-      {
-        label: "Manufacturing Engineering",
-        href: "/roles#manufacturing-engineering",
-        description: "Failure mode attribution and root cause analysis",
-      },
-      {
-        label: "Quality Leaders",
-        href: "/roles#quality-leaders",
-        description: "FPY tracking with full audit trail traceability",
-      },
-      {
-        label: "Finance Leaders",
-        href: "/roles#finance-leaders",
-        description: "Cost variance tracking and operational loss quantification",
-      },
-      {
-        label: "Executive / PE Operations",
-        href: "/roles#executive-operations",
-        description: "Portfolio intelligence across multi-site facilities",
+        label: "Shift Handoff",
+        href: "/solutions/shift-handoff",
+        description: "Structured handoffs from production data",
       },
     ],
   },
@@ -120,6 +93,11 @@ export const navigationConfig: NavItem[] = [
     label: "Industries",
     href: "/industries",
     children: [
+      {
+        label: "Industries Overview",
+        href: "/industries",
+        description: "Discrete manufacturing with regulated quality",
+      },
       {
         label: "Metal Stamping",
         href: "/industries/metal-stamping",
@@ -129,16 +107,6 @@ export const navigationConfig: NavItem[] = [
         label: "Automotive",
         href: "/industries/automotive",
         description: "IATF 16949 traceability and supplier requirements",
-      },
-      {
-        label: "Aerospace",
-        href: "/industries/aerospace",
-        description: "Precision manufacturing with strict traceability",
-      },
-      {
-        label: "Medical Devices",
-        href: "/industries/medical-devices",
-        description: "Regulated environments with compliance requirements",
       },
       {
         label: "Industrial Manufacturing",
@@ -152,9 +120,14 @@ export const navigationConfig: NavItem[] = [
     href: "/security",
     children: [
       {
-        label: "Governance",
-        href: "/security/governance",
-        description: "Versioned metrics and full data provenance",
+        label: "Security Overview",
+        href: "/security",
+        description: "Enterprise security with cloud or air-gapped options",
+      },
+      {
+        label: "Architecture",
+        href: "/security/architecture",
+        description: "Nine-stage security pipeline and deployment options",
       },
       {
         label: "Data Handling",
@@ -162,9 +135,9 @@ export const navigationConfig: NavItem[] = [
         description: "How production data is collected and protected",
       },
       {
-        label: "Architecture",
-        href: "/security/architecture",
-        description: "AWS-native with SOC 2 Type II controls",
+        label: "Governance",
+        href: "/security/governance",
+        description: "Versioned metrics and full data provenance",
       },
     ],
   },
@@ -173,25 +146,35 @@ export const navigationConfig: NavItem[] = [
     href: "/resources",
     children: [
       {
+        label: "Technical Overview",
+        href: "/technical-overview",
+        description: "How EKAS works from question to provenance",
+      },
+      {
         label: "FAQs",
         href: "/resources/faqs",
-        description: "Frequently asked questions",
+        description: "Common questions about capabilities and deployment",
+      },
+      {
+        label: "Roles",
+        href: "/roles",
+        description: "How EKAS serves each decision-maker",
       },
     ],
   },
   {
-    label: "Company",
+    label: "About",
     href: "/about",
     children: [
       {
-        label: "About Us",
+        label: "About",
         href: "/about",
-        description: "Built from plant operations experience",
+        description: "Built by someone who understands manufacturing",
       },
       {
         label: "Founder",
         href: "/about/founder",
-        description: "Why EKAS exists",
+        description: "28 years in manufacturing operations",
       },
     ],
   },

@@ -14,10 +14,10 @@ export default function IndustriesPage() {
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Industries</span>
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
-              Manufacturing Intelligence for Discrete Manufacturing Environments
+              Industries
             </h1>
             <p className="text-body-lg text-secondary-text">
-              EKAS is purpose-built for environments where downtime costs money, scrap erodes margin, and data fragmentation slows decisions.
+              EKAS is purpose-built for discrete manufacturers in precision metal stamping, automotive Tier supply chain, and industrial manufacturing. Deep domain expertise in these verticals — not generic manufacturing platform coverage applied everywhere.
             </p>
           </div>
         </section>
@@ -28,9 +28,7 @@ export default function IndustriesPage() {
               {[
                 { industry: "Metal Stamping", pain: "High-volume press environments with tight tolerances and scrap rate sensitivity.", fit: "EKAS connects press OEE, die performance, and material yield in one governed analytics layer." },
                 { industry: "Automotive", pain: "Tier 1/2/3 suppliers operating under IATF 16949 with strict traceability requirements.", fit: "EKAS provides the audit trail, provenance architecture, and OEE governance automotive OEMs increasingly require." },
-                { industry: "Aerospace & Defense", pain: "Precision manufacturing with strict traceability and compliance requirements.", fit: "Every answer traceable to source, every metric governed by deterministic logic." },
-                { industry: "Medical Devices", pain: "Regulated environments where production visibility and quality traceability are non-negotiable.", fit: "Governed metrics with full provenance for environments where compliance is a requirement, not a preference." },
-                { industry: "General Discrete Manufacturing", pain: "Mid-market manufacturers dealing with downtime, scrap, cost variance, and fragmented plant data.", fit: "One grounded decision layer across shifts, workcenters, and facilities." },
+                { industry: "Industrial Manufacturing", pain: "Mid-market manufacturers dealing with downtime, scrap, cost variance, and fragmented plant data.", fit: "One grounded decision layer across shifts, workcenters, and facilities." },
               ].map((item) => (
                 <div key={item.industry} className="premium-card">
                   <h3 className="text-h4 text-primary-text mb-2">{item.industry}</h3>

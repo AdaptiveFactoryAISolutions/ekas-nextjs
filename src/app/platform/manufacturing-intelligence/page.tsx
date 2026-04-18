@@ -159,6 +159,22 @@ export default function ManufacturingIntelligencePage() {
           </div>
         </section>
 
+        {/* Scope */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">Scope</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-4">
+              What EKAS Computes and What It Does Not
+            </h2>
+            <p className="text-body-base text-secondary-text mb-4">
+              EKAS computes 91 governed metrics across the ISA-95 hierarchy using confirmed production data. All OEE calculations follow ISO 22400-2 ratio-of-sums methodology — the mathematically correct approach for fleets with differing machine utilisation. Average-of-averages is explicitly prohibited and enforced at the calculation layer.
+            </p>
+            <p className="text-body-base text-secondary-text">
+              EKAS does not execute production scheduling, manage work orders, write back to source systems, or make autonomous decisions. Scheduling remains in your MES. Work orders remain in your CMMS. EKAS reads, analyses, and surfaces intelligence. Decisions remain with your team.
+            </p>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">

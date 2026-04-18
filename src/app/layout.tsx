@@ -19,13 +19,13 @@ const rajdhani = Rajdhani({
 export const metadata: Metadata = {
   title: "EKAS by AdaptiveFactory — Manufacturing AI Platform",
   description:
-    "EKAS turns your production data into shift-level intelligence — OEE, downtime root cause, cost variance — grounded in ISO 22400-2 standards.",
+    "EKAS turns production data into traceable manufacturing intelligence for precision metal stamping and automotive Tier suppliers — OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
   authors: [{ name: "AdaptiveFactory AI Solutions" }],
   openGraph: {
     type: "website",
     title: "EKAS by AdaptiveFactory — Manufacturing AI Platform",
     description:
-      "EKAS turns your production data into shift-level intelligence — OEE, downtime root cause, cost variance — grounded in ISO 22400-2 standards.",
+      "EKAS turns production data into traceable manufacturing intelligence for precision metal stamping and automotive Tier suppliers — OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
   },
 };
 

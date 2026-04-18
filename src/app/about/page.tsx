@@ -1,15 +1,14 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "About — EKAS by AdaptiveFactory",
+  description: "Built by someone who understands manufacturing operations. 28 years of plant floor experience solving problems experienced firsthand.",
+};
 
 export default function AboutPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Company</span>
@@ -24,12 +23,12 @@ export default function AboutPage() {
 
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[760px]">
-            <h2 className="text-h2 text-primary-text mb-4">Built From the Floor Up</h2>
+            <h2 className="text-h2 text-primary-text mb-4">Built by Someone Who Understands Manufacturing Operations</h2>
             <p className="text-body-base text-secondary-text mb-4">
-              AdaptiveFactory AI Solutions was founded by a precision metalforming industry veteran with deep operational experience in OEE measurement, capacity planning, and continuous improvement across high-volume stamping environments.
+              EKAS is built by someone who has worked in manufacturing operations for 28 years — not someone who learned about manufacturing from customer interviews. The platform is informed by real operational challenges, real audit requirements, and real compliance constraints that exist in automotive Tier supply chain and precision metal stamping environments.
             </p>
             <p className="text-body-base text-secondary-text">
-              EKAS was designed by someone who has lived the problem — not by a software team that studied it. The frustration with generic BI tools that visualize data without understanding manufacturing context, and AI systems that hallucinate answers without provenance, is what drove the architecture.
+              The founder of AdaptiveFactory holds a degree in Mechanical Engineering Technology and has direct experience in production planning, quality systems implementation, and plant operations. EKAS is the platform they built to solve problems they have experienced firsthand — not problems they researched from the outside.
             </p>
           </div>
         </section>
@@ -53,7 +52,5 @@ export default function AboutPage() {
           </div>
         </section>
       </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

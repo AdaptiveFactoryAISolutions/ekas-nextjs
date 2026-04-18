@@ -1,15 +1,14 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Data Handling — EKAS by AdaptiveFactory",
+  description: "How production data is collected, protected, and used. Zero-training-data guarantee. TLS 1.3 encryption in transit, AWS KMS encryption at rest.",
+};
 
 export default function DataHandlingPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Data Handling</span>
@@ -48,11 +47,11 @@ export default function DataHandlingPage() {
               <div className="premium-card">
                 <h3 className="text-h4 text-primary-text mb-3">Data Storage and Isolation</h3>
                 <p className="text-body-sm text-secondary-text mb-3">
-                  Production data is stored in PostgreSQL with row-level security enforcing tenant isolation. 56 RLS policies ensure no customer can query another customer's data. Encryption at rest via AWS KMS with customer-managed keys.
+                  Production data is stored in PostgreSQL with row-level security enforcing tenant isolation per user role and production site. Encryption at rest via AWS KMS with customer-managed keys.
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "PostgreSQL row-level security (56 tenant policies)",
+                    "PostgreSQL row-level security enforced per role and site",
                     "AWS KMS encryption at rest with CMK",
                     "No cross-tenant data access possible",
                     "Backup retention configurable per tenant",
@@ -68,14 +67,14 @@ export default function DataHandlingPage() {
               <div className="premium-card">
                 <h3 className="text-h4 text-primary-text mb-3">What EKAS Does Not Do</h3>
                 <p className="text-body-sm text-secondary-text mb-3">
-                  EKAS does not use your production data to train AI models, perform cross-customer analytics, or generate synthetic insights. Amazon Bedrock provides the LLM infrastructure with a zero-training-data guarantee. Your data is yours.
+                  EKAS uses enterprise cloud LLM infrastructure with a zero-training-data guarantee. Your production data is used only to answer your queries — never to train language models, never shared with other customers, and never used for cross-customer analytics.
                 </p>
                 <ul className="space-y-2">
                   {[
                     "No model training on customer data",
                     "No cross-customer analytics or benchmarking",
                     "No data sharing with third parties",
-                    "Amazon Bedrock zero-training-data contract",
+                    "Enterprise LLM inference — zero-training-data guarantee",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2">
                       <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ background: "#00c8ff", flexShrink: 0 }} />
@@ -95,7 +94,5 @@ export default function DataHandlingPage() {
           </div>
         </section>
       </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

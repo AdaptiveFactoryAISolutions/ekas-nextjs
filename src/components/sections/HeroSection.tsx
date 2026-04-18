@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Check } from "lucide-react";
 
 interface HeroSectionProps {
@@ -20,11 +21,12 @@ const HeroSection = ({ onDemoClick }: HeroSectionProps) => {
             </div>
 
             <h1 className="text-hero mb-6" style={{ fontFamily: "var(--font-rajdhani)", color: "#e8f4ff" }}>
-              Grounded Manufacturing Intelligence for Operations Leaders
+              Operational and Financial Performance —
+              From the Production Data You Already Have.
             </h1>
 
             <p className="text-body-lg text-secondary-text mb-8">
-              Answer plant questions, track time variance, and reduce downtime using traceable production data.
+              EKAS delivers governed OEE analytics, financial cost variance, and document intelligence built on your confirmed production data — every answer traced to its source record. No estimates. No period close required. Standard single-site deployment: four weeks.
             </p>
 
             <div className="space-y-2">
@@ -50,10 +52,13 @@ const HeroSection = ({ onDemoClick }: HeroSectionProps) => {
                 boxShadow: "0 8px 32px rgba(0,200,255,0.08)",
               }}
             >
-              <img
+              <Image
                 src="/ekas-dashboard.jpg"
                 alt="EKAS Platform Dashboard"
+                width={1000}
+                height={600}
                 className="w-full h-auto"
+                priority
               />
             </div>
           </div>

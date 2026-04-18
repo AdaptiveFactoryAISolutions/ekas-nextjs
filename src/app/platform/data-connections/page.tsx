@@ -83,7 +83,7 @@ export default function DataConnectionsPage() {
                 "Encrypted data transfer via TLS 1.3 for all connections",
                 "All queries logged and auditable with full provenance tracking",
                 "PostgreSQL Row-Level Security (RLS) for multi-tenant data isolation",
-                "SOC 2 Type II controls and IATF 16949 traceability support",
+                "Enterprise security controls and IATF 16949 traceability support",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 p-4 rounded-lg" style={{ background: "rgba(0,200,255,0.04)" }}>
                   <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ background: "#00c8ff", flexShrink: 0 }} />

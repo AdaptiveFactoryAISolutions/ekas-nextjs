@@ -79,10 +79,10 @@ export default function ReportingAnalyticsPage() {
             </h2>
             <div className="space-y-3">
               {[
-                "PostgreSQL Row-Level Security (RLS) enforces multi-tenant data isolation with 56 policies",
+                "PostgreSQL Row-Level Security (RLS) enforces multi-tenant data isolation",
                 "Role-based access control ensures users only see metrics authorized for their tenant and role",
                 "All analytics queries are logged and auditable with full provenance tracking",
-                "SOC 2 Type II controls for data security and privacy",
+                "Enterprise security controls for data security and privacy",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3 p-4 rounded-lg" style={{ background: "rgba(0,200,255,0.04)" }}>
                   <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ background: "#00c8ff", flexShrink: 0 }} />

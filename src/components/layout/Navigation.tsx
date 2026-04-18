@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { navigationConfig, hasChildren, isActiveNavItem } from "@/config/navigation";
 import NavFlyout from "@/components/navigation/NavFlyout";
@@ -112,7 +113,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
       <div className="container h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0" aria-label="EKAS Homepage">
-          <img src="/ekas-logo.svg" alt="EKAS" className="h-10" />
+          <Image src="/ekas-logo.svg" alt="EKAS" width={110} height={40} className="h-10" priority />
         </Link>
 
         {/* Desktop Navigation */}

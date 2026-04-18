@@ -1,15 +1,14 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Security & Governance — EKAS by AdaptiveFactory",
+  description: "Enterprise security controls with cloud or fully air-gapped deployment. Nine-stage security pipeline, governed metrics, and full data provenance.",
+};
 
 export default function SecurityPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Security & Governance</span>
@@ -31,7 +30,7 @@ export default function SecurityPage() {
                   {[
                     { title: "Data Grounding", body: "Every answer comes from your production data. EKAS does not generate, estimate, or interpolate." },
                     { title: "Governance & Traceability", body: "Every response carries full provenance — SQL hash, catalog version, data source, record count, and UTC timestamp." },
-                    { title: "Access Control", body: "Role-based access enforced cryptographically via JWT RS256 with 4096-bit keys. MFA required." },
+                    { title: "Access Control", body: "Role-based access enforced cryptographically via JWT RS256 asymmetric tokens. MFA required." },
                     { title: "Auditability", body: "IATF 16949 audit trail on every calculation. 146+ automated gate tests passing." },
                   ].map((item) => (
                     <div key={item.title} className="pb-4 border-b border-white/10 last:border-0">
@@ -46,13 +45,13 @@ export default function SecurityPage() {
                 <h3 className="text-h3 text-primary-text mb-6">Security Stack</h3>
                 <div className="space-y-2">
                   {[
-                    "Amazon Bedrock — zero-training-data guarantee",
-                    "AWS Cognito — MFA required, 1-hour token expiry",
-                    "JWT RS256 — 4096-bit keys, role-based access",
-                    "AWS KMS — 3 customer master keys",
+                    "Enterprise LLM inference — zero-training-data guarantee",
+                    "AWS Cognito — MFA required",
+                    "JWT RS256 asymmetric tokens — role-based access",
+                    "AWS KMS — customer master keys",
                     "AWS CloudTrail — full API audit log",
                     "AWS GuardDuty — continuous threat detection",
-                    "PostgreSQL RLS — 56 tenant isolation policies",
+                    "PostgreSQL RLS — row-level security per role and site",
                     "Zero-Port-22 — no SSH access to production",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-2">
@@ -99,7 +98,7 @@ export default function SecurityPage() {
               <a href="/security/architecture" className="premium-card block transition-all duration-200 hover:border-accent/30">
                 <h3 className="text-h4 text-primary-text mb-3">Architecture</h3>
                 <p className="text-body-sm text-secondary-text mb-4">
-                  AWS-native with SOC 2 Type II controls. Defense-in-depth security from authentication to infrastructure.
+                  Enterprise security architecture with cloud and air-gapped options. Defense-in-depth security from authentication to infrastructure.
                 </p>
                 <span className="text-fine text-accent">Learn more →</span>
               </a>
@@ -115,7 +114,5 @@ export default function SecurityPage() {
           </div>
         </section>
       </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

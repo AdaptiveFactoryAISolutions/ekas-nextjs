@@ -48,7 +48,7 @@ export default function AIAssistantPage() {
               The EKAS AI Assistant is a conversational interface to your manufacturing data. Instead of building dashboards or writing SQL queries, operations teams ask questions in plain language and receive grounded answers tied directly to production records.
             </p>
             <p className="text-body-base text-secondary-text">
-              Every answer comes from your MES or ERP data. The AI selects the right analytical tool — but governed SQL executes the calculation. No estimation. No interpolation. No generic model output.
+              Every answer comes from your MES or ERP data. Every metric is computed from your confirmed production records using governed definitions. No estimation. No interpolation. No generic model output.
             </p>
           </div>
         </section>
@@ -98,24 +98,24 @@ export default function AIAssistantPage() {
                   body: "No SQL required. No dashboard configuration. Ask the question the way you would ask a colleague.",
                 },
                 {
-                  title: "AI selects the analytical tool",
-                  body: "The model understands your question and chooses the appropriate metric, query template, or analytical function.",
+                  title: "Intent is classified and entities are resolved",
+                  body: "The platform identifies what you are asking about — which machine, workcenter, time window, or metric — and resolves it against your ISA-95 equipment hierarchy. Prior investigation context is loaded from your conversation history.",
                 },
                 {
-                  title: "Governed SQL executes the calculation",
-                  body: "Deterministic, versioned SQL runs against your production data. The AI doesn't calculate — it orchestrates.",
+                  title: "Evidence is collected before the answer is formed",
+                  body: "Every metric is computed from your confirmed production data. Raw values, record counts, coverage, and data source are assembled into an EvidencePacket alongside the response — before any answer text is generated.",
                 },
                 {
-                  title: "Answer returns with full provenance",
-                  body: "Every response includes the SQL hash, catalog version, data source, record count, and timestamp.",
+                  title: "Every number is verified against its source",
+                  body: "The platform cross-validates every numerical value in the response against the EvidencePacket collected during the query. A response with numbers that cannot be sourced is not delivered as if it were complete. You receive an honest, structured explanation of what was and was not determinable.",
                 },
                 {
                   title: "You can drill down or ask follow-ups",
-                  body: "Refine the question, change the time window, or explore related metrics in a conversational flow.",
+                  body: "Refine the question, change the time window, or explore related metrics in a conversational flow. Your investigation context persists across turns — you do not repeat yourself.",
                 },
                 {
-                  title: "All queries are logged and auditable",
-                  body: "Full audit trail of who asked what, when, and what data was accessed. Designed to support IATF 16949 compliance.",
+                  title: "Every query is logged and auditable",
+                  body: "Full audit trail of who asked what, when, and what data was accessed — with the complete EvidencePacket preserved. Designed to support IATF 16949 compliance requirements.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
@@ -143,7 +143,7 @@ export default function AIAssistantPage() {
                 },
                 {
                   point: "Deterministic calculation",
-                  detail: "The AI doesn't do the math — versioned SQL does. Results are reproducible and auditable.",
+                  detail: "Metric calculations use governed, versioned definitions applied consistently to your production data. Results are reproducible, auditable, and traceable to source records.",
                 },
                 {
                   point: "Manufacturing context built in",
@@ -151,7 +151,11 @@ export default function AIAssistantPage() {
                 },
                 {
                   point: "Controlled refusal",
-                  detail: "If EKAS doesn't have the data or confidence to answer, it says so explicitly. No hallucination.",
+                  detail: "When EKAS cannot produce a fully evidenced answer, it returns a structured response with a specific reason — time window has no data, entity not resolved, data quality issue detected. You receive an honest structured failure, not a hallucinated answer.",
+                },
+                {
+                  point: "EvidencePacket on every response",
+                  detail: "Every EKAS response carries an EvidencePacket: the time window queried, the ISA-95 scope, the data source, the record count, the coverage percentage, and the raw values behind every metric. No black-box answers. Every number has a named source.",
                 },
                 {
                   point: "Full audit trail",
@@ -215,6 +219,71 @@ export default function AIAssistantPage() {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* The Evidence Standard */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">The Evidence Standard</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-6">
+              EvidencePacket — What Every Response Contains
+            </h2>
+
+            <p className="text-body-base text-secondary-text mb-6">
+              Every EKAS response carries an EvidencePacket. This is not optional — it is an architectural constraint. A response without a complete EvidencePacket does not reach the user.
+            </p>
+
+            <div className="premium-card">
+              <div className="grid md:grid-cols-2 gap-4 text-body-sm">
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">time_window</div>
+                  <div className="text-secondary-text">Exact date range of data consumed in this response</div>
+                </div>
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">scope</div>
+                  <div className="text-secondary-text">ISA-95 nodes covered — site, workcenter, machine, part</div>
+                </div>
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">grain</div>
+                  <div className="text-secondary-text">Granularity — shift, daily, hourly, or operation level</div>
+                </div>
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">record_count</div>
+                  <div className="text-secondary-text">Number of source records consumed</div>
+                </div>
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">coverage_pct</div>
+                  <div className="text-secondary-text">Fraction of requested scope with confirmed data</div>
+                </div>
+                <div className="pb-3 border-b border-white/10">
+                  <div className="text-accent mb-1">numerator + denominator</div>
+                  <div className="text-secondary-text">Raw values behind every ratio metric — no black-box percentages</div>
+                </div>
+                <div>
+                  <div className="text-accent mb-1">source</div>
+                  <div className="text-secondary-text">Which data view or table was queried</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-body-sm text-secondary-text mt-6">
+              If a required EvidencePacket field cannot be populated, the response is blocked before it reaches the user. This is what 'evidence by contract' means — enforced architecturally on every query, not as a configurable option.
+            </p>
+          </div>
+        </section>
+
+        {/* Quality Assurance */}
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">Quality Assurance</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-4">
+              Every Release Tested Against Manufacturing-Specific Questions
+            </h2>
+
+            <p className="text-body-base text-secondary-text">
+              EKAS maintains a stratified golden query set covering the full range of manufacturing intelligence questions: OEE investigation at every ISA-95 level, downtime root cause analysis, financial cost variance, cross-domain queries combining operational and financial data, document retrieval, and structured failure scenarios. Every release is evaluated using the RAGAS framework — measuring faithfulness (answer grounded in source data), relevancy (answer addresses the question), and context precision (correct data retrieved). Releases that regress on any dimension do not reach production.
+            </p>
           </div>
         </section>
 

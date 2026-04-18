@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
   Platform: [
@@ -53,7 +54,7 @@ const FooterSection = () => (
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-8 mb-12">
         {/* Brand / Contact */}
         <div className="col-span-2 md:col-span-4 lg:col-span-2">
-          <img src="/ekas-logo.svg" alt="EKAS" className="h-11 mb-4" />
+          <Image src="/ekas-logo.svg" alt="EKAS" width={120} height={44} className="h-11 mb-4" />
           <p className="text-fine text-muted-text mt-2">Michigan, USA</p>
           <a
             href="mailto:pat@adaptivefactory.net"
@@ -99,18 +100,24 @@ const FooterSection = () => (
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-start gap-1">
             <span style={{ fontSize: 10, color: "#6a8aaa", textTransform: "uppercase", letterSpacing: "0.08em" }}>Infrastructure</span>
-            <img
+            <Image
               src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
               alt="Powered by AWS"
+              width={100}
+              height={20}
               style={{ height: 20, opacity: 0.7 }}
+              unoptimized
             />
           </div>
           <div className="flex flex-col items-start gap-1">
             <span style={{ fontSize: 10, color: "#6a8aaa", textTransform: "uppercase", letterSpacing: "0.08em" }}>Code Quality</span>
-            <img
+            <Image
               src="https://sonarcloud.io/images/project_badges/sonarcloud-light.svg"
               alt="SonarCloud"
+              width={120}
+              height={20}
               style={{ height: 20, opacity: 0.7 }}
+              unoptimized
             />
           </div>
         </div>

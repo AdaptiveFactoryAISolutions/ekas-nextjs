@@ -72,7 +72,7 @@ export default function MultiSitePerformancePage() {
                 },
                 {
                   title: "Multi-tenant data architecture",
-                  body: "PostgreSQL row-level security with 56 policies ensures site isolation while enabling portfolio-level visibility.",
+                  body: "PostgreSQL row-level security ensures strict site isolation while enabling portfolio-level visibility.",
                 },
                 {
                   title: "Supports best practice identification",

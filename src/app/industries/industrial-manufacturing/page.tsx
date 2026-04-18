@@ -1,17 +1,16 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Wrench, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Industrial Manufacturing — EKAS by AdaptiveFactory",
+  description: "OEE tracking, downtime attribution, and cost variance for discrete manufacturing operations where traceability and audit readiness are requirements.",
+};
 
 export default function IndustrialManufacturingPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
@@ -61,6 +60,19 @@ export default function IndustrialManufacturingPage() {
           </div>
         </section>
 
+        {/* Current Focus */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">Current Focus</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-4">
+              Built for Discrete Manufacturing with Regulated Quality
+            </h2>
+            <p className="text-body-base text-secondary-text">
+              EKAS is purpose-built for discrete manufacturing operations where traceability, audit readiness, and governed metrics are compliance requirements — not nice-to-have features. Current deployments are in precision metal stamping and automotive Tier supply chain. If your operation has similar requirements — lot traceability, First Pass Yield tracking, customer audit readiness — EKAS applies directly.
+            </p>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
@@ -71,8 +83,5 @@ export default function IndustrialManufacturingPage() {
           </div>
         </section>
       </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

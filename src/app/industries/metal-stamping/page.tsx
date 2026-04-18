@@ -1,17 +1,16 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Layers, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Metal Stamping — EKAS by AdaptiveFactory",
+  description: "Press OEE, die performance, and material yield tracking for precision metal stamping operations. Deployed at multi-site stampers serving Tier 1 automotive.",
+};
 
 export default function MetalStampingPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
@@ -61,6 +60,35 @@ export default function MetalStampingPage() {
           </div>
         </section>
 
+        {/* Deployment Proof */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">Deployment Proof</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-4">
+              In Production at a Multi-Site Precision Stamper
+            </h2>
+            <p className="text-body-base text-secondary-text">
+              EKAS is deployed at a precision metal stamping operation serving Tier 1 automotive customers. Press OEE tracking across multiple lines, die performance monitoring, material yield variance reporting. Every metric traceable to source. Reference available to qualified prospects on request.
+            </p>
+          </div>
+        </section>
+
+        {/* FMEA Intelligence */}
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">FMEA Intelligence</span>
+            <div className="inline-block px-2 py-1 rounded mb-3" style={{ background: "rgba(255,165,0,0.15)", border: "1px solid rgba(255,165,0,0.3)" }}>
+              <span className="text-fine" style={{ color: "#ffa500" }}>In Development</span>
+            </div>
+            <h2 className="text-h2 text-primary-text mb-4">
+              Failure Mode Connection (In Development)
+            </h2>
+            <p className="text-body-base text-secondary-text">
+              EKAS is building a capability to index your FMEA corpus and connect documented failure modes to live production events. Ask about causes, effects, and corrective actions — retrieval infrastructure is built, corpus ingestion is in progress.
+            </p>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
@@ -71,8 +99,5 @@ export default function MetalStampingPage() {
           </div>
         </section>
       </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

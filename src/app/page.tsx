@@ -14,7 +14,7 @@ export default function HomePage() {
     <>
       <BackgroundAtmosphere />
       <Navigation onDemoClick={() => setDemoOpen(true)} />
-      <main style={{ position: "relative", zIndex: 1 }}>
+      <main style={{ position: "relative", zIndex: 1, paddingTop: 80 }}>
         <HeroSection onDemoClick={() => setDemoOpen(true)} />
 
         {/* Trust Strip Section */}
@@ -22,12 +22,12 @@ export default function HomePage() {
           <div className="container">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-[1100px] mx-auto">
               {[
-                { label: "Manufacturing-Focused" },
-                { label: "Traceable Answers" },
-                { label: "Governed Metrics" },
-                { label: "Audit-Ready Workflows" },
-                { label: "Pilot-Ready Engagement" },
-                { label: "Built From Plant Experience" },
+                { label: "ISO 22400-2 Governed OEE" },
+                { label: "EvidencePacket on Every Answer" },
+                { label: "IATF 16949 Audit Trail" },
+                { label: "ISA-95 Equipment Hierarchy" },
+                { label: "Cloud or Fully Air-Gapped" },
+                { label: "28 Years of Plant Floor Experience" },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center">
                   <div
@@ -46,8 +46,25 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Deployment Proof Section */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)", borderTop: "1px solid rgba(0,200,255,0.1)" }}>
+          <div className="container max-w-[1000px]">
+            <div className="text-center mb-3">
+              <span className="section-label">In Production</span>
+            </div>
+            <div className="text-center max-w-[860px] mx-auto">
+              <p className="text-body-base text-secondary-text mb-4">
+                EKAS is currently deployed at an automotive Tier 1 precision metal stamping manufacturer — IATF 16949 certified, operating across multiple production sites. OEE calculations are ISO 22400-2 compliant and validated against confirmed production data. Cost variance reporting runs nightly without waiting for period close. Shift handoff intelligence is active across all shifts.
+              </p>
+              <p className="text-body-sm text-accent">
+                Reference available to qualified prospects on request.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Problems Section */}
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
             <div className="text-center mb-12">
               <span className="section-label">The Gap EKAS Fills</span>
@@ -67,8 +84,8 @@ export default function HomePage() {
                   body: "When a metric changes, you can't trace it back to source data. Audit trails are incomplete, and traceability is manual. EKAS provides full provenance from answer to raw data."
                 },
                 {
-                  title: "Ungrounded AI Answers",
-                  body: "LLMs hallucinate when trained on production data. EKAS uses retrieval-only architecture with zero training, so every answer is grounded in your actual data with full citation."
+                  title: "AI Without Manufacturing Context",
+                  body: "Generic AI tools have no knowledge of your machines, your FMEA failure modes, your ISA-95 hierarchy, or your OEM quality requirements. They generate responses from training data — not from your production records. EKAS grounds every response in your data, your standards, and your operational context."
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
@@ -80,8 +97,102 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* Industry Benchmark Section */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[1100px]">
+            <div className="text-center mb-3">
+              <span className="section-label">The Cost of the Status Quo</span>
+            </div>
+            <h2 className="text-h2 text-primary-text text-center mb-12">What Fragmented Manufacturing Intelligence Costs</h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  number: "72–75%",
+                  label: "Typical fleet OEE",
+                  desc: "Industry benchmark for precision metal stamping, 2-shift operations. Every point below theoretical maximum output has a calculable dollar cost.",
+                  source: "Industry benchmark — precision metal stamping. MTBF/MTTR studies."
+                },
+                {
+                  number: "$1.2–2M",
+                  label: "Annual unplanned downtime cost",
+                  desc: "Benchmark for a typical 2-shift precision stamping operation. Rarely visible until someone builds the calculation from confirmed shift data.",
+                  source: "Industry benchmark — discrete manufacturing downtime cost studies."
+                },
+                {
+                  number: "8–16 hrs",
+                  label: "Per week lost to manual reporting",
+                  desc: "Typical management reporting burden in discrete manufacturing. EKAS reduces this to under one hour per week.",
+                  source: "McKinsey State of AI 2025, n=1,993. Manufacturing operations studies."
+                },
+                {
+                  number: "60%",
+                  label: "of AI deployments generate no material value",
+                  desc: "The difference is investment discipline and domain specificity — not the technology itself.",
+                  source: "BCG Build for the Future 2025, n=1,250 executives."
+                }
+              ].map((stat) => (
+                <div key={stat.label} className="premium-card">
+                  <div className="text-4xl font-bold mb-2" style={{ color: "#00c8ff", fontFamily: "var(--font-rajdhani)" }}>
+                    {stat.number}
+                  </div>
+                  <div className="text-h4 text-primary-text mb-3">{stat.label}</div>
+                  <p className="text-body-sm text-secondary-text mb-3">{stat.desc}</p>
+                  <p className="text-fine" style={{ color: "#6a7a9a" }}>{stat.source}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-fine text-center mt-6" style={{ color: "#6a7a9a" }}>
+              All figures are industry benchmarks. Not derived from any specific customer.
+            </p>
+          </div>
+        </section>
+
+        {/* EvidencePacket Example Section */}
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[860px]">
+            <div className="text-center mb-3">
+              <span className="section-label">What Evidence Means in Practice</span>
+            </div>
+            <h2 className="text-h2 text-primary-text text-center mb-8">This Is What a Traceable Answer Looks Like</h2>
+
+            <div className="premium-card" style={{ background: "rgba(0,200,255,0.04)", border: "1px solid rgba(0,200,255,0.2)" }}>
+              <div className="mb-1 text-fine text-accent">Example — Representative Data</div>
+
+              <div className="mb-4 p-3 rounded" style={{ background: "rgba(0,0,0,0.2)" }}>
+                <div className="text-body-sm font-semibold text-primary-text mb-2">Query:</div>
+                <p className="text-body-sm text-secondary-text">"Which workcenter had the most unplanned downtime last week?"</p>
+              </div>
+
+              <div className="mb-4 p-3 rounded" style={{ background: "rgba(0,0,0,0.2)" }}>
+                <div className="text-body-sm font-semibold text-primary-text mb-2">Response:</div>
+                <p className="text-body-sm text-secondary-text">
+                  Workcenter 7 had the most unplanned downtime last week — 14.3 hours across 4 separate events, all categorised as hydraulic fault. This is 3.2× Workcenter 7's 4-week rolling average. Machine M-112 within WC-7 contributed 8.4 of those hours.
+                </p>
+              </div>
+
+              <div className="p-3 rounded" style={{ background: "rgba(0,200,255,0.08)" }}>
+                <div className="text-body-sm font-semibold text-primary-text mb-2">EvidencePacket:</div>
+                <div className="grid grid-cols-2 gap-2 text-fine text-secondary-text">
+                  <div><span className="text-accent">Time window:</span> 7 days ending today</div>
+                  <div><span className="text-accent">Scope:</span> Workcenter 7 — 8 of 8 machines covered</div>
+                  <div><span className="text-accent">Grain:</span> Shift-level records</div>
+                  <div><span className="text-accent">Record count:</span> 280 confirmed shifts</div>
+                  <div><span className="text-accent">Coverage:</span> 100%</div>
+                  <div><span className="text-accent">Source:</span> OEE metrics view (ISO 22400-2 ratio-of-sums)</div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-body-sm text-secondary-text mt-6 text-center">
+              The 14.3 hours figure is computed from 280 shift-level records in the OEE metrics view. The EvidencePacket names every component of that computation. Every EKAS response includes this structure. Data shown is representative — your EvidencePacket reflects your production records.
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
             <div className="text-center mb-12">
               <span className="section-label">Common Questions</span>
@@ -98,19 +209,31 @@ export default function HomePage() {
                 },
                 {
                   q: "What systems does EKAS connect to?",
-                  a: "EKAS integrates with MES platforms, ERP systems, SCADA systems, and quality databases. If your manufacturing system exposes production data via database, API, or file export, EKAS can connect.",
+                  a: "EKAS integrates with ERP systems, MES platforms, SCADA systems, and quality databases via read-only batch connection. Your source systems are never modified — EKAS only reads from them. If your manufacturing system exposes production data via database, API, or structured file export, EKAS can connect to it.",
                 },
                 {
                   q: "How long does implementation take?",
-                  a: "Typical deployment ranges from 6 to 12 weeks depending on data source complexity and multi-site scope. Proof-of-concept deployments can be operational in 2-4 weeks for single-site environments.",
+                  a: "A standard single-site pilot deployment reaches live production queries in four weeks. Week 1: environment setup and data connection. Weeks 2–3: metric validation against your confirmed production data. Week 4: user onboarding and go-live. The critical path is always data access — the platform itself deploys in days. Multi-site and complex integration engagements are scoped per project.",
                 },
                 {
                   q: "Is my production data secure?",
-                  a: "Yes. All data is encrypted in transit (TLS 1.3) and at rest (AWS KMS). Multi-tenant isolation is enforced via PostgreSQL row-level security. EKAS operates under SOC 2 Type II controls with annual audits. Your data is never used for model training or shared with third parties.",
+                  a: "All production data is encrypted in transit and at rest. Multi-tenant isolation is enforced at the database layer per user role and production site. A security packet covering architecture, data handling, and compliance controls is available within 24 hours of a qualification conversation.",
                 },
                 {
                   q: "Does EKAS support IATF 16949 and ISO compliance?",
-                  a: "Yes. EKAS is designed to support IATF 16949, ISO 13485, AS9100, and FDA 21 CFR Part 11. Every metric calculation includes full data provenance and audit trail required for customer and regulatory audits.",
+                  a: "EKAS is designed to support IATF 16949 automotive quality requirements and the data provenance and audit trail requirements of regulated discrete manufacturing environments. Compliance documentation is available as part of the security packet provided within 24 hours of a qualification conversation.",
+                },
+                {
+                  q: "What is an EvidencePacket?",
+                  a: "An EvidencePacket is the provenance record attached to every EKAS response. It contains: the exact time window queried, the ISA-95 scope (site, workcenter, machine, or part), the data source, the record count, the coverage percentage, and the raw numerator and denominator values behind every calculated metric. If a number appears in an EKAS response, the EvidencePacket shows where it came from. If a number cannot be traced to a source record, it does not appear in the response.",
+                },
+                {
+                  q: "What happens when EKAS cannot answer a question?",
+                  a: "EKAS returns a structured response with a specific reason code — not a generic error and not an estimated answer presented as fact. Reasons include: time window has no data, entity could not be resolved to a known machine or workcenter, data quality issue detected in the source, or requested scope is outside the user's access permissions. Every structured response explains what was determined, what was not, and what the appropriate next step is.",
+                },
+                {
+                  q: "Does EKAS replace our MES, ERP, or CMMS?",
+                  a: "No. EKAS reads from your existing systems — it never writes to them. In any data conflict between your ERP record and an EKAS calculation, your ERP is authoritative. Scheduling stays in your MES. Work orders stay in your CMMS. Master data stays in your ERP. EKAS is the analytical intelligence layer.",
                 },
               ].map((faq) => (
                 <details key={faq.q} className="premium-card group">
@@ -138,11 +261,19 @@ export default function HomePage() {
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">
-              Bring One Plant Problem. We'll Show You How EKAS Approaches It.
+              Bring One Plant Problem. We Will Show You How EKAS Approaches It.
             </h2>
-            <p className="text-body-base text-secondary-text">
-              See how grounded manufacturing intelligence can help your team move faster on downtime, time variance, quality losses, and production visibility.
+            <p className="text-body-base text-secondary-text mb-8">
+              A demonstration uses your operational context — the industry, process type, and business problem you describe. You will see how EKAS handles real manufacturing questions, how the EvidencePacket works, and what a governed answer looks like compared to a generic AI response.
             </p>
+            <button onClick={() => setDemoOpen(true)} className="btn-primary mb-4">
+              Request a Demonstration
+            </button>
+            <div>
+              <a href="/resources/technical-overview" className="text-body-sm text-accent hover:underline">
+                Read the Technical Overview →
+              </a>
+            </div>
           </div>
         </section>
 

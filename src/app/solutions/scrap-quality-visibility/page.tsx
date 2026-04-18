@@ -1,17 +1,16 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertTriangle, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Scrap & Quality Visibility — EKAS by AdaptiveFactory",
+  description: "Surface defect patterns and quality losses before they erode margin. Track FPY, defect patterns, and scrap units by part, machine, and shift.",
+};
 
 export default function ScrapQualityVisibilityPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
@@ -38,8 +37,21 @@ export default function ScrapQualityVisibilityPage() {
           </div>
         </section>
 
-        {/* The Problem */}
+        {/* The Scale */}
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">The Scale of This Problem</span>
+            <p className="text-body-base text-secondary-text mb-3">
+              Scrap cost for a mid-size precision stamping operation typically runs $800K–1.5M annually. The cost sits inside the ERP. Connecting it to the workcenter, the part number, the shift, and the machine that produced it requires EKAS.
+            </p>
+            <p className="text-fine" style={{ color: "#6a7a9a" }}>
+              Industry benchmark — precision metal stamping operations. Not derived from any specific customer.
+            </p>
+          </div>
+        </section>
+
+        {/* The Problem */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
             <span className="section-label">The Problem</span>
             <h2 className="text-h2 text-primary-text mt-3 mb-4">
@@ -147,8 +159,5 @@ export default function ScrapQualityVisibilityPage() {
           </div>
         </section>
       </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }

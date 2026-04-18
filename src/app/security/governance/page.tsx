@@ -1,15 +1,14 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
+
+export const metadata: Metadata = {
+  title: "Governance — EKAS by AdaptiveFactory",
+  description: "Versioned metric definitions, full data provenance, role-based access, and zero-compromise release policy. Every calculation traceable to source.",
+};
 
 export default function GovernancePage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
+    <PageShell>
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Governance</span>
@@ -88,6 +87,22 @@ export default function GovernancePage() {
           </div>
         </section>
 
+        {/* Zero-Compromise QA */}
+        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+          <div className="container max-w-[860px]">
+            <span className="section-label">Release Quality</span>
+            <h2 className="text-h2 text-primary-text mt-3 mb-4">
+              Zero-Compromise Release Policy
+            </h2>
+            <p className="text-body-base text-secondary-text">
+              EKAS enforces a four-tier defect classification. Priority 0 defects — incorrect financial results, access control violations, incorrect OEE calculations — block all releases until fully resolved. Every defect at any priority triggers documented root cause analysis, corrective action, and preventive measures, with an immutable audit trail.
+            </p>
+            <p className="text-body-base text-secondary-text mt-4">
+              This standard exists because manufacturing teams make real operational decisions from EKAS outputs. A wrong cost figure or a bypassed access control is not a UX issue — it is an operational and compliance risk. The zero-compromise policy treats it accordingly.
+            </p>
+          </div>
+        </section>
+
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
             <h2 className="text-h2 text-primary-text mb-4">See Governance in Action</h2>
@@ -95,7 +110,5 @@ export default function GovernancePage() {
           </div>
         </section>
       </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
   );
 }
