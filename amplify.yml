@@ -1,14 +1,21 @@
 version: 1
-# AWS Amplify Build Specification for EKAS B2B Website (Next.js)
-# Application: EKAS B2B Marketing Website
-# Framework: Next.js 15.1.0
-# Deployment Type: Server-Side Rendered (SSR) Application
-
 frontend:
   phases:
     preBuild:
       commands:
         - echo "=== EKAS B2B Website (Next.js) - Pre-Build Phase ==="
+        - echo "Writing env vars to .env.production for runtime access"
+        - |
+          cat > .env.production <<ENVEOF
+          SES_FROM_EMAIL=$SES_FROM_EMAIL
+          DEMO_REQUEST_TO_EMAIL=$DEMO_REQUEST_TO_EMAIL
+          DEMO_REQUEST_S3_BUCKET=$DEMO_REQUEST_S3_BUCKET
+          DEMO_REQUEST_S3_KMS_KEY_ID=$DEMO_REQUEST_S3_KMS_KEY_ID
+          EKAS_SES_ACCESS_KEY_ID=$EKAS_SES_ACCESS_KEY_ID
+          EKAS_SES_SECRET_ACCESS_KEY=$EKAS_SES_SECRET_ACCESS_KEY
+          ENVEOF
+        - echo "Env file written. Confirming variable names (values masked):"
+        - grep -o '^[A-Z_]*=' .env.production
         - echo "Node version:"
         - node --version
         - echo "npm version:"
@@ -25,7 +32,7 @@ frontend:
   artifacts:
     baseDirectory: .next
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
       - node_modules/**/*
