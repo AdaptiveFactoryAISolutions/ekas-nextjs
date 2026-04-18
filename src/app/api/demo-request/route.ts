@@ -184,6 +184,15 @@ async function writeToS3(data: DemoRequestBody, submissionId: string, ip: string
 }
 
 export async function POST(request: NextRequest) {
+  console.log("ENV DIAGNOSTIC:", JSON.stringify({
+    hasKeyId: !!process.env.EKAS_SES_ACCESS_KEY_ID,
+    keyIdLen: (process.env.EKAS_SES_ACCESS_KEY_ID || "").length,
+    hasSecret: !!process.env.EKAS_SES_SECRET_ACCESS_KEY,
+    secretLen: (process.env.EKAS_SES_SECRET_ACCESS_KEY || "").length,
+    region: process.env.AWS_REGION,
+    fromEmail: process.env.SES_FROM_EMAIL,
+    allEkasKeys: Object.keys(process.env).filter(k => k.startsWith("EKAS_") || k.startsWith("SES_") || k.startsWith("DEMO_")),
+  }));
   try {
     // Get client IP for rate limiting
     const clientIp = getClientIp(request);
