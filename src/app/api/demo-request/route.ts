@@ -10,8 +10,22 @@ const DEMO_REQUEST_S3_BUCKET = process.env.DEMO_REQUEST_S3_BUCKET || "adaptivefa
 const DEMO_REQUEST_S3_KMS_KEY_ID = process.env.DEMO_REQUEST_S3_KMS_KEY_ID;
 
 // AWS clients
-const sesClient = new SESClient({ region: AWS_REGION });
-const s3Client = new S3Client({ region: AWS_REGION });
+const awsCredentials =
+  process.env.EKAS_SES_ACCESS_KEY_ID && process.env.EKAS_SES_SECRET_ACCESS_KEY
+    ? {
+        accessKeyId: process.env.EKAS_SES_ACCESS_KEY_ID,
+        secretAccessKey: process.env.EKAS_SES_SECRET_ACCESS_KEY,
+      }
+    : undefined;
+
+const sesClient = new SESClient({
+  region: AWS_REGION,
+  ...(awsCredentials ? { credentials: awsCredentials } : {}),
+});
+const s3Client = new S3Client({
+  region: AWS_REGION,
+  ...(awsCredentials ? { credentials: awsCredentials } : {}),
+});
 
 // Rate limiting: simple in-memory store (for production, use Redis or DynamoDB)
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
