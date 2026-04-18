@@ -263,6 +263,50 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Our Approach Section */}
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[1100px]">
+            <div className="text-center mb-6">
+              <span className="section-label">Our Approach</span>
+              <h2 className="text-h2 text-primary-text mt-3 mb-6">
+                Our Approach
+              </h2>
+            </div>
+
+            <div className="max-w-[860px] mx-auto mb-12">
+              <p className="text-body-base text-secondary-text text-center">
+                SME manufacturers have been burned before — by six-month MES implementations, six-figure consulting fees, and dashboards that never quite matched what was actually happening on the floor. EKAS is built to not be that. Here's what working with us looks like.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              {[
+                {
+                  title: "2-Week Data Assessment",
+                  body: "We start by reading your data, not rewriting your systems. Two weeks to inventory your ERP, MES, historian, and quality sources — identify what's clean, what's gapped, and what's silently lying. You get a written assessment with the OEE baseline, data integrity findings, and a concrete pilot scope before you commit to anything further.",
+                },
+                {
+                  title: "30-Day Pilot Deployment",
+                  body: "A bounded pilot on a defined scope — typically one production area or a target KPI set. Standard infrastructure, standard security posture (encrypted at rest and in transit, SSO, audit logging). Every calculation validated against ISO 22400-2 methodology before any number appears on a dashboard. If the pilot doesn't produce answers you can act on, you don't continue.",
+                },
+                {
+                  title: "Governed Rollout",
+                  body: "KPIs registered, definitions documented, data quality checks running nightly, findings surfaced when something drifts. Scale from one area to the full plant on your timeline — not on a Gantt chart written by a vendor who's never walked your floor. The system is architected to support IATF 16949, AS9100, and ISO 9001 quality workflows end-to-end.",
+                },
+              ].map((card) => (
+                <div key={card.title} className="premium-card">
+                  <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
+                  <p className="text-body-sm text-secondary-text">{card.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-body-base text-secondary-text text-center max-w-[760px] mx-auto">
+              No six-figure implementation. No data science team required. No waiting six months to see whether it works.
+            </p>
+          </div>
+        </section>
+
         {/* Final CTA Section */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">
