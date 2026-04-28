@@ -92,7 +92,7 @@ const FooterSection = () => (
 
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-6">
         <p style={{ fontSize: 13, color: "#6a7a9a", lineHeight: 1.6, maxWidth: 640 }}>
-          EKAS is in active development. All pilot engagements are paid professional programs. AdaptiveFactory AI Solutions, Inc. is an independent Michigan C-corporation.
+          EKAS is a paid pilot program. Current deployments are in precision metal stamping. AdaptiveFactory AI Solutions, Inc. is an independent Michigan C-corporation.
         </p>
 
         <div className="flex items-center gap-4">

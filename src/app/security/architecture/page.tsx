@@ -3,7 +3,7 @@ import PageShell from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Security Architecture — EKAS by AdaptiveFactory",
-  description: "Enterprise security architecture with cloud and air-gapped options. Nine-stage security pipeline, MFA enforcement, and continuous threat monitoring.",
+  description: "Enterprise security architecture. Nine-stage security pipeline, MFA enforcement, and continuous threat monitoring.",
 };
 
 export default function ArchitecturePage() {
@@ -13,7 +13,7 @@ export default function ArchitecturePage() {
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Architecture</span>
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
-              Enterprise Security Architecture with Cloud and Air-Gapped Options
+              Enterprise Security Architecture
             </h1>
             <p className="text-body-lg text-secondary-text">
               EKAS is deployed on AWS with a defense-in-depth security model. Authentication via AWS Cognito with MFA required. Tenant isolation enforced at the database, API, and infrastructure layers. Continuous monitoring via GuardDuty and CloudTrail.
@@ -108,31 +108,6 @@ export default function ArchitecturePage() {
                 <h3 className="text-h4 text-primary-text mb-2">Security Packet Available</h3>
                 <p className="text-body-sm text-secondary-text">
                   A detailed security packet — covering architecture diagrams, data handling policies, access control implementation, and compliance documentation — is available within 24 hours of a qualification conversation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
-          <div className="container max-w-[1000px]">
-            <span className="section-label">Deployment Options</span>
-            <h2 className="text-h2 text-primary-text mt-3 mb-12">
-              Cloud or Fully Air-Gapped — Same Security Pipeline
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="premium-card">
-                <h3 className="text-h4 text-primary-text mb-3">Cloud Deployment</h3>
-                <p className="text-body-sm text-secondary-text">
-                  Enterprise cloud AI inference with zero-training-data guarantee. Your production data is processed within your cloud environment. No data used for model training or shared with other customers. Recommended for most deployments.
-                </p>
-              </div>
-
-              <div className="premium-card">
-                <h3 className="text-h4 text-primary-text mb-3">Fully Air-Gapped / On-Premises</h3>
-                <p className="text-body-sm text-secondary-text">
-                  For customers with strict data residency requirements — EU data localisation obligations, sensitive operational environments — EKAS runs entirely on local infrastructure using open-source AI models. No production data leaves your environment after initial setup. Same nine-stage security pipeline. Same EvidencePacket enforcement. Same audit trail.
                 </p>
               </div>
             </div>

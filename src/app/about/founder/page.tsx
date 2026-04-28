@@ -5,7 +5,7 @@ import PageShell from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Founder — EKAS by AdaptiveFactory",
-  description: "Pat McCarthy, founder of AdaptiveFactory. 28 years in manufacturing operations, building EKAS from firsthand operational experience.",
+  description: "Patrick Clay, founder of AdaptiveFactory. 30 years in manufacturing operations, building EKAS from firsthand operational experience.",
 };
 
 export default function FounderPage() {
@@ -21,7 +21,7 @@ export default function FounderPage() {
 
             <span className="section-label">Founder</span>
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
-              Pat McCarthy
+              Patrick Clay
             </h1>
             <p className="text-body-lg text-secondary-text">
               Founder, AdaptiveFactory
@@ -36,7 +36,7 @@ export default function FounderPage() {
               Background
             </h2>
             <p className="text-body-base text-secondary-text mb-4">
-              28 years of experience in manufacturing operations, production planning, quality systems implementation, and plant operations. Holds a degree in Mechanical Engineering Technology. Direct operational experience in SME precision manufacturing — stamping, fabrication, and metalforming operations serving automotive and aerospace supply chains.
+              30 years of experience in manufacturing operations, production planning, quality systems implementation, and plant operations. Holds a degree in Mechanical Engineering Technology. Direct operational experience in SME precision manufacturing — stamping, fabrication, and metalforming operations serving automotive and aerospace supply chains.
             </p>
             <p className="text-body-base text-secondary-text mb-4">
               EKAS is built on problems experienced firsthand — not learned from customer interviews. The founder understands what it means to answer to IATF 16949 auditors, respond to customer corrective action requests, and explain cost variance to finance teams who do not accept "we think" as an answer.
@@ -70,7 +70,7 @@ export default function FounderPage() {
               The founder is available on LinkedIn for technical discussions and operational questions.
             </p>
             <a
-              href="https://www.linkedin.com/in/patrick-mccarthy-manufacturing/"
+              href="https://www.linkedin.com/in/patrickdclay"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-block"

@@ -26,8 +26,7 @@ export default function HomePage() {
                 { label: "EvidencePacket on Every Answer" },
                 { label: "IATF 16949 Audit Trail" },
                 { label: "ISA-95 Equipment Hierarchy" },
-                { label: "Cloud or Fully Air-Gapped" },
-                { label: "28 Years of Plant Floor Experience" },
+                { label: "30 Years of Plant Floor Experience" },
               ].map((item) => (
                 <div key={item.label} className="flex flex-col items-center text-center">
                   <div

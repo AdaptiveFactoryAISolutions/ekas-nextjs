@@ -3,7 +3,7 @@ import PageShell from "@/components/layout/PageShell";
 
 export const metadata: Metadata = {
   title: "Security & Governance — EKAS by AdaptiveFactory",
-  description: "Enterprise security controls with cloud or fully air-gapped deployment. Nine-stage security pipeline, governed metrics, and full data provenance.",
+  description: "Enterprise security controls. Nine-stage security pipeline, governed metrics, and full data provenance.",
 };
 
 export default function SecurityPage() {
@@ -98,7 +98,7 @@ export default function SecurityPage() {
               <a href="/security/architecture" className="premium-card block transition-all duration-200 hover:border-accent/30">
                 <h3 className="text-h4 text-primary-text mb-3">Architecture</h3>
                 <p className="text-body-sm text-secondary-text mb-4">
-                  Enterprise security architecture with cloud and air-gapped options. Defense-in-depth security from authentication to infrastructure.
+                  Enterprise security architecture. Defense-in-depth security from authentication to infrastructure.
                 </p>
                 <span className="text-fine text-accent">Learn more →</span>
               </a>

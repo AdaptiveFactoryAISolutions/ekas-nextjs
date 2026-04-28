@@ -40,7 +40,7 @@ export default function TechnicalOverviewPage() {
                 },
                 {
                   title: "AI Inference Pipeline",
-                  body: "Questions asked in plain language are processed through intent classification, entity resolution, evidence collection, answer synthesis, and controlled refusal checks. Enterprise cloud LLM inference with zero-training-data guarantee. Air-gapped deployment option available using open-source models.",
+                  body: "Questions asked in plain language are processed through intent classification, entity resolution, evidence collection, answer synthesis, and controlled refusal checks. Enterprise cloud LLM inference with zero-training-data guarantee.",
                 },
                 {
                   title: "Security and Audit Pipeline",
@@ -139,31 +139,6 @@ export default function TechnicalOverviewPage() {
                   <p className="text-body-sm text-secondary-text">{card.body}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
-          <div className="container max-w-[1000px]">
-            <span className="section-label">Deployment Options</span>
-            <h2 className="text-h2 text-primary-text mt-3 mb-12">
-              Cloud or Air-Gapped
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="premium-card">
-                <h3 className="text-h4 text-primary-text mb-3">Cloud Deployment</h3>
-                <p className="text-body-sm text-secondary-text">
-                  Enterprise cloud AI inference with zero-training-data guarantee. Your production data is processed within your cloud environment. No data used for model training or shared with other customers. Recommended for most deployments.
-                </p>
-              </div>
-
-              <div className="premium-card">
-                <h3 className="text-h4 text-primary-text mb-3">Fully Air-Gapped / On-Premises</h3>
-                <p className="text-body-sm text-secondary-text">
-                  For customers with strict data residency requirements — EU data localisation obligations, sensitive operational environments — EKAS runs entirely on local infrastructure using open-source AI models. No production data leaves your environment after initial setup. Same nine-stage security pipeline. Same EvidencePacket enforcement. Same audit trail.
-                </p>
-              </div>
             </div>
           </div>
         </section>
