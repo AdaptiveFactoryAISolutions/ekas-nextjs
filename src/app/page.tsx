@@ -320,7 +320,7 @@ export default function HomePage() {
               Request a Demonstration
             </button>
             <div>
-              <a href="/resources/technical-overview" className="text-body-sm text-accent hover:underline">
+              <a href="/technical-overview" className="text-body-sm text-accent hover:underline">
                 Read the Technical Overview →
               </a>
             </div>
