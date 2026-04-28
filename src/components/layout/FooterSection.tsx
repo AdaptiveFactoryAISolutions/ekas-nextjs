@@ -28,8 +28,6 @@ const footerLinks = {
   Industries: [
     { label: "Metal Stamping", href: "/industries/metal-stamping" },
     { label: "Automotive", href: "/industries/automotive" },
-    { label: "Aerospace", href: "/industries/aerospace" },
-    { label: "Medical Devices", href: "/industries/medical-devices" },
     { label: "Industrial Manufacturing", href: "/industries/industrial-manufacturing" },
   ],
   Trust: [
