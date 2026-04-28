@@ -122,7 +122,7 @@ export const navigationConfig: NavItem[] = [
       {
         label: "Security Overview",
         href: "/security",
-        description: "Enterprise security with cloud or air-gapped options",
+        description: "Enterprise security and defense-in-depth controls",
       },
       {
         label: "Architecture",
@@ -174,7 +174,7 @@ export const navigationConfig: NavItem[] = [
       {
         label: "Founder",
         href: "/about/founder",
-        description: "28 years in manufacturing operations",
+        description: "30 years in manufacturing operations",
       },
     ],
   },

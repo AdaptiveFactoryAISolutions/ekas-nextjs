@@ -24,11 +24,9 @@ export default function FAQsPage() {
     {
       category: "Implementation & Integration",
       questions: [
-        { q: "How does EKAS connect to my MES or ERP?", a: "EKAS connects via read-only database access, RESTful/SOAP APIs, or scheduled file transfers (CSV, JSON, XML). No data is written back to your production systems. All integrations use TLS 1.3 encryption and support on-premise or cloud-hosted systems." },
+        { q: "How does EKAS connect to my MES or ERP?", a: "EKAS connects via read-only database access, RESTful/SOAP APIs, or scheduled file transfers (CSV, JSON, XML). No data is written back to your production systems. All integrations use TLS 1.3 encryption and support both on-site and cloud-hosted source systems." },
         { q: "How long does implementation take?", a: "Standard single-site deployment: four weeks. Multi-site deployments or complex data integration scenarios may require additional time depending on data source complexity and metric governance requirements." },
-        { q: "Do you support on-premise deployment?", a: "EKAS is cloud-native and deployed on AWS. For customers with strict data residency or air-gap requirements, private cloud or on-premise deployment patterns can be discussed during enterprise procurement." },
         { q: "What systems does EKAS integrate with?", a: "EKAS integrates with MES platforms, ERP systems, SCADA systems, and quality databases. If your manufacturing system exposes production data via database, API, or file export, EKAS can connect." },
-        { q: "Can EKAS run fully air-gapped or on-premises?", a: "Yes. For customers with strict data residency requirements — EU data localisation obligations, sensitive operational environments — EKAS runs entirely on local infrastructure using open-source AI models. No production data leaves your environment after initial setup. Same nine-stage security pipeline. Same EvidencePacket enforcement. Same audit trail." },
       ],
     },
     {
@@ -43,8 +41,8 @@ export default function FAQsPage() {
     {
       category: "Pricing & Licensing",
       questions: [
-        { q: "How is EKAS priced?", a: "EKAS pricing is based on facility count, user seats, and data source complexity. Enterprise licensing is available for multi-site deployments and portfolio-level analytics. Contact sales for a custom quote." },
-        { q: "How much does EKAS cost?", a: "EKAS pricing is site-based and tailored to deployment scope. Request a qualification conversation to discuss pricing structure. General guidance: single-site deployments start in the mid-five-figure annual range. Multi-site portfolios are priced per site with volume discounts." },
+        { q: "How is EKAS priced?", a: "EKAS pricing follows a structured tier model based on facility count, machine count, and revenue band. The qualification conversation determines which tier applies." },
+        { q: "How much does EKAS cost?", a: "EKAS pricing is tiered by facility size and complexity. Specific pricing is shared during the qualification conversation." },
         { q: "Is there a free trial?", a: "EKAS offers proof-of-concept deployments for qualified prospects. POC scope, duration, and pricing are determined during the sales qualification process." },
         { q: "What support is included?", a: "All EKAS licenses include technical support, security updates, and access to implementation guides. Enterprise customers receive dedicated customer success management, SLA guarantees, and priority support." },
       ],
