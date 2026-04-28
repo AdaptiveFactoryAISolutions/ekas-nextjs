@@ -11,7 +11,7 @@ import NavFlyout from "@/components/navigation/NavFlyout";
 import MobileNavAccordion from "@/components/navigation/MobileNavAccordion";
 
 interface NavigationProps {
-  onDemoClick?: () => void;
+  onDemoClick: () => void;
 }
 
 const Navigation = ({ onDemoClick }: NavigationProps) => {
@@ -239,7 +239,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
                 <button
                   onClick={() => {
                     setMobileOpen(false);
-                    onDemoClick?.();
+                    onDemoClick();
                   }}
                   className="btn-primary w-full justify-center"
                 >
