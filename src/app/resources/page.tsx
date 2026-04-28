@@ -1,17 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
 
 export default function ResourcesPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+    <PageShell>
+      <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Resources</span>
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
@@ -52,8 +47,6 @@ export default function ResourcesPage() {
             <p className="text-body-base text-secondary-text">Bring a plant problem. We'll show you how EKAS approaches it.</p>
           </div>
         </section>
-      </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </PageShell>
   );
 }

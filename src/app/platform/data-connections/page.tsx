@@ -1,18 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Database, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
 
 export default function DataConnectionsPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
-        {/* Hero */}
+    <PageShell>
+      {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
             <Link href="/platform" className="inline-flex items-center gap-2 text-body-sm text-accent mb-6 hover:underline">
@@ -103,9 +98,6 @@ export default function DataConnectionsPage() {
             </p>
           </div>
         </section>
-      </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </PageShell>
   );
 }

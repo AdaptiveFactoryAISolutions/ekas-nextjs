@@ -1,18 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { MessageSquare, Check } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
 
 export default function AIAssistantPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
-        {/* Hero */}
+    <PageShell>
+      {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px]">
             <Link href="/platform" className="text-body-sm text-accent hover:underline mb-4 inline-block">
@@ -296,9 +291,6 @@ export default function AIAssistantPage() {
             </p>
           </div>
         </section>
-      </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </PageShell>
   );
 }

@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
 
 export default function SolutionsPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   const solutions = [
     {
       title: "Downtime Reduction",
@@ -37,9 +33,8 @@ export default function SolutionsPage() {
   ];
 
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
-        {/* Hero */}
+    <PageShell>
+      {/* Hero */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Solutions</span>
@@ -77,9 +72,6 @@ export default function SolutionsPage() {
             </p>
           </div>
         </section>
-      </PageShell>
-
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </PageShell>
   );
 }

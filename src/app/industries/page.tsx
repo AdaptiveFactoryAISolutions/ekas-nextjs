@@ -1,16 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import PageShell from "@/components/layout/PageShell";
-import DemoRequestModal from "@/components/modals/DemoRequestModal";
 
 export default function IndustriesPage() {
-  const [demoOpen, setDemoOpen] = useState(false);
-
   return (
-    <>
-      <PageShell onDemoClick={() => setDemoOpen(true)}>
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
+    <PageShell>
+      <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[860px] text-center">
             <span className="section-label">Industries</span>
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
@@ -46,8 +41,6 @@ export default function IndustriesPage() {
             <p className="text-body-base text-secondary-text">Tell us about your operation. We'll show you what EKAS can do.</p>
           </div>
         </section>
-      </PageShell>
-      <DemoRequestModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </PageShell>
   );
 }
