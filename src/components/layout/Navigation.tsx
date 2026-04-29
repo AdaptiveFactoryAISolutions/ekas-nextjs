@@ -113,7 +113,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
       <div className="container h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0" aria-label="EKAS Homepage">
-          <Image src="/ekas-logo.svg" alt="EKAS" width={110} height={40} className="h-10" priority />
+          <Image src="/ekas-logo.svg" alt="EKAS — Manufacturing AI That Refuses to Guess" width={110} height={40} className="h-14" priority />
         </Link>
 
         {/* Desktop Navigation */}

@@ -17,13 +17,13 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "EKAS by AdaptiveFactory — Manufacturing AI Platform",
+  title: "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess",
   description:
     "EKAS turns production data into traceable manufacturing intelligence for SME precision manufacturers — stamping, fabrication, and metalforming shops. OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
   authors: [{ name: "AdaptiveFactory AI Solutions" }],
   openGraph: {
     type: "website",
-    title: "EKAS by AdaptiveFactory — Manufacturing AI Platform",
+    title: "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess",
     description:
       "EKAS turns production data into traceable manufacturing intelligence for SME precision manufacturers — stamping, fabrication, and metalforming shops. OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
   },
