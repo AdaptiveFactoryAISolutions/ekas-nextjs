@@ -16,27 +16,35 @@ const HeroSection = ({ onDemoClick }: HeroSectionProps) => {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-6" style={{ background: "rgba(0,200,255,0.08)", border: "1px solid rgba(0,200,255,0.15)" }}>
               <span className="text-label" style={{ color: "#00c8ff" }}>
-                Manufacturing Intelligence Platform
+                AI Portfolio Management for Precision Manufacturing
               </span>
             </div>
 
             <h1 className="text-hero mb-6" style={{ fontFamily: "var(--font-rajdhani)", color: "#e8f4ff" }}>
-              Operational and Financial Performance —
-              From the Production Data You Already Have.
+              Portfolio discipline. Not point tools.
             </h1>
 
             <p className="text-body-lg text-secondary-text mb-8">
-              EKAS delivers governed OEE analytics, financial cost variance, and document intelligence built on your confirmed production data — every answer traced to its source record. Built for SME manufacturers (fewer than 250 employees). No estimates. No period close required. Standard single-site deployment: four weeks.
+              EKAS organizes 16 manufacturing-AI capabilities across the McKinsey Three Horizons framework, with quarterly portfolio governance and binary success gates. Built for SME precision stamping, fabrication, and metalforming.
             </p>
+
+            <div className="flex items-center gap-4 mb-8">
+              <button onClick={onDemoClick} className="btn-primary">
+                Request Demo
+              </button>
+              <a href="/platform" className="text-body-sm text-accent hover:underline">
+                Read the framework →
+              </a>
+            </div>
 
             <div className="space-y-2">
               {[
-                "Built for manufacturing operations",
-                "Grounded in production data",
-                "Governed metrics and traceable answers",
+                "BCG 2025: 60% of AI investments produce no measurable value",
+                "McKinsey Three Horizons framework. Quarterly portfolio governance.",
+                "Founder: 30 years in precision metal stamping operations.",
               ].map((text) => (
-                <div key={text} className="flex items-center gap-2">
-                  <Check size={16} style={{ color: "#00c8ff" }} />
+                <div key={text} className="flex items-start gap-2">
+                  <Check size={16} style={{ color: "#00c8ff", marginTop: 4, flexShrink: 0 }} />
                   <span className="text-body-sm text-secondary-text">{text}</span>
                 </div>
               ))}
