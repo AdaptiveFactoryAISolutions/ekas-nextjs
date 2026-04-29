@@ -47,6 +47,10 @@ export default function PlatformPage() {
               <h2 className="text-h2 text-primary-text mt-3">What EKAS Delivers</h2>
             </div>
 
+            <p className="text-body-base text-secondary-text text-center mb-8 max-w-[760px] mx-auto">
+              Every customer starts with the Core EKAS platform. Each Foundation, Professional, or Enterprise tier includes the intelligence layer described below.
+            </p>
+
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               {[
                 {
@@ -92,6 +96,49 @@ export default function PlatformPage() {
           </div>
         </section>
 
+        {/* Modules — add-on capability beyond the Core platform */}
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[1100px]">
+            <div className="text-center mb-3">
+              <span className="section-label">Modules</span>
+            </div>
+            <h2 className="text-h2 text-primary-text text-center mb-4">Add-On Modules</h2>
+            <p className="text-body-base text-secondary-text text-center mb-12 max-w-[760px] mx-auto">
+              Add capability without adding vendors. Each module is purchased separately and integrates natively with your Core EKAS platform.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "CE — Cost Estimation",
+                  body: "Tooling cost models (T1–T5 die complexity), should-cost analysis, and scenario simulation.",
+                },
+                {
+                  title: "Agentic Quoting",
+                  body: "Autonomous RFQ ingestion, quote generation, and margin-aware pricing.",
+                },
+                {
+                  title: "FMEA / Quality",
+                  body: "Failure mode and effects analysis with integrated quality metrics.",
+                },
+                {
+                  title: "Predictive Maintenance",
+                  body: "Anomaly detection, machine-health scoring, downtime forecasting.",
+                },
+                {
+                  title: "EBITDA / Financial Variance",
+                  body: "Real-time financial cost variance and EBITDA architecture.",
+                },
+              ].map((card) => (
+                <div key={card.title} className="premium-card">
+                  <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
+                  <p className="text-body-sm text-secondary-text">{card.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* AI Portfolio Management — Three Horizons + Five Criteria + Governance + Markowitz */}
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
@@ -119,7 +166,7 @@ export default function PlatformPage() {
                 {
                   title: "Horizon 2 — Build & Scale",
                   allocation: "20% of investment focus",
-                  body: "Emerging differentiators. Moderate risk. Six capabilities in design or build, including FMEA semantic retrieval, predictive maintenance with outcome learning, ISO documentation generation.",
+                  body: "Emerging differentiators. Moderate risk. Six capabilities in design or build, with deeper plant-context grounding and longer feedback loops than Horizon 1.",
                 },
                 {
                   title: "Horizon 3 — Create Options",
@@ -176,44 +223,6 @@ export default function PlatformPage() {
             <p className="text-body-base text-secondary-text text-center max-w-[860px] mx-auto">
               The portfolio approach traces to Markowitz's Modern Portfolio Theory (1952), awarded the Nobel Memorial Prize in Economic Sciences in 1990. The core insight: a rational investor doesn't pursue the single highest-return option, but assembles a collection of options that maximize return for a given level of risk. EKAS applies the same logic to AI investment in precision manufacturing.
             </p>
-          </div>
-        </section>
-
-        {/* In Development */}
-        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
-          <div className="container max-w-[1100px]">
-            <div className="text-center mb-3">
-              <span className="section-label">In Development</span>
-            </div>
-            <h2 className="text-h2 text-primary-text text-center mb-4">What Is Being Built</h2>
-            <p className="text-body-base text-secondary-text text-center mb-12 max-w-[760px] mx-auto">
-              Named here so you can evaluate the trajectory of the platform, not just its current state.
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "FMEA Intelligence",
-                  body: "FMEA corpus indexed and connected to live production data. Ask about failure modes, causes, and corrective actions. Retrieval infrastructure built — corpus ingestion in progress."
-                },
-                {
-                  title: "Predictive Maintenance ML",
-                  body: "XGBoost-based failure prediction from rolling OEE and availability signals. Data accumulation phase active."
-                },
-                {
-                  title: "Scrap Prediction",
-                  body: "Scrap rate elevation prediction by part-machine combination before the production run starts."
-                }
-              ].map((card) => (
-                <div key={card.title} className="premium-card opacity-60" style={{ borderColor: "rgba(255,165,0,0.3)" }}>
-                  <div className="inline-block px-2 py-1 rounded mb-3" style={{ background: "rgba(255,165,0,0.15)", border: "1px solid rgba(255,165,0,0.3)" }}>
-                    <span className="text-fine" style={{ color: "#ffa500" }}>In Development</span>
-                  </div>
-                  <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
-                  <p className="text-body-sm text-secondary-text">{card.body}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
