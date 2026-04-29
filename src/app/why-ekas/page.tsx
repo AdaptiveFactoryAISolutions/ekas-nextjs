@@ -31,8 +31,14 @@ export default function WhyEkasPage() {
             <h1 className="text-h1 text-primary-text mt-3 mb-4" style={{ fontFamily: "var(--font-rajdhani)" }}>
               The Standard Is Not Good Enough.
             </h1>
-            <p className="text-body-lg text-secondary-text">
-              Most manufacturing analytics platforms claim to deliver insights. EKAS delivers governed, traceable, provenance-backed intelligence built on confirmed production data — and enforces an evidence standard that most platforms cannot meet.
+            <p className="text-body-lg text-secondary-text mb-4">
+              BCG's 2025 study of 1,250 senior executives found that 60% of organizations report little or no value from AI investments, while 5% capture nearly all of it. McKinsey's parallel survey of 1,993 organizations reached the same conclusion: 88% of organizations use AI, but only 6% are AI high performers.
+            </p>
+            <p className="text-body-lg text-secondary-text mb-4">
+              The differentiator is not the technology. It is the discipline of selecting, sequencing, governing, and rebalancing AI initiatives as a portfolio.
+            </p>
+            <p className="text-body-lg text-accent">
+              EKAS exists in that gap.
             </p>
           </div>
         </section>

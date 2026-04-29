@@ -69,6 +69,29 @@ export default function DemoPage() {
               <p className="text-fine text-secondary-text">
                 <strong>Who Should Attend:</strong> Plant Manager, Operations Leader, or VP-level sponsor who owns the business outcome. IT or IS representative welcome for architecture discussion.
               </p>
+
+              <div className="premium-card mt-6">
+                <h3 className="text-h4 text-primary-text mb-3">Is EKAS a fit for your operation?</h3>
+                <p className="text-body-sm text-secondary-text mb-4">
+                  EKAS engagement begins with a 60-90 minute Discovery conversation. The conversation is most productive when four conditions are present.
+                </p>
+                <ul className="space-y-3 mb-4">
+                  {[
+                    ["Data quality baseline", "production data captured systematically, not on paper or in disparate spreadsheets"],
+                    ["Executive sponsor named", "a senior operations or finance leader with budget authority and willingness to engage"],
+                    ["Operations-finance alignment opportunity", "both functions willing to share a common cost model and OEE definition"],
+                    ["IATF 16949 compliance posture", "current certification or active path to it (for automotive supply chain context)"],
+                  ].map(([term, def]) => (
+                    <li key={term} className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#00c8ff" }} />
+                      <span className="text-body-sm text-secondary-text"><strong className="text-primary-text">{term}</strong> — {def}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-fine text-secondary-text">
+                  Not all four conditions are required at the start. Discovery identifies which need development before pilot.
+                </p>
+              </div>
             </div>
 
             <div>

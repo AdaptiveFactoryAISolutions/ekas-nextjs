@@ -92,6 +92,93 @@ export default function PlatformPage() {
           </div>
         </section>
 
+        {/* AI Portfolio Management — Three Horizons + Five Criteria + Governance + Markowitz */}
+        <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
+          <div className="container max-w-[1100px]">
+            <div className="text-center mb-3">
+              <span className="section-label">AI Portfolio Management</span>
+            </div>
+            <h2 className="text-h2 text-primary-text text-center mb-6">How EKAS Sequences AI Investment</h2>
+
+            <div className="max-w-[860px] mx-auto mb-12">
+              <p className="text-body-base text-secondary-text mb-4">
+                EKAS organizes 16 AI capabilities across the McKinsey Three Horizons framework — a strategic allocation discipline introduced by Baghai, Coley & White in 1999. Each horizon serves a distinct purpose, and each capability scores against five selection criteria before receiving active investment.
+              </p>
+              <p className="text-body-base text-secondary-text">
+                The framework prevents the most common AI failure mode: organizations that pursue interesting use cases without a coherent selection framework, producing a collection of disconnected pilots that collectively deliver no measurable business value.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  title: "Horizon 1 — Extend & Defend",
+                  allocation: "70% of investment focus",
+                  body: "Quick wins. Certain returns. Proven data. Pays for the portfolio. Six capabilities live or near-live, including OEE diagnostics, downtime root cause, cost variance attribution, shift handoff intelligence.",
+                },
+                {
+                  title: "Horizon 2 — Build & Scale",
+                  allocation: "20% of investment focus",
+                  body: "Emerging differentiators. Moderate risk. Six capabilities in design or build, including FMEA semantic retrieval, predictive maintenance with outcome learning, ISO documentation generation.",
+                },
+                {
+                  title: "Horizon 3 — Create Options",
+                  allocation: "10% of investment focus",
+                  body: "Transformational bets. Higher risk. Four capabilities funded only after Horizon 1 generates documented returns.",
+                },
+              ].map((card) => (
+                <div key={card.title} className="premium-card">
+                  <h3 className="text-h4 text-primary-text mb-1">{card.title}</h3>
+                  <p className="text-fine text-accent mb-3">{card.allocation}</p>
+                  <p className="text-body-sm text-secondary-text">{card.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="max-w-[860px] mx-auto mb-12">
+              <h3 className="text-h3 text-primary-text mb-4">Five-criteria scoring before investment</h3>
+              <p className="text-body-base text-secondary-text mb-6">
+                Every capability is scored against five criteria before it enters the active portfolio. Capabilities below the scoring threshold do not receive investment, regardless of how interesting they appear.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  ["Strategic Relevance", "does the capability advance a named business priority?"],
+                  ["Measurable Impact", "can success be defined in dollar terms before investment?"],
+                  ["Feasibility", "can it be built with available technology, skills, and budget within a defined timeframe?"],
+                  ["Data Readiness", "is the required data accessible, structured, accurate, and of sufficient volume?"],
+                  ["Regulatory Implications", "can compliance obligations (IATF 16949, EU AI Act, OEM contractual) be met within timeline and budget?"],
+                ].map(([term, def]) => (
+                  <li key={term} className="flex items-start gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#00c8ff" }} />
+                    <span className="text-body-sm text-secondary-text"><strong className="text-primary-text">{term}</strong> — {def}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="max-w-[860px] mx-auto mb-12">
+              <h3 className="text-h3 text-primary-text mb-4">Governance cadence</h3>
+              <p className="text-body-base text-secondary-text mb-6">
+                EKAS embeds a quarterly governance cadence into the customer engagement, with binary decision criteria at every layer.
+              </p>
+              <div className="grid grid-cols-[120px_1fr] gap-x-6 gap-y-3">
+                <div className="text-h4 text-accent">Weekly</div>
+                <div className="text-body-sm text-secondary-text">Which initiatives are blocked? What unblocks them?</div>
+                <div className="text-h4 text-accent">Monthly</div>
+                <div className="text-body-sm text-secondary-text">Are returns tracking projections? Any capability ready to accelerate?</div>
+                <div className="text-h4 text-accent">Quarterly</div>
+                <div className="text-body-sm text-secondary-text">Full portfolio rebalancing — invest more, hold, kill, or add?</div>
+                <div className="text-h4 text-accent">Annually</div>
+                <div className="text-body-sm text-secondary-text">Strategy review. Validate horizon allocations. Seed new options.</div>
+              </div>
+            </div>
+
+            <p className="text-body-base text-secondary-text text-center max-w-[860px] mx-auto">
+              The portfolio approach traces to Markowitz's Modern Portfolio Theory (1952), awarded the Nobel Memorial Prize in Economic Sciences in 1990. The core insight: a rational investor doesn't pursue the single highest-return option, but assembles a collection of options that maximize return for a given level of risk. EKAS applies the same logic to AI investment in precision manufacturing.
+            </p>
+          </div>
+        </section>
+
         {/* In Development */}
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
