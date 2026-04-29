@@ -5,6 +5,14 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import PageShell from "@/components/layout/PageShell";
+import TermDefList from "@/components/sections/TermDefList";
+
+const successConditions: ReadonlyArray<readonly [string, string]> = [
+  ["Data quality baseline", "production data captured systematically, not on paper or in disparate spreadsheets"],
+  ["Executive sponsor named", "a senior operations or finance leader with budget authority and willingness to engage"],
+  ["Operations-finance alignment opportunity", "both functions willing to share a common cost model and OEE definition"],
+  ["IATF 16949 compliance posture", "current certification or active path to it (for automotive supply chain context)"],
+];
 
 const formSchema = z.object({
   firstName: z.string().min(1, "Required").max(100),
@@ -75,19 +83,9 @@ export default function DemoPage() {
                 <p className="text-body-sm text-secondary-text mb-4">
                   EKAS engagement begins with a 60-90 minute Discovery conversation. The conversation is most productive when four conditions are present.
                 </p>
-                <ul className="space-y-3 mb-4">
-                  {[
-                    ["Data quality baseline", "production data captured systematically, not on paper or in disparate spreadsheets"],
-                    ["Executive sponsor named", "a senior operations or finance leader with budget authority and willingness to engage"],
-                    ["Operations-finance alignment opportunity", "both functions willing to share a common cost model and OEE definition"],
-                    ["IATF 16949 compliance posture", "current certification or active path to it (for automotive supply chain context)"],
-                  ].map(([term, def]) => (
-                    <li key={term} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: "#00c8ff" }} />
-                      <span className="text-body-sm text-secondary-text"><strong className="text-primary-text">{term}</strong> — {def}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="mb-4">
+                  <TermDefList items={successConditions} />
+                </div>
                 <p className="text-fine text-secondary-text">
                   Not all four conditions are required at the start. Discovery identifies which need development before pilot.
                 </p>
