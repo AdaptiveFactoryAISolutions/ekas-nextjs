@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "About — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "About",
   description: "Built by someone who understands manufacturing operations. 30 years of plant floor experience solving problems experienced firsthand.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
@@ -23,12 +24,12 @@ export default function AboutPage() {
 
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[760px]">
-            <h2 className="text-h2 text-primary-text mb-4">Built by Someone Who Understands Manufacturing Operations</h2>
+            <h2 className="text-h2 text-primary-text mb-4">30 Years on the Floor, Not in a Customer Interview</h2>
             <p className="text-body-base text-secondary-text mb-4">
-              EKAS is built by someone who has worked in manufacturing operations for 30 years — not someone who learned about manufacturing from customer interviews. The platform is informed by real operational challenges, real audit requirements, and real compliance constraints that exist in SME (Small and Medium-sized Enterprise) manufacturers — stamping, fabrication, and metalforming operations serving automotive, aerospace, appliance, and industrial supply chains.
+              EKAS is built by someone who has worked in manufacturing operations for 30 years. The platform is informed by real operational challenges, real audit requirements, and real compliance constraints faced by SME manufacturers — stamping, fabrication, and metalforming operations serving automotive, aerospace, appliance, and industrial supply chains.
             </p>
             <p className="text-body-base text-secondary-text">
-              The founder of AdaptiveFactory holds a degree in Mechanical Engineering Technology and has direct experience in production planning, quality systems implementation, and plant operations. EKAS is the platform they built to solve problems they have experienced firsthand — not problems they researched from the outside.
+              The founder of AdaptiveFactory holds a degree in Mechanical Engineering Technology and has direct experience in production planning, quality systems implementation, and plant operations. EKAS is the platform they built to solve problems they had experienced firsthand — not problems they researched from the outside.
             </p>
           </div>
         </section>

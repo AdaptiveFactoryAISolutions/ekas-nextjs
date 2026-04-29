@@ -1,7 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Solutions",
+  description: "Manufacturing intelligence organized by business problem — downtime, scrap, capacity, cost variance, and multi-site performance — not by software feature.",
+  path: "/solutions",
+});
 
 export default function SolutionsPage() {
   const solutions = [
@@ -50,6 +55,12 @@ export default function SolutionsPage() {
         {/* Solutions Grid */}
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
+            <div className="text-center mb-12">
+              <span className="section-label">Five Operational Outcomes</span>
+              <h2 className="text-h2 text-primary-text mt-3">
+                The Plant Problems EKAS Is Built to Solve
+              </h2>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {solutions.map((solution) => (
                 <Link key={solution.title} href={solution.href}>

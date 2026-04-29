@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Security & Governance — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Security & Governance",
   description: "Enterprise security controls. Nine-stage security pipeline, governed metrics, and full data provenance.",
-};
+  path: "/security",
+});
 
 export default function SecurityPage() {
   return (
@@ -23,6 +24,15 @@ export default function SecurityPage() {
 
         <section className="section-padding" style={{ background: "rgba(13,22,40,0.62)" }}>
           <div className="container max-w-[1100px]">
+            <div className="text-center mb-12">
+              <span className="section-label">How EKAS Earns Trust</span>
+              <h2 className="text-h2 text-primary-text mt-3 mb-4">
+                Trust Model and Security Stack
+              </h2>
+              <p className="text-body-base text-secondary-text max-w-[760px] mx-auto">
+                Four operating principles, backed by a documented security stack.
+              </p>
+            </div>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-h3 text-primary-text mb-6">Trust Model</h3>
