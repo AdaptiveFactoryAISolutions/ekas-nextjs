@@ -113,7 +113,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
       <div className="container h-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex-shrink-0" aria-label="EKAS Homepage">
-          <Image src="/ekas-logo.svg" alt="EKAS — Manufacturing AI That Refuses to Guess" width={110} height={40} className="h-14" priority />
+          <Image src="/ekas-logo-nav.png" alt="EKAS — Manufacturing AI That Refuses to Guess" width={256} height={64} className="h-16" priority />
         </Link>
 
         {/* Desktop Navigation */}
@@ -193,7 +193,7 @@ const Navigation = ({ onDemoClick }: NavigationProps) => {
         <div className="hidden lg:flex items-center gap-4">
           <button
             onClick={onDemoClick}
-            className="btn-primary btn-sm"
+            className="btn-primary"
           >
             Request a Demo
           </button>
