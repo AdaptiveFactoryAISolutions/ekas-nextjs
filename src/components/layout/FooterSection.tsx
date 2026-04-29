@@ -52,7 +52,7 @@ const FooterSection = () => (
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-8 mb-12">
         {/* Brand / Contact */}
         <div className="col-span-2 md:col-span-4 lg:col-span-2">
-          <Image src="/ekas-logo.svg" alt="EKAS" width={120} height={44} className="h-11 mb-4" />
+          <Image src="/ekas-logo.svg" alt="EKAS" width={144} height={52} className="h-[52px] mb-4" />
           <p className="text-fine text-muted-text mt-2">Michigan, USA</p>
           <a
             href="mailto:pat@adaptivefactory.net"
@@ -95,15 +95,25 @@ const FooterSection = () => (
           EKAS is a paid pilot program. Current deployments are in precision metal stamping. AdaptiveFactory AI Solutions, Inc. is an independent Michigan C-corporation.
         </p>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-start gap-6">
+          <div className="flex flex-col items-start gap-1">
+            <span style={{ fontSize: 10, color: "#6a8aaa", textTransform: "uppercase", letterSpacing: "0.08em" }}>A Product Of</span>
+            <Image
+              src="/adaptive-factory-logo.svg"
+              alt="AdaptiveFactory AI Solutions"
+              width={72}
+              height={48}
+              style={{ height: 48, opacity: 0.7 }}
+            />
+          </div>
           <div className="flex flex-col items-start gap-1">
             <span style={{ fontSize: 10, color: "#6a8aaa", textTransform: "uppercase", letterSpacing: "0.08em" }}>Infrastructure</span>
             <Image
               src="https://d0.awsstatic.com/logos/powered-by-aws-white.png"
               alt="Powered by AWS"
-              width={100}
-              height={20}
-              style={{ height: 20, opacity: 0.7 }}
+              width={120}
+              height={24}
+              style={{ height: 24, opacity: 0.7 }}
               unoptimized
             />
           </div>
@@ -112,9 +122,9 @@ const FooterSection = () => (
             <Image
               src="https://sonarcloud.io/images/project_badges/sonarcloud-light.svg"
               alt="SonarCloud"
-              width={120}
-              height={20}
-              style={{ height: 20, opacity: 0.7 }}
+              width={144}
+              height={24}
+              style={{ height: 24, opacity: 0.7 }}
               unoptimized
             />
           </div>
