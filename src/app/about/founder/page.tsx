@@ -1,12 +1,13 @@
-import type { Metadata} from "next";
 import Link from "next/link";
 import { User, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Founder — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Founder",
   description: "Patrick Clay, founder of AdaptiveFactory. 30 years in manufacturing operations, building EKAS from firsthand operational experience.",
-};
+  path: "/about/founder",
+});
 
 export default function FounderPage() {
   return (

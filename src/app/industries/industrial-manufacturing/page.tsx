@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Wrench, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Industrial Manufacturing — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Industrial Manufacturing",
   description: "OEE tracking, downtime attribution, and cost variance for discrete manufacturing operations where traceability and audit readiness are requirements.",
-};
+  path: "/industries/industrial-manufacturing",
+});
 
 export default function IndustrialManufacturingPage() {
   return (

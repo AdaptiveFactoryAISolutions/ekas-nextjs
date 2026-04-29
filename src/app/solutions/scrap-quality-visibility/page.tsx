@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { AlertTriangle, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Scrap & Quality Visibility — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Scrap & Quality Visibility",
   description: "Surface defect patterns and quality losses before they erode margin. Track FPY, defect patterns, and scrap units by part, machine, and shift.",
-};
+  path: "/solutions/scrap-quality-visibility",
+});
 
 export default function ScrapQualityVisibilityPage() {
   return (

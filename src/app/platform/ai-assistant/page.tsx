@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { MessageSquare, Check } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "AI Assistant",
+  description: "Ask manufacturing questions in plain language. Every answer carries an EvidencePacket — time window, scope, record count, and source — so you can trust the number before you act on it.",
+  path: "/platform/ai-assistant",
+});
 
 export default function AIAssistantPage() {
   return (

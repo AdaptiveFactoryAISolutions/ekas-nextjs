@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { BarChart3, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Manufacturing Intelligence",
+  description: "91 governed metrics across the ISA-95 hierarchy. OEE, downtime, FPY, and capacity — ISO 22400-2 ratio-of-sums enforced throughout.",
+  path: "/platform/manufacturing-intelligence",
+});
 
 export default function ManufacturingIntelligencePage() {
   return (

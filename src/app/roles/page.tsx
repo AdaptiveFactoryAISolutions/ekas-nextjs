@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Roles — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Roles",
   description: "How EKAS serves plant managers, operations leaders, engineering, quality, finance, and executive teams with role-specific intelligence.",
-};
+  path: "/roles",
+});
 
 export default function RolesPage() {
 

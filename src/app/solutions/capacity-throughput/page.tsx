@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { TrendingUp, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Capacity & Throughput",
+  description: "Find where production flow is constrained and size capacity against actual OEE — not theoretical hours. Plan against confirmed shift data.",
+  path: "/solutions/capacity-throughput",
+});
 
 export default function CapacityThroughputPage() {
   return (

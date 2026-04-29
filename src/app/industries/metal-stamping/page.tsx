@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Layers, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Metal Stamping — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Metal Stamping",
   description: "Press OEE, die performance, and material yield tracking for precision metal stamping operations.",
-};
+  path: "/industries/metal-stamping",
+});
 
 export default function MetalStampingPage() {
   return (

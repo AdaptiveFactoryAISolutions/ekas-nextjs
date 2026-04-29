@@ -1,6 +1,11 @@
-"use client";
-
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Industries",
+  description: "EKAS deployment depth across precision metal stamping, automotive Tier 2/3 suppliers, and discrete industrial manufacturing operations under regulated quality regimes.",
+  path: "/industries",
+});
 
 export default function IndustriesPage() {
   return (

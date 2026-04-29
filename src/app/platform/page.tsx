@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import PageShell from "@/components/layout/PageShell";
 import TermDefList from "@/components/sections/TermDefList";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Platform — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Platform",
   description: "A manufacturing AI portfolio built on governed data, EvidencePacket provenance, and a nine-stage security pipeline. Each capability compounds over time.",
-};
+  path: "/platform",
+});
 
 const coreCapabilities = [
   {

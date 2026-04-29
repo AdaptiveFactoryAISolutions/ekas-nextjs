@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Security Architecture — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Security Architecture",
   description: "Enterprise security architecture. Nine-stage security pipeline, MFA enforcement, and continuous threat monitoring.",
-};
+  path: "/security/architecture",
+});
 
 export default function ArchitecturePage() {
   return (
