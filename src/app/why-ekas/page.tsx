@@ -31,23 +31,19 @@ export default function WhyEkasPage() {
               EKAS is designed for the people who run the plant floor — operations managers, plant controllers, quality directors — not for BI analysts who build dashboards. Every metric is ISO 22400-2 governed. Every answer includes full data lineage. Every failure mode reference connects to your risk documentation.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "EvidencePacket on Every Answer",
-                  body: "No metric arrives without provenance. Every calculation includes the SQL definition used, the data source queried, the record count, and the calculation timestamp.",
+                  title: "Portfolio framework, not feature checklist",
+                  body: "EKAS organizes 16 AI capabilities across the McKinsey Three Horizons framework with structured selection criteria and quarterly governance. Features can be matched. Frameworks are different work.",
                 },
                 {
-                  title: "ISO 22400-2 Governed OEE",
-                  body: "EKAS enforces ratio-of-sums OEE methodology across the ISA-95 equipment hierarchy. Not approximations — governed calculations with full audit trail.",
+                  title: "Industry-specific depth",
+                  body: "Built for precision metal stamping — ISO 22400-2 OEE methodology, AIAG 4th and AIAG-VDA 2019 FMEA grounding, IATF 16949 framework, OEM PPM threshold awareness. Depth that horizontal SaaS vendors cannot replicate without years of vertical investment.",
                 },
                 {
-                  title: "Built on Confirmed Production Data",
-                  body: "EKAS does not estimate or interpolate. Every metric is computed from confirmed shift data, not live-stream sensor readings or unvalidated MES estimates.",
-                },
-                {
-                  title: "IATF 16949 Audit Trail by Design",
-                  body: "Every query, every metric calculation, every data transformation is logged with full context. Designed for environments that answer to auditors and compliance officers.",
+                  title: "Founder operational experience",
+                  body: "Thirty years in precision metal stamping operations. Built by someone who has explained an EBITDA variance to a CFO and run an IATF audit at 11 PM, not someone who learned about manufacturing from customer interviews.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
@@ -130,23 +126,32 @@ export default function WhyEkasPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {[
                 {
-                  title: "2-Week Data Assessment",
-                  body: "We start by reading your data, not rewriting your systems. Two weeks to inventory your ERP, MES, historian, and quality sources — identify what's clean, what's gapped, and what's silently lying. You get a written assessment with the OEE baseline, data integrity findings, and a concrete pilot scope before you commit to anything further.",
+                  title: "Discovery",
+                  subhead: "60–90 minute conversation",
+                  body: "Structured fit assessment. Four conditions for EKAS success: data quality baseline, executive sponsor, operations–finance alignment opportunity, IATF 16949 compliance posture.",
                 },
                 {
-                  title: "30-Day Pilot Deployment",
-                  body: "A bounded pilot on a defined scope — typically one production area or a target KPI set. Standard infrastructure, standard security posture (encrypted at rest and in transit, SSO, audit logging). Every calculation validated against ISO 22400-2 methodology before any number appears on a dashboard. If the pilot doesn't produce answers you can act on, you don't continue.",
+                  title: "Pilot Readiness Assessment",
+                  subhead: "8-week structured engagement",
+                  body: "Data quality assessment. Three-priority initiative identification. Documented value model in dollar terms. Output is a gating decision: proceed to pilot or do not proceed.",
                 },
                 {
-                  title: "Governed Rollout",
-                  body: "KPIs registered, definitions documented, data quality checks running nightly, findings surfaced when something drifts. Scale from one area to the full plant on your timeline — not on a Gantt chart written by a vendor who's never walked your floor. The system is architected to support IATF 16949, AS9100, and ISO 9001 quality workflows end-to-end.",
+                  title: "60-Day Pilot",
+                  subhead: "Live deployment",
+                  body: "Three Horizon-1 capabilities deployed: shift handoff intelligence, downtime root cause, cost variance attribution. Weekly progress reviews against documented success criteria.",
+                },
+                {
+                  title: "Ongoing Subscription",
+                  subhead: "Quarterly portfolio governance",
+                  body: "Subscription begins after pilot success gates trigger. Quarterly portfolio reviews. Continuous initiative scoring. New capabilities activated only after prior horizon generates documented returns.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
-                  <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
+                  <h3 className="text-h4 text-primary-text mb-1">{card.title}</h3>
+                  <p className="text-fine text-accent mb-3">{card.subhead}</p>
                   <p className="text-body-sm text-secondary-text">{card.body}</p>
                 </div>
               ))}

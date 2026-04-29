@@ -14,6 +14,9 @@ export default function IndustriesPage() {
             <p className="text-body-lg text-secondary-text">
               EKAS is purpose-built for SME manufacturers (fewer than 250 employees) in precision metal stamping, fabrication, and industrial manufacturing. Deep domain expertise in these verticals — not generic manufacturing platform coverage applied everywhere.
             </p>
+            <p className="text-body-base text-secondary-text mt-4">
+              EKAS lands first in precision metal stamping, where four conditions for AI value capture hold simultaneously: mission-critical OEE leverage, IATF 16949 quality regime, OEM parts-per-million threshold pressure, and emerging Scope 3 carbon reporting requirements. Adjacencies — precision machining, fabricated metal products, and discrete assembly — share data structures, KPI taxonomies, and OEM compliance requirements.
+            </p>
           </div>
         </section>
 

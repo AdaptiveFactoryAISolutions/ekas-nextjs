@@ -108,6 +108,25 @@ export default function HomePage() {
             <div className="text-center mb-3">
               <span className="section-label">The Cost of the Status Quo</span>
             </div>
+
+            <div
+              className="max-w-[900px] mx-auto mb-12 p-8 rounded-lg"
+              style={{
+                background: "rgba(0,200,255,0.05)",
+                border: "1px solid rgba(0,200,255,0.2)",
+              }}
+            >
+              <p className="text-body-lg text-primary-text mb-3 font-semibold">
+                BCG's 2025 study of 1,250 senior executives identified the differentiator between AI value capture and AI investment waste.
+              </p>
+              <p className="text-body-base text-secondary-text">
+                It is not the technology. It is the discipline of selecting, sequencing, governing, and rebalancing AI initiatives as a portfolio.
+              </p>
+              <p className="text-fine mt-3" style={{ color: "#6a7a9a" }}>
+                BCG Build for the Future 2025, n=1,250 executives.
+              </p>
+            </div>
+
             <h2 className="text-h2 text-primary-text text-center mb-12">What Fragmented Manufacturing Intelligence Costs</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -278,23 +297,32 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {[
                 {
-                  title: "2-Week Data Assessment",
-                  body: "We start by reading your data, not rewriting your systems. Two weeks to inventory your ERP, MES, historian, and quality sources — identify what's clean, what's gapped, and what's silently lying. You get a written assessment with the OEE baseline, data integrity findings, and a concrete pilot scope before you commit to anything further.",
+                  title: "Discovery",
+                  subhead: "60–90 minute conversation",
+                  body: "Structured fit assessment. Four conditions for EKAS success: data quality baseline, executive sponsor, operations–finance alignment opportunity, IATF 16949 compliance posture.",
                 },
                 {
-                  title: "30-Day Pilot Deployment",
-                  body: "A bounded pilot on a defined scope — typically one production area or a target KPI set. Standard infrastructure, standard security posture (encrypted at rest and in transit, SSO, audit logging). Every calculation validated against ISO 22400-2 methodology before any number appears on a dashboard. If the pilot doesn't produce answers you can act on, you don't continue.",
+                  title: "Pilot Readiness Assessment",
+                  subhead: "8-week structured engagement",
+                  body: "Data quality assessment. Three-priority initiative identification. Documented value model in dollar terms. Output is a gating decision: proceed to pilot or do not proceed.",
                 },
                 {
-                  title: "Governed Rollout",
-                  body: "KPIs registered, definitions documented, data quality checks running nightly, findings surfaced when something drifts. Scale from one area to the full plant on your timeline — not on a Gantt chart written by a vendor who's never walked your floor. The system is architected to support IATF 16949, AS9100, and ISO 9001 quality workflows end-to-end.",
+                  title: "60-Day Pilot",
+                  subhead: "Live deployment",
+                  body: "Three Horizon-1 capabilities deployed: shift handoff intelligence, downtime root cause, cost variance attribution. Weekly progress reviews against documented success criteria.",
+                },
+                {
+                  title: "Ongoing Subscription",
+                  subhead: "Quarterly portfolio governance",
+                  body: "Subscription begins after pilot success gates trigger. Quarterly portfolio reviews. Continuous initiative scoring. New capabilities activated only after prior horizon generates documented returns.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">
-                  <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
+                  <h3 className="text-h4 text-primary-text mb-1">{card.title}</h3>
+                  <p className="text-fine text-accent mb-3">{card.subhead}</p>
                   <p className="text-body-sm text-secondary-text">{card.body}</p>
                 </div>
               ))}
