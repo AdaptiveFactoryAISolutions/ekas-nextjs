@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { DollarSign, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Financial Intelligence — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Financial Intelligence",
   description: "Manufacturing cost variance from confirmed production data. Scrap cost, downtime cost, and OEE efficiency loss — available any day, not just period close.",
-};
+  path: "/platform/financial-intelligence",
+});
 
 export default function FinancialIntelligencePage() {
   return (

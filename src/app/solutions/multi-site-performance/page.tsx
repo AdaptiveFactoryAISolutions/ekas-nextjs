@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { Building2, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Multi-Site Performance",
+  description: "Compare performance across facilities with consistent, governed metrics and a single source of truth. Apples-to-apples by design.",
+  path: "/solutions/multi-site-performance",
+});
 
 export default function MultiSitePerformancePage() {
   return (

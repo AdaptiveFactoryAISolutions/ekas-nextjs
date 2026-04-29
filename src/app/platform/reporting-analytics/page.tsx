@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { FileText, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Reporting & Analytics",
+  description: "Governed dashboards and structured reports built on the same metric definitions as the AI Assistant. Period-close, shift-handoff, and multi-site comparison views.",
+  path: "/platform/reporting-analytics",
+});
 
 export default function ReportingAnalyticsPage() {
   return (

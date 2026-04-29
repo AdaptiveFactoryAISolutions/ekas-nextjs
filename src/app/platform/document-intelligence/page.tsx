@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { FileText, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Document Intelligence — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Document Intelligence",
   description: "Upload supplier invoices, PPAP submissions, calibration certs, and work orders. Extract structured data and query through the AI Assistant.",
-};
+  path: "/platform/document-intelligence",
+});
 
 export default function DocumentIntelligencePage() {
   return (

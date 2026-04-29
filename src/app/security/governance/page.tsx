@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Governance — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Governance",
   description: "Versioned metric definitions, full data provenance, role-based access, and zero-compromise release policy. Every calculation traceable to source.",
-};
+  path: "/security/governance",
+});
 
 export default function GovernancePage() {
   return (

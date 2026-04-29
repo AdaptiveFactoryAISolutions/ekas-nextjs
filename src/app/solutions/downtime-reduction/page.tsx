@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Clock, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Downtime Reduction — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Downtime Reduction",
   description: "Move from delay and guesswork to grounded answers. See where time is lost, quantify it, trace to root cause, and track trends over time.",
-};
+  path: "/solutions/downtime-reduction",
+});
 
 export default function DowntimeReductionPage() {
   return (

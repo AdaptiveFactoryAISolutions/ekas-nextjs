@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Technical Overview — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Technical Overview",
   description: "How EKAS works from question to provenance-backed answer. System architecture, data flow, standards compliance, and deployment options.",
-};
+  path: "/technical-overview",
+});
 
 export default function TechnicalOverviewPage() {
   return (

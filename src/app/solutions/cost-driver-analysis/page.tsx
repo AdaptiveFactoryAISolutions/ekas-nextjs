@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { DollarSign, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Cost Driver Analysis",
+  description: "Attribute labor, burden, machine, and material variance to the machine, workcenter, and shift that generated it — without waiting for period close.",
+  path: "/solutions/cost-driver-analysis",
+});
 
 export default function CostDriverAnalysisPage() {
   return (

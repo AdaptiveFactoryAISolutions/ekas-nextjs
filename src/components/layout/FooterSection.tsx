@@ -31,12 +31,15 @@ const footerLinks = {
     { label: "Industrial Manufacturing", href: "/industries/industrial-manufacturing" },
   ],
   Trust: [
-    { label: "Security", href: "/security" },
-    { label: "Governance", href: "/security#governance" },
-    { label: "Data Handling", href: "/security#data-handling" },
-    { label: "Architecture", href: "/security#architecture" },
+    { label: "Security Overview", href: "/security" },
+    { label: "Governance", href: "/security/governance" },
+    { label: "Data Handling", href: "/security/data-handling" },
+    { label: "Architecture", href: "/security/architecture" },
   ],
   Resources: [
+    { label: "Why EKAS", href: "/why-ekas" },
+    { label: "Technical Overview", href: "/technical-overview" },
+    { label: "Resources", href: "/resources" },
     { label: "FAQs", href: "/resources/faqs" },
   ],
   Company: [

@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Data Handling — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Data Handling",
   description: "How production data is collected, protected, and used. Zero-training-data guarantee. TLS 1.3 encryption in transit, AWS KMS encryption at rest.",
-};
+  path: "/security/data-handling",
+});
 
 export default function DataHandlingPage() {
   return (

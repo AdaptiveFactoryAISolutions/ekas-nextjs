@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { RefreshCw, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Shift Handoff Intelligence — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Shift Handoff Intelligence",
   description: "Structured handoffs grounded in production data. Incoming supervisors start with facts, not assumptions.",
-};
+  path: "/solutions/shift-handoff",
+});
 
 export default function ShiftHandoffPage() {
   return (

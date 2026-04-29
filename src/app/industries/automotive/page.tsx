@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Car, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Automotive Manufacturing — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Automotive Manufacturing",
   description: "IATF 16949 traceability and provenance architecture for automotive suppliers. Full audit trail by design.",
-};
+  path: "/industries/automotive",
+});
 
 export default function AutomotivePage() {
   return (

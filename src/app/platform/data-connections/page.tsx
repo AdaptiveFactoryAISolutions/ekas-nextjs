@@ -1,8 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { Database, ChevronLeft } from "lucide-react";
 import PageShell from "@/components/layout/PageShell";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata = pageMetadata({
+  title: "Data Connections",
+  description: "Read-only batch connectors to ERP, MES, SCADA, and quality systems. Your source systems are never modified — EKAS only reads from them.",
+  path: "/platform/data-connections",
+});
 
 export default function DataConnectionsPage() {
   return (

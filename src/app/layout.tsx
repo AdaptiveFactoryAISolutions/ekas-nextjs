@@ -16,16 +16,32 @@ const rajdhani = Rajdhani({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ekas.adaptivefactory.net";
+
+const HOME_TITLE = "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess";
+const HOME_DESCRIPTION =
+  "EKAS turns production data into traceable manufacturing intelligence for SME precision manufacturers — stamping, fabrication, and metalforming shops. OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.";
+
 export const metadata: Metadata = {
-  title: "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess",
-  description:
-    "EKAS turns production data into traceable manufacturing intelligence for SME precision manufacturers — stamping, fabrication, and metalforming shops. OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: HOME_TITLE,
+    template: "%s — EKAS by AdaptiveFactory",
+  },
+  description: HOME_DESCRIPTION,
   authors: [{ name: "AdaptiveFactory AI Solutions" }],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess",
-    description:
-      "EKAS turns production data into traceable manufacturing intelligence for SME precision manufacturers — stamping, fabrication, and metalforming shops. OEE, downtime root cause, cost variance, and document intelligence grounded in ISO 22400-2 and IATF 16949 standards.",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    siteName: "EKAS by AdaptiveFactory",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
   },
 };
 
