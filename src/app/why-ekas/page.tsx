@@ -7,6 +7,21 @@ export const metadata: Metadata = {
   description: "EKAS delivers governed, traceable manufacturing intelligence with an evidence standard that most platforms cannot meet. Built for SME precision manufacturers, not BI teams.",
 };
 
+const differentiatorCards = [
+  {
+    title: "Portfolio framework, not feature checklist",
+    body: "EKAS organizes 16 AI capabilities across the McKinsey Three Horizons framework with structured selection criteria and quarterly governance. Features can be matched. Frameworks are different work.",
+  },
+  {
+    title: "Industry-specific depth",
+    body: "Built for precision metal stamping — ISO 22400-2 OEE methodology, AIAG 4th and AIAG-VDA 2019 FMEA grounding, IATF 16949 framework, OEM PPM threshold awareness. Depth that horizontal SaaS vendors cannot replicate without years of vertical investment.",
+  },
+  {
+    title: "Founder operational experience",
+    body: "Thirty years in precision metal stamping operations. Built by someone who has explained an EBITDA variance to a CFO and run an IATF audit at 11 PM, not someone who learned about manufacturing from customer interviews.",
+  },
+];
+
 export default function WhyEkasPage() {
   return (
     <PageShell>
@@ -33,20 +48,7 @@ export default function WhyEkasPage() {
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: "Portfolio framework, not feature checklist",
-                  body: "EKAS organizes 16 AI capabilities across the McKinsey Three Horizons framework with structured selection criteria and quarterly governance. Features can be matched. Frameworks are different work.",
-                },
-                {
-                  title: "Industry-specific depth",
-                  body: "Built for precision metal stamping — ISO 22400-2 OEE methodology, AIAG 4th and AIAG-VDA 2019 FMEA grounding, IATF 16949 framework, OEM PPM threshold awareness. Depth that horizontal SaaS vendors cannot replicate without years of vertical investment.",
-                },
-                {
-                  title: "Founder operational experience",
-                  body: "Thirty years in precision metal stamping operations. Built by someone who has explained an EBITDA variance to a CFO and run an IATF audit at 11 PM, not someone who learned about manufacturing from customer interviews.",
-                },
-              ].map((card) => (
+              {differentiatorCards.map((card) => (
                 <div key={card.title} className="premium-card">
                   <h3 className="text-h4 text-primary-text mb-2">{card.title}</h3>
                   <p className="text-body-sm text-secondary-text">{card.body}</p>
