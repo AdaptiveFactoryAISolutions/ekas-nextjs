@@ -12,7 +12,10 @@
     "test:ui": "playwright test --ui",
     "test:smoke": "playwright test tests/smoke",
     "test:report": "playwright show-report",
-    "test:update-snapshots": "playwright test --update-snapshots"
+    "test:update-snapshots": "playwright test --update-snapshots",
+    "test:e2e:local": "BASE_URL=http://localhost:3001 playwright test tests/qa tests/metadata/per-page-metadata.spec.ts --project=desktop-1440",
+    "test:e2e:live": "BASE_URL=https://adaptivefactory.ai playwright test tests/qa tests/metadata/per-page-metadata.spec.ts --project=desktop-1440",
+    "test:e2e:both": "npm run test:e2e:local && npm run test:e2e:live"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1032.0",

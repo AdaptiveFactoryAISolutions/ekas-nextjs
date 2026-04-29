@@ -5,6 +5,13 @@
 
 # testing
 /coverage
+/test-results
+/playwright-report
+/playwright-report-local
+/playwright-report-live
+/tests/qa/results-*.json
+/tests/qa/results-*.html
+/tests/qa/results-*.log
 
 # next.js
 /.next/
