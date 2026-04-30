@@ -2,6 +2,8 @@
 
 ## Summary
 
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission) at the bottom. The `/api/demo-request` route was deleted; SES + S3 + server-side fail-soft sync no longer exist. HubSpot is now the single sink, called directly from the browser.
+
 HubSpot free CRM is a non-destructive overlay on the existing demo-request
 pipeline. The Next.js demo form continues to send to AWS SES + S3 exactly
 as before; HubSpot is added as a fail-soft downstream sink for lead
@@ -9,6 +11,8 @@ capture, plus a tracking script that powers the HubSpot chatbot widget
 on every page. Nothing was replaced — only added.
 
 ## Demo-request flow (post-integration)
+
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). The six-step server pipeline below never actually ran in production: the static-export deploy meant the route handler returned 500 from CloudFront. Replaced by a one-step browser-to-HubSpot POST.
 
 A POST to `/api/demo-request` runs through six steps in this order. Each
 step must succeed before the next runs, except the final HubSpot step,
@@ -36,6 +40,8 @@ and the user still gets `{ ok: true }` — the lead is already captured in
 SES + S3, so HubSpot is just downstream.
 
 ## Required environment variables
+
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). After the migration, `HUBSPOT_PORTAL_ID` and `HUBSPOT_FORM_GUID` are hardcoded in the modal (they're public values exposed via the browser request anyway). `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` is still used by the tracking script in `layout.tsx`. The SES / S3 / KMS env vars are no longer read by application code and should be deleted from Amplify.
 
 Set these in **AWS Amplify Console → App settings → Environment variables**
 before merging to the Amplify-watched branch (`main`).
@@ -101,6 +107,8 @@ automatically. No code change needed.
 
 ## Verifying the integration works
 
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). The SES + S3 verification steps no longer apply. Verify only that the HubSpot CRM contact appears.
+
 Once env vars are set and `feature/hubspot-integration` is merged to
 `main`:
 
@@ -125,6 +133,8 @@ a single submission across SES → S3 → HubSpot.
 
 ## Failure modes
 
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). The "lead still captured in SES + S3" fallbacks no longer exist. After the migration: if HubSpot's API fails, the user sees an error and is asked to email pat@adaptivefactory.net directly.
+
 | Failure | What happens | What to do |
 |---|---|---|
 | HubSpot API down or returns 5xx | Request times out at 5s, error logged, lead still captured in SES + S3 | Nothing — design intent. Lead is safe. |
@@ -135,6 +145,8 @@ a single submission across SES → S3 → HubSpot.
 | Form GUID is wrong or the form was deleted in HubSpot | HubSpot returns 404, error logged, lead still captured in SES + S3 | Recreate the form in the HubSpot UI, copy its new GUID into `HUBSPOT_FORM_GUID`. |
 
 ## Disabling the integration
+
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). Server-side toggle no longer exists. To disable demo submissions now, comment out the `submitToHubSpot(data)` call in `DemoRequestModal.tsx` and redeploy. Tracking script can still be disabled by unsetting `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` in Amplify.
 
 To turn off the integration completely without redeploying code:
 
@@ -150,6 +162,8 @@ To turn it off permanently, also revert the four commits on the
 `feature/hubspot-integration` branch and remove the env vars.
 
 ## Future enhancements
+
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). The "extract syncToHubSpot to its own module" and "switch to authenticated Forms API" v2/v3 items below assumed a server route that no longer exists. The hutk-cookie idea still applies but moves client-side (read `document.cookie` in the modal's `submitToHubSpot` function and add `context.hutk`). Custom-fields-in-modal still applies as written.
 
 Listed in priority order. Each is intentionally deferred from v1.
 
@@ -204,6 +218,8 @@ token and replace the unauthenticated endpoint with
 
 ## Future cleanup TODOs
 
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission). The `DemoRequestBody` interface and `route.ts` no longer exist. The dead `phone?` / `message?` fields are gone with them.
+
 These are pre-existing oddities surfaced during the integration but
 intentionally not fixed in this PR (scope discipline).
 
@@ -227,9 +243,89 @@ intentionally not fixed in this PR (scope discipline).
 
 ## Files modified by this integration
 
+> **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission) for the post-migration file inventory. The list below describes the v1 PR only.
+
 | File | Change |
 |---|---|
 | `.env.example` | +11 lines: HubSpot env-var placeholders |
 | `src/app/api/demo-request/route.ts` | +73 lines: `syncToHubSpot` function and call site. Zero existing lines modified. |
 | `src/app/layout.tsx` | +11 lines: `<Script>` import, env-var const, conditional script tag in `<body>`. One existing line modified (the body element) for formatting. |
 | `HUBSPOT_INTEGRATION.md` | New file (this document) |
+
+---
+
+## 2026-04-30: Migration from broken Next.js API route to direct HubSpot Forms submission
+
+### What changed
+
+The demo request form previously POSTed to `/api/demo-request` (a Next.js Route Handler at `src/app/api/demo-request/route.ts`). This route was non-functional in production because Amplify deploys this site as a static export (no SSR), so the route handler never ran. All POSTs returned 500 from CloudFront. The form had been silently broken since `next.config.js` was modified to remove `output: 'standalone'` (commit ed2dcbb).
+
+We've replaced the API route with direct client-side submission to HubSpot's Forms API. The modal UI, fields, and validation are unchanged from the user's perspective. Lead capture now goes directly to HubSpot CRM.
+
+### What was deleted
+
+- `src/app/api/demo-request/route.ts` (the broken route handler)
+
+### What was modified
+
+- `src/components/modals/DemoRequestModal.tsx` — submit handler now calls HubSpot Forms API directly. The 15-domain consumer-email blocklist was added to the modal's zod schema (it previously lived only in `route.ts` and would have been silently lost).
+
+### Architecture before vs after
+
+**Before (broken):** Modal → POST /api/demo-request → (CloudFront returns 500, no Lambda exists)
+
+**After (working):** Modal → POST api.hsforms.com/submissions/v3/integration/submit/{portal}/{form} → HubSpot CRM contact created
+
+### Field name mapping
+
+The modal uses camelCase (`firstName`, `lastName`, `jobTitle`); HubSpot's Forms API uses lowercase no-separator (`firstname`, `lastname`, `jobtitle`). Mapping happens in `submitToHubSpot()` inside the modal.
+
+### Consumer-email blocklist — now client-side
+
+The 15-domain blocklist (gmail.com, yahoo.com, hotmail.com, outlook.com, aol.com, icloud.com, live.com, msn.com, protonmail.com, mail.com, yandex.com, zoho.com, gmx.com, inbox.com, me.com) used to run server-side in `route.ts:37–41`. It now lives in the modal's zod schema as a `.refine()` on the email field.
+
+This is bypassable — anyone with browser DevTools can edit the JS or POST directly to HubSpot's endpoint. Acceptable because:
+
+1. Bypassing requires DevTools sophistication beyond what casual junk submitters do.
+2. HubSpot has its own consumer-email filtering downstream — gmail/yahoo addresses get marked accordingly in CRM.
+3. A determined bad actor with both DevTools knowledge and the patience to bypass the check is not a real prospect anyway.
+
+### Manual cleanup tasks for the user (post-merge)
+
+1. **Delete 6 AWS env vars in Amplify Console** (no longer used):
+   - `SES_FROM_EMAIL`
+   - `DEMO_REQUEST_TO_EMAIL`
+   - `DEMO_REQUEST_S3_BUCKET`
+   - `DEMO_REQUEST_S3_KMS_KEY_ID`
+   - `EKAS_SES_ACCESS_KEY_ID`
+   - `EKAS_SES_SECRET_ACCESS_KEY`
+
+   `HUBSPOT_PORTAL_ID` and `HUBSPOT_FORM_GUID` server-side env vars can also be deleted (now hardcoded in the modal). `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` should remain — it's still consumed by the tracking script in `layout.tsx`.
+
+2. **Deactivate IAM access keys for `ekas-demo-form-user`:**
+   - `AKIAXRLIOODWE3D3IG6I` (third rotation, never used in production)
+   - `AKIAXRLIOODWKMUWHW5F` (original 12-day-old key)
+   - Keep deactivated for 24-48 hours, then delete permanently.
+
+3. **Optionally delete the IAM user `ekas-demo-form-user` and its `DemoRequestFormPolicy`.**
+
+4. **Optionally delete the S3 bucket `adaptivefactory-leads`** if no longer referenced. Note: existing lead JSON archives still in this bucket. Consider exporting them before deleting.
+
+5. **Optionally delete the KMS key `alias/ekas-s3`** if no longer referenced by anything else.
+
+6. **Optionally remove `@aws-sdk/client-s3` and `@aws-sdk/client-ses` from `package.json`.** Left in place for this PR (out of scope: don't refactor unrelated deps). They're now unused dead weight in the dependency tree but cause no behavior change.
+
+### Tradeoffs of this architecture
+
+**Lost:**
+- Server-side consumer email blocklist (now client-side only — bypassable, see rationale above)
+- Server-side rate limiting (HubSpot has its own, less customizable)
+- S3 archive of leads (HubSpot is now the source of truth)
+- SES email notification to pat@adaptivefactory.net (HubSpot CRM notifications and email tools replace this)
+- Custom validation logic in route handler
+
+**Gained:**
+- Working demo form
+- Direct HubSpot CRM integration
+- Simpler architecture (no AWS infrastructure to maintain)
+- HubSpot's automated email sequences and notifications

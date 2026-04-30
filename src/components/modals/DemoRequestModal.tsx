@@ -12,15 +12,67 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
+// Consumer-email blocklist — moved client-side as part of the 2026-04-30
+// migration off the broken /api/demo-request route. Bypassable by anyone
+// with DevTools, but acceptable: HubSpot has its own consumer-email
+// filtering and determined bad actors aren't prospects.
+const CONSUMER_EMAIL_DOMAINS = [
+  "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
+  "icloud.com", "live.com", "msn.com", "protonmail.com", "mail.com",
+  "yandex.com", "zoho.com", "gmx.com", "inbox.com", "me.com"
+];
+
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required").max(100),
   lastName: z.string().min(1, "Last name is required").max(100),
-  email: z.string().email("Valid business email required").max(255),
+  email: z
+    .string()
+    .email("Valid business email required")
+    .max(255)
+    .refine(
+      (email) => {
+        const domain = email.split("@")[1]?.toLowerCase();
+        return domain ? !CONSUMER_EMAIL_DOMAINS.includes(domain) : false;
+      },
+      "Business email required. Personal email addresses (gmail.com, yahoo.com, etc.) are not accepted."
+    ),
   company: z.string().min(1, "Company name is required").max(200),
   jobTitle: z.string().min(1, "Job title is required").max(100),
 });
 
 type FormData = z.infer<typeof formSchema>;
+
+// HubSpot Forms API — direct client-side submission. Replaces the broken
+// /api/demo-request route (static export = no SSR). Form GUID corresponds
+// to "EKAS Demo Request — Server-Sync" in HubSpot portal 246054670.
+const HUBSPOT_PORTAL_ID = "246054670";
+const HUBSPOT_FORM_GUID = "b9d421ef-67a9-4613-99d2-9821f1fe2f96";
+const HUBSPOT_SUBMIT_ENDPOINT = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
+async function submitToHubSpot(formData: FormData): Promise<void> {
+  const response = await fetch(HUBSPOT_SUBMIT_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      fields: [
+        { name: "firstname", value: formData.firstName },
+        { name: "lastname", value: formData.lastName },
+        { name: "email", value: formData.email },
+        { name: "company", value: formData.company },
+        { name: "jobtitle", value: formData.jobTitle },
+      ],
+      context: {
+        pageUri: typeof window !== "undefined" ? window.location.href : "",
+        pageName: typeof document !== "undefined" ? document.title : "",
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    throw new Error(`HubSpot submission failed (${response.status}): ${errorText}`);
+  }
+}
 
 interface DemoRequestModalProps {
   open: boolean;
@@ -48,28 +100,9 @@ const DemoRequestModal = ({ open, onClose }: DemoRequestModalProps) => {
     setSubmitterFirstName(data.firstName);
 
     try {
-      const response = await fetch("/api/demo-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.ok) {
-        // Success
-        setIsSubmitted(true);
-      } else if (response.status === 400) {
-        // Validation error from server
-        setSubmitError(result.error || "Submission failed. Please check your information and try again.");
-      } else {
-        // Server error or network failure
-        setSubmitError(result.error || "Submission failed. Please email pat@adaptivefactory.net directly.");
-      }
+      await submitToHubSpot(data);
+      setIsSubmitted(true);
     } catch (error) {
-      // Network error
       console.error("Form submission error:", error);
       setSubmitError("Submission failed. Please email pat@adaptivefactory.net directly and include your company name and role.");
     } finally {
