@@ -13,7 +13,7 @@ this site as static export.
 Migration from API-route + AWS infrastructure (SES + S3) to direct
 HubSpot Forms API submission both fixed the broken form AND simplified
 the architecture. AWS resources remain provisioned but unused, scheduled
-for cleanup on 2026-05-09.
+for cleanup on 2026-05-08.
 
 Two security incidents occurred and were resolved:
 1. Initial Amplify env var save action wiped 6 pre-existing AWS env
@@ -34,7 +34,7 @@ completed or scheduled.
 - Repo setting `delete_branch_on_merge=true` enabled so future PR merges auto-delete head branches
 - IAM access keys for `ekas-demo-form-user` deactivated via AWS Console (`AKIAXRLIOODWE3D3IG6I` and `AKIAXRLIOODWKMUWHW5F`); both reside Inactive, not deleted, so reactivation in one click remains possible
 
-### 📅 Scheduled for May 9, 2026 (manual user task)
+### 📅 Scheduled for Friday, May 8, 2026 (manual user task)
 
 - Delete the two deactivated IAM access keys (`AKIAXRLIOODWE3D3IG6I`, `AKIAXRLIOODWKMUWHW5F`)
 - Delete IAM user `ekas-demo-form-user`
@@ -47,14 +47,14 @@ completed or scheduled.
 
 ### Reactivation procedure (if needed)
 
-If the demo form breaks unexpectedly between now and May 9, 2026 and the AWS infrastructure needs to come back online:
+If the demo form breaks unexpectedly between now and Friday, May 8, 2026 and the AWS infrastructure needs to come back online:
 
 1. Reactivate the original IAM key:
    `aws iam update-access-key --user-name ekas-demo-form-user --access-key-id AKIAXRLIOODWKMUWHW5F --status Active`
 2. Restore the 6 Amplify env vars (values were intentionally not retained in this repo — pull from the user's password manager / Amplify history)
 3. Trigger an Amplify redeploy
 
-This procedure is reversible until 2026-05-09. After the May 9 cleanup, restoring would require recreating the IAM keys, the S3 bucket, the KMS key, and the Amplify env vars from scratch.
+This procedure is reversible until 2026-05-08. After the May 8 cleanup, restoring would require recreating the IAM keys, the S3 bucket, the KMS key, and the Amplify env vars from scratch.
 
 ---
 
