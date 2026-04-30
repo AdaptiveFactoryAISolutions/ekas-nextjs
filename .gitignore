@@ -32,3 +32,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Playwright test artifacts (transient, regenerated each run)
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Session working notes — kept locally, not canonical repo content
+COMPLETE_ANALYSIS_PACKAGE.md
+COMPREHENSIVE_WEBSITE_AUDIT.md
+CONTENT_CONFIDENCE_ASSESSMENT.md
+CRITICAL_PAGE_SOURCE_CODE.md
+ML_CAPABILITIES_CROSS_REFERENCE_ANALYSIS.md
+WEBSITE_AUDIT_REPORT.md
+CLEANUP_REPORT_*.md
+
+# IAM policy snapshots — point-in-time references, not runtime config
+demo-request-iam-policy.json
+
+# Deployment validation reports (point-in-time, not canonical docs)
+docs/navigation_deployment_validation_report.md
