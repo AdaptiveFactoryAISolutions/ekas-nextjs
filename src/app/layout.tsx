@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Rajdhani } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -17,6 +18,7 @@ const rajdhani = Rajdhani({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ekas.adaptivefactory.net";
+const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID;
 
 const HOME_TITLE = "EKAS by AdaptiveFactory — Manufacturing AI That Refuses to Guess";
 const HOME_DESCRIPTION =
@@ -52,7 +54,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${dmSans.variable} ${rajdhani.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        {HUBSPOT_PORTAL_ID && (
+          <Script
+            id="hubspot-tracking"
+            src={`//js-na2.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`}
+            strategy="afterInteractive"
+          />
+        )}
+      </body>
     </html>
   );
 }
