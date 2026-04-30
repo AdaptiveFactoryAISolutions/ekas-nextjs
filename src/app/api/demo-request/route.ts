@@ -8,6 +8,9 @@ const SES_FROM_EMAIL = process.env.SES_FROM_EMAIL || "noreply@adaptivefactory.ne
 const DEMO_REQUEST_TO_EMAIL = process.env.DEMO_REQUEST_TO_EMAIL || "pat@adaptivefactory.net";
 const DEMO_REQUEST_S3_BUCKET = process.env.DEMO_REQUEST_S3_BUCKET || "adaptivefactory-leads";
 const DEMO_REQUEST_S3_KMS_KEY_ID = process.env.DEMO_REQUEST_S3_KMS_KEY_ID;
+const HUBSPOT_PORTAL_ID = process.env.HUBSPOT_PORTAL_ID;
+const HUBSPOT_FORM_GUID = process.env.HUBSPOT_FORM_GUID;
+const HUBSPOT_API_TIMEOUT_MS = 5000;
 
 // AWS clients
 const awsCredentials =
@@ -183,6 +186,65 @@ async function writeToS3(data: DemoRequestBody, submissionId: string, ip: string
   await s3Client.send(command);
 }
 
+async function syncToHubSpot(
+  data: DemoRequestBody,
+  request: NextRequest,
+  submissionId: string
+): Promise<void> {
+  if (!HUBSPOT_PORTAL_ID || !HUBSPOT_FORM_GUID) {
+    console.info(
+      `[demo-request:${submissionId}] HubSpot sync skipped: HUBSPOT_PORTAL_ID or HUBSPOT_FORM_GUID not configured`
+    );
+    return;
+  }
+
+  const url = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+
+  const referer = request.headers.get("referer") || "https://adaptivefactory.ai";
+  let pageName = "Demo Request";
+  try {
+    const refererUrl = new URL(referer);
+    pageName = `Demo Request (${refererUrl.pathname})`;
+  } catch {
+    // referer not a valid URL — fall back to default pageName
+  }
+
+  const body = {
+    fields: [
+      { name: "firstname", value: data.firstName },
+      { name: "lastname", value: data.lastName },
+      { name: "email", value: data.email },
+      { name: "company", value: data.company },
+      { name: "jobtitle", value: data.jobTitle },
+    ],
+    context: {
+      pageUri: referer,
+      pageName,
+    },
+  };
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), HUBSPOT_API_TIMEOUT_MS);
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HubSpot API ${response.status}: ${errorText}`);
+    }
+
+    console.info(`[demo-request:${submissionId}] HubSpot sync succeeded`);
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // Get client IP for rate limiting
@@ -281,6 +343,17 @@ export async function POST(request: NextRequest) {
           error: "Submission failed. Please email pat@adaptivefactory.net directly."
         },
         { status: 500 }
+      );
+    }
+
+    // HubSpot sync — fail-soft. Lead is already captured in SES + S3, so
+    // HubSpot errors do NOT fail the user-facing request.
+    try {
+      await syncToHubSpot(sanitizedData, request, submissionId);
+    } catch (error) {
+      console.error(
+        `[demo-request:${submissionId}] HubSpot sync failed (lead still captured in SES + S3):`,
+        error
       );
     }
 
