@@ -1,5 +1,63 @@
 # HubSpot Integration
 
+## Cleanup status (as of 2026-04-30 evening)
+
+### Incident summary (2026-04-30)
+
+This deploy session surfaced and fixed a pre-existing production bug:
+the demo form had been silently 500-ing since commit ed2dcbb removed
+`output: 'standalone'` from next.config.js. The Next.js API route at
+/api/demo-request never executed in production because Amplify deploys
+this site as static export.
+
+Migration from API-route + AWS infrastructure (SES + S3) to direct
+HubSpot Forms API submission both fixed the broken form AND simplified
+the architecture. AWS resources remain provisioned but unused, scheduled
+for cleanup on 2026-05-09.
+
+Two security incidents occurred and were resolved:
+1. Initial Amplify env var save action wiped 6 pre-existing AWS env
+   vars; restored after diagnostic excavation
+2. AWS secret access key was inadvertently included in a chat screenshot
+   during recovery; rotated three times to neutralize exposure
+
+Final state: all credentials bound to deactivated keys, all functional
+production paths verified working, all known cleanup items either
+completed or scheduled.
+
+### ✅ Completed today
+
+- Demo form migrated from broken Next.js API route to direct HubSpot Forms API submission (PR #11, merged 2026-04-30)
+- New architecture verified end-to-end (form → HubSpot CRM contact creation)
+- Local feature branch `feature/hubspot-forms-direct` deleted (local + remote); stale local remote-tracking ref `origin/feature/hubspot-integration` pruned (the remote ref was already absent on GitHub)
+- Working tree gitignore patterns added and 16 already-tracked Playwright artifacts untracked via `git rm --cached` (PR #12, merged 2026-04-30)
+- Repo setting `delete_branch_on_merge=true` enabled so future PR merges auto-delete head branches
+- IAM access keys for `ekas-demo-form-user` deactivated via AWS Console (`AKIAXRLIOODWE3D3IG6I` and `AKIAXRLIOODWKMUWHW5F`); both reside Inactive, not deleted, so reactivation in one click remains possible
+
+### 📅 Scheduled for May 9, 2026 (manual user task)
+
+- Delete the two deactivated IAM access keys (`AKIAXRLIOODWE3D3IG6I`, `AKIAXRLIOODWKMUWHW5F`)
+- Delete IAM user `ekas-demo-form-user`
+- Delete IAM policy `DemoRequestFormPolicy` (optional, depending on whether the policy is referenced elsewhere)
+- Delete 6 stale Amplify env vars: `SES_FROM_EMAIL`, `DEMO_REQUEST_TO_EMAIL`, `DEMO_REQUEST_S3_BUCKET`, `DEMO_REQUEST_S3_KMS_KEY_ID`, `EKAS_SES_ACCESS_KEY_ID`, `EKAS_SES_SECRET_ACCESS_KEY`
+- `HUBSPOT_PORTAL_ID` and `HUBSPOT_FORM_GUID` server-side env vars can also be deleted (now hardcoded in the modal); `NEXT_PUBLIC_HUBSPOT_PORTAL_ID` should remain (still consumed by the tracking script in `layout.tsx`)
+- Decide fate of S3 bucket `adaptivefactory-leads`: export existing lead JSON archives to a local archive, then delete the bucket
+- Decide fate of KMS key `alias/ekas-s3`: verify no other references, then schedule deletion (KMS keys have a 7–30 day deletion window)
+- Optional follow-up: remove `@aws-sdk/client-s3` and `@aws-sdk/client-ses` from `package.json` (left in place to keep the migration PR scoped; they are now unused dead weight)
+
+### Reactivation procedure (if needed)
+
+If the demo form breaks unexpectedly between now and May 9, 2026 and the AWS infrastructure needs to come back online:
+
+1. Reactivate the original IAM key:
+   `aws iam update-access-key --user-name ekas-demo-form-user --access-key-id AKIAXRLIOODWKMUWHW5F --status Active`
+2. Restore the 6 Amplify env vars (values were intentionally not retained in this repo — pull from the user's password manager / Amplify history)
+3. Trigger an Amplify redeploy
+
+This procedure is reversible until 2026-05-09. After the May 9 cleanup, restoring would require recreating the IAM keys, the S3 bucket, the KMS key, and the Amplify env vars from scratch.
+
+---
+
 ## Summary
 
 > **⚠️ SUPERSEDED 2026-04-30** — see [migration section](#2026-04-30-migration-from-broken-nextjs-api-route-to-direct-hubspot-forms-submission) at the bottom. The `/api/demo-request` route was deleted; SES + S3 + server-side fail-soft sync no longer exist. HubSpot is now the single sink, called directly from the browser.
