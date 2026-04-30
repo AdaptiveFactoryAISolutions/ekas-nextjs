@@ -68,9 +68,21 @@ async function submitToHubSpot(formData: FormData): Promise<void> {
     }),
   });
 
-  if (!response.ok) {
-    const errorText = await response.text().catch(() => "");
-    throw new Error(`HubSpot submission failed (${response.status}): ${errorText}`);
+  // HubSpot Forms API returns HTTP 200 with an error body for validation failures.
+  // Parse the body and treat any "status: error" or non-OK response as a real failure.
+  let body: { status?: string; message?: string; errors?: Array<{ message?: string }> } = {};
+  try {
+    body = await response.json();
+  } catch {
+    // If the body isn't JSON, fall through to the response.ok check below.
+  }
+
+  if (!response.ok || body.status === "error") {
+    const errorMessage =
+      body.message ||
+      body.errors?.[0]?.message ||
+      `Submission failed (HTTP ${response.status})`;
+    throw new Error(`HubSpot rejected submission: ${errorMessage}`);
   }
 }
 
