@@ -52,3 +52,7 @@ demo-request-iam-policy.json
 
 # Deployment validation reports (point-in-time, not canonical docs)
 docs/navigation_deployment_validation_report.md
+
+# LinkedIn Playwright capture scripts (local development only — never commit)
+/li-capture.mjs
+/li-login.mjs
