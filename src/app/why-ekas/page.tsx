@@ -103,11 +103,11 @@ export default function WhyEkasPage() {
                 },
                 {
                   title: "Tier 2 and Below Component Suppliers",
-                  body: "Component manufacturers serving automotive, aerospace, appliance, HVAC, medical, and industrial customers. Answering to customer production portals, audit teams, and quarterly cost reduction expectations — with a fraction of the analyst headcount the tier above them has.",
+                  body: "Component manufacturers serving automotive, appliance, HVAC, and industrial customers. Answering to customer production portals, audit teams, and quarterly cost reduction expectations — with a fraction of the analyst headcount the tier above them has.",
                 },
                 {
                   title: "Discrete Manufacturers with Regulated Quality Requirements",
-                  body: "Shops where traceability, audit readiness, and governed metrics are not optional — whether the driver is IATF 16949, AS9100, ISO 9001, or a customer-specific quality manual. Data integrity is a business requirement, not a nice-to-have.",
+                  body: "Shops where traceability, audit readiness, and governed metrics are not optional — whether the driver is IATF 16949, ISO 9001, or a customer-specific quality manual. Data integrity is a business requirement, not a nice-to-have.",
                 },
               ].map((card) => (
                 <div key={card.title} className="premium-card">

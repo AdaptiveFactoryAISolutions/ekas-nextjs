@@ -75,7 +75,7 @@ export default function MetalStampingPage() {
               OEE calculations follow ISO 22400-2 methodology end-to-end — ratio-of-sums math, shift-aware availability, quality rollups tied to real scrap and rework data. Cost variance reporting runs nightly against your ERP and MES sources — no waiting for period close, no month-end surprises. Shift handoff intelligence surfaces anomalies across every shift, every line, every day, so the incoming team starts informed instead of reactive.
             </p>
             <p className="text-body-base text-secondary-text mb-4">
-              Architected to support IATF 16949 quality workflows, CAPA traceability, and the data integrity standards automotive and aerospace supply chains require.
+              Architected to support IATF 16949 quality workflows, CAPA traceability, and the data integrity standards automotive supply chains require.
             </p>
             <p className="text-body-sm text-accent">
               Request a walkthrough of the live EKAS environment.

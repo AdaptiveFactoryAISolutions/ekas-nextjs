@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata = pageMetadata({
   title: "Document Intelligence",
-  description: "Upload supplier invoices, PPAP submissions, calibration certs, and work orders. Extract structured data and query through the AI Assistant.",
+  description: "Upload PPAP submissions, calibration certs, and work orders. Extract structured data and query through the AI Assistant.",
   path: "/platform/document-intelligence",
 });
 
@@ -51,10 +51,10 @@ export default function DocumentIntelligencePage() {
           </div>
         </section>
 
-        {/* Eight Document Types */}
+        {/* Seven Document Types */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
           <div className="container max-w-[1000px]">
-            <span className="section-label">Eight Document Types</span>
+            <span className="section-label">Seven Document Types</span>
             <h2 className="text-h2 text-primary-text mt-3 mb-8">
               What EKAS Processes Today
             </h2>
@@ -62,35 +62,31 @@ export default function DocumentIntelligencePage() {
             <div className="grid md:grid-cols-2 gap-4">
               {[
                 {
-                  type: "1. Supplier Invoices",
-                  desc: "All required financial fields extracted"
-                },
-                {
-                  type: "2. PPAP Quality Submissions",
+                  type: "1. PPAP Quality Submissions",
                   desc: "Part number, supplier, submission level, approval status, drawing number"
                 },
                 {
-                  type: "3. Maintenance Work Orders",
+                  type: "2. Maintenance Work Orders",
                   desc: "WO number, asset ID, fault description, priority, estimated hours"
                 },
                 {
-                  type: "4. Calibration Certificates",
+                  type: "3. Calibration Certificates",
                   desc: "Certificate number, instrument ID, calibration date, next due date, PASS/FAIL result"
                 },
                 {
-                  type: "5. Non-Conformance Reports",
+                  type: "4. Non-Conformance Reports",
                   desc: "NCR number, part number, quantity affected, disposition, root cause"
                 },
                 {
-                  type: "6. Material / Quality Certificates",
+                  type: "5. Material / Quality Certificates",
                   desc: "Grade, heat number, supplier, properties"
                 },
                 {
-                  type: "7. Scanned Paper Records",
+                  type: "6. Scanned Paper Records",
                   desc: "OCR extraction for digitised paper documents"
                 },
                 {
-                  type: "8. Custom Document Types",
+                  type: "7. Custom Document Types",
                   desc: "Field schemas defined at deployment, no code change required"
                 }
               ].map((doc) => (

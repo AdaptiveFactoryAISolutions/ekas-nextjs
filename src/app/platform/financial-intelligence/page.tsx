@@ -112,19 +112,6 @@ export default function FinancialIntelligencePage() {
           </div>
         </section>
 
-        {/* Supplier Invoice Extraction */}
-        <section className="section-padding" style={{ background: "rgba(10,14,26,0.92)" }}>
-          <div className="container max-w-[860px]">
-            <span className="section-label">Supplier Invoice Extraction</span>
-            <h2 className="text-h2 text-primary-text mt-3 mb-4">
-              Invoice Processing — 20-Minute Manual Entry to 2-Minute Review
-            </h2>
-            <p className="text-body-base text-secondary-text">
-              Supplier invoices arrive by email or file delivery. EKAS extracts all required fields — invoice number, vendor, date, total, currency, line items, PO reference — in seconds. The Finance Controller reviews extracted fields, confirms or corrects, and the data is ready for ERP entry. The manual keying step is replaced by a 2-minute review. Every extraction is logged with full audit trail.
-            </p>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="section-padding" style={{ background: "rgba(10,14,26,0.72)" }}>
           <div className="container max-w-[640px] text-center">

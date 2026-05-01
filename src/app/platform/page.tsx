@@ -27,7 +27,7 @@ const coreCapabilities = [
   },
   {
     title: "Document Intelligence",
-    body: "Supplier invoices, calibration certs, NCRs, work orders, and PPAP submissions — extracted, indexed, and queryable through the AI Assistant.",
+    body: "Calibration certs, NCRs, work orders, and PPAP submissions — extracted, indexed, and queryable through the AI Assistant.",
     href: "/platform/document-intelligence",
   },
   {
