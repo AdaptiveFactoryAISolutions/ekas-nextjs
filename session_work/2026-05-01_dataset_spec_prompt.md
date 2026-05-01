@@ -1,7 +1,7 @@
 # 2026-05-01 — EKAS Synthesized Dataset Specification
 
 **Branch suggestion:** `feature/synthesized-dataset-spec`
-**Working directory:** `/home/pat/EKAS B2B website/ekas-nextjs/` (with read access to `/home/pat/EKAS/` for production schema reference)
+**Working directory:** `/home/pat/EKAS B2B website/ekas-nextjs/` (with read access to `/home/pat/AdaptiveFactory-Production/` for production schema reference)
 **Operating model:** Pat = Operator (final authority), Claude Architect = this prompt's author, Claude Code = executor
 **Estimated scope:** Read EKAS production schema, draft one Markdown specification document, commit. **Zero data files are created in this prompt — only the specification.**
 **Deploy target:** Not applicable. This is specification work.
@@ -75,7 +75,7 @@ CC halts at each of the following and waits for Pat's explicit go-ahead:
 
 Read the EKAS production schema and report what you find. The schema lives in the EKAS production repository, separate from the website repo.
 
-Pat will need to provide CC with read access to the EKAS production code. The expected location is `/home/pat/EKAS/` (the local clone of the production repo). If a different path is used, Pat will provide it.
+Pat will need to provide CC with read access to the EKAS production code. The expected location is `/home/pat/AdaptiveFactory-Production/` (the local clone of the production repo). If a different path is used, Pat will provide it.
 
 ### 1.1 Schema source files
 
