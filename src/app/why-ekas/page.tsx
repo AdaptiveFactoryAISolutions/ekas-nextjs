@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import PageShell from "@/components/layout/PageShell";
 import OurApproachSection from "@/components/sections/OurApproachSection";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Why EKAS — EKAS by AdaptiveFactory",
+export const metadata = pageMetadata({
+  title: "Why EKAS",
   description: "EKAS delivers governed, traceable manufacturing intelligence with an evidence standard that most platforms cannot meet. Built for SME precision manufacturers, not BI teams.",
-};
+  path: "/why-ekas",
+});
 
 const differentiatorCards = [
   {
