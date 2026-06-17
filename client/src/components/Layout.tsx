@@ -256,7 +256,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-[11px] text-white/35">by</span>
                 <img
-                  src="/manus-storage/logo-white-transparent-500w_e898b30d.png"
+                  src="https://dkcto6vm4oej9.cloudfront.net/manus-storage/logo-white-transparent-500w_e898b30d.png"
                   alt="Adaptive Factory AI Solutions"
                   className="h-6 w-auto opacity-50"
                 />

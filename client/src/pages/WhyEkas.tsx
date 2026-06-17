@@ -6,7 +6,7 @@ import {
   FileCheck, Layers, Lock, Server, Zap, Eye, Database
 } from "lucide-react";
 
-const CLARIFICATION_UI = "/manus-storage/ekas-clarification-ui_728968cd.png";
+const CLARIFICATION_UI = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-clarification-ui_728968cd.png";
 
 function AnimSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
