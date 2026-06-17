@@ -11,11 +11,11 @@ const DASHBOARD_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/3105196637214738
 const REALTIME_ANALYTICS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-realtime-analytics-YrnGo8fVqkWgEPdRU88UZL.webp";
 const PREDICTIVE_INTELLIGENCE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-predictive-intelligence-dnJmfgYBaq5Z6LRxE8wyvR.webp";
 const INTERACTIVE_DEMO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-interactive-demo-aUymJZdecS29FAZFy6GCeB.webp";
-const EVIDENCE_PACKET_GOV = "/manus-storage/evidence-packet-governed_1e93765f.png";
+const EVIDENCE_PACKET_GOV = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/evidence-packet-governed_1e93765f.png";
 const CONNECTIVITY_DIAGRAM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-connectivity-diagram-NjyD7RgUwThb2AhRdvnBQN.webp";
-const ROLE_ANSWERS = "/manus-storage/ekas-role-answers_183ba462.png";
-const ACTION_DRAFT = "/manus-storage/ekas-action-draft_3a8fc83e.png";
-const DEGRADED_CARD = "/manus-storage/ekas-degraded-card_9232cfce.png";
+const ROLE_ANSWERS = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-role-answers_183ba462.png";
+const ACTION_DRAFT = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-action-draft_3a8fc83e.png";
+const DEGRADED_CARD = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-degraded-card_9232cfce.png";
 
 function AnimSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);

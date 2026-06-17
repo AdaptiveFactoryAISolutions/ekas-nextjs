@@ -10,18 +10,18 @@ import { useContactModal } from "@/components/ContactModal";
 import JsonLd from "@/components/JsonLd";
 
 /* ─── Image Assets (each used ONCE) ─── */
-const VIDEO_BG = "/manus-storage/precision-manufacturing_bd9fc972.mp4";
+const VIDEO_BG = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/precision-manufacturing_bd9fc972.mp4";
 const DASHBOARD_MOCKUP = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-dashboard-mockup-5VjjBaD9F4gzh3mELmqDKS.webp";
 const FACTORY_ILLUSTRATION = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-factory-illustration-YsJny7daCJ3aJbB7sMSD38.webp";
 const CONNECTIVITY_DIAGRAM = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-connectivity-diagram-NjyD7RgUwThb2AhRdvnBQN.webp";
 const METAL_STAMPING_HERO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/metal-stamping-hero-YTWTyts4WuNBxHzRLfWJTr.webp";
 
 /* New governance-compliant images */
-const EVIDENCE_PACKET_GOV = "/manus-storage/evidence-packet-governed_1e93765f.png";
-const CLARIFICATION_UI = "/manus-storage/ekas-clarification-ui_3ab6239e.png";
-const DEGRADED_CARD = "/manus-storage/ekas-degraded-card_9232cfce.png";
-const ACTION_DRAFT = "/manus-storage/ekas-action-draft_3a8fc83e.png";
-const ROLE_ANSWERS = "/manus-storage/ekas-role-answers_183ba462.png";
+const EVIDENCE_PACKET_GOV = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/evidence-packet-governed_1e93765f.png";
+const CLARIFICATION_UI = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-clarification-ui_3ab6239e.png";
+const DEGRADED_CARD = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-degraded-card_9232cfce.png";
+const ACTION_DRAFT = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-action-draft_3a8fc83e.png";
+const ROLE_ANSWERS = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-role-answers_183ba462.png";
 
 /* ─── Utility Components ─── */
 function AnimSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
@@ -93,7 +93,7 @@ function VideoModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
               <X className="w-5 h-5 text-white" />
             </button>
             {/* EKAS Master Explainer Video */}
-            <video autoPlay controls className="w-full aspect-video bg-black" src="/manus-storage/EKASMasterExplainer-ProductionScript_1080p_caption_b4739b59.mp4" />
+            <video autoPlay controls className="w-full aspect-video bg-black" src="https://dkcto6vm4oej9.cloudfront.net/manus-storage/EKASMasterExplainer-ProductionScript_1080p_caption_b4739b59.mp4" />
           </motion.div>
         </motion.div>
       )}
