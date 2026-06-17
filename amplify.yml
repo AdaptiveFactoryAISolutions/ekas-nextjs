@@ -3,45 +3,15 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "=== EKAS B2B Website (Next.js) - Pre-Build Phase ==="
-        - echo "Build-time env var presence check (names only):"
-        - env | grep -E '^(SES_FROM|DEMO_REQUEST|EKAS_SES)' | sed 's/=.*/=***REDACTED***/'
-        - echo "---"
-        - echo "Writing .env.production using printf for reliability..."
-        - printf 'SES_FROM_EMAIL=%s\n' "$SES_FROM_EMAIL" > .env.production
-        - printf 'DEMO_REQUEST_TO_EMAIL=%s\n' "$DEMO_REQUEST_TO_EMAIL" >> .env.production
-        - printf 'DEMO_REQUEST_S3_BUCKET=%s\n' "$DEMO_REQUEST_S3_BUCKET" >> .env.production
-        - printf 'DEMO_REQUEST_S3_KMS_KEY_ID=%s\n' "$DEMO_REQUEST_S3_KMS_KEY_ID" >> .env.production
-        - printf 'EKAS_SES_ACCESS_KEY_ID=%s\n' "$EKAS_SES_ACCESS_KEY_ID" >> .env.production
-        - printf 'EKAS_SES_SECRET_ACCESS_KEY=%s\n' "$EKAS_SES_SECRET_ACCESS_KEY" >> .env.production
-        - echo "---"
-        - echo ".env.production written. Line count:"
-        - wc -l .env.production
-        - echo "Variable names (values redacted):"
-        - sed 's/=.*/=***REDACTED***/' .env.production
-        - echo "---"
-        - echo "Node version:"
-        - node --version
-        - echo "npm version:"
-        - npm --version
-        - echo "Installing dependencies..."
-        - npm ci
-        - echo "Dependencies installed successfully"
+        - npm install -g pnpm
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        - echo "=== EKAS B2B Website (Next.js) - Build Phase ==="
-        - echo "Verifying .env.production is still present pre-build:"
-        - ls -la .env.production
-        - echo "Running Next.js build..."
-        - npm run build
-        - echo "Build completed successfully"
-        - echo "Verifying .env.production survived build:"
-        - ls -la .env.production
+        - pnpm build
   artifacts:
-    baseDirectory: .next
+    baseDirectory: dist/public
     files:
-      - "**/*"
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
-      - .next/cache/**/*
