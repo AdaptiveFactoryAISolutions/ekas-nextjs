@@ -1,12 +1,15 @@
 import { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
+import { FoundingCustomerBlock } from "@/components/FoundingCustomerBlock";
+import { CredibilityStrip } from "@/components/CredibilityStrip";
 import {
   ArrowRight, Shield, Database, Brain, AlertTriangle,
   CheckCircle2, BarChart3, Clock, Zap, FileCheck, Play,
-  ChevronRight, Layers, Lock, X, Search, Users, Activity
+  ChevronRight, Layers, Lock, Search, Users, Activity
 } from "lucide-react";
 import { useContactModal } from "@/components/ContactModal";
+import { useVideoModal } from "@/components/VideoModal";
 import JsonLd from "@/components/JsonLd";
 
 /* ─── Image Assets (each used ONCE) ─── */
@@ -58,47 +61,6 @@ function CountUp({ target, suffix = "", prefix = "" }: { target: number; suffix?
     requestAnimationFrame(step);
   }, [isInView, target]);
   return <span ref={ref}>{prefix}{count}{suffix}</span>;
-}
-
-function VideoModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    else document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="video-modal-overlay"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            className="video-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-colors"
-            >
-              <X className="w-5 h-5 text-white" />
-            </button>
-            {/* EKAS Master Explainer Video */}
-            <video autoPlay controls className="w-full aspect-video bg-black" src="https://dkcto6vm4oej9.cloudfront.net/manus-storage/EKASMasterExplainer-ProductionScript_1080p_caption_b4739b59.mp4" />
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
 }
 
 /* ─── Workflow Steps (each with a UNIQUE image) ─── */
@@ -155,8 +117,8 @@ const solutions = [
 
 export default function Home() {
   const [activeSolution, setActiveSolution] = useState(0);
-  const [videoOpen, setVideoOpen] = useState(false);
   const { open: openContact } = useContactModal();
+  const { open: openVideo } = useVideoModal();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -190,7 +152,6 @@ export default function Home() {
   return (
     <>
       <JsonLd data={productJsonLd} />
-      <VideoModal isOpen={videoOpen} onClose={() => setVideoOpen(false)} />
 
       {/* ═══════════════════════════════════════════════════════════════
           HERO — Full viewport video with overlapping dashboard
@@ -242,21 +203,34 @@ export default function Home() {
                 <br />Intelligence.
               </h1>
               <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-12 max-w-lg">
-                EKAS helps enterprise manufacturers convert operational data into evidence-backed decisions, role-specific recommendations, human-approved action workflows, and verified improvement across sites, roles, and critical manufacturing metrics.
+                Stop arguing about whose OEE number is right. EKAS gives every plant, role, and shift one governed definition of every metric — with the evidence behind it, the limits stated, and human approval before any action. One controlled truth, traceable to the row of data it came from.
               </p>
               <p className="text-sm text-white/60 leading-relaxed mb-12 max-w-lg border-l-2 border-[oklch(0.55_0.2_255_/_0.4)] pl-4">
                 <strong className="text-white/80">Governed</strong> means every metric has one controlled definition, every answer carries its evidence and limits, and every recommended action waits for human approval.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#cta" className="btn-primary">
-                  Request an Executive Platform Review <ArrowRight className="w-4 h-4" />
+                  Request a Demo <ArrowRight className="w-4 h-4" />
                 </a>
-                <Link href="/platform">
+                <Link href="/resources/roi-calculator">
                   <span className="inline-flex items-center gap-2 px-7 py-4 border-2 border-white/30 text-white font-display font-semibold text-sm rounded-lg hover:bg-white/[0.08] hover:border-white/50 transition-all duration-200 active:scale-[0.97] tracking-wide">
-                    See the Evidence-to-Action Workflow
+                    Run the ROI Calculator
                   </span>
                 </Link>
+                <button
+                  onClick={openVideo}
+                  aria-label="Watch the 2-min overview video"
+                  className="inline-flex items-center gap-2.5 px-4 py-4 text-white/80 font-display font-semibold text-sm rounded-lg hover:text-white transition-all duration-200 active:scale-[0.97] tracking-wide group cursor-pointer"
+                >
+                  <span className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <Play className="w-4 h-4 text-white fill-white ml-0.5" />
+                  </span>
+                  Watch the 2-min overview
+                </button>
               </div>
+              <p className="text-sm text-white/50 mt-5 max-w-lg">
+                Bring one metric dispute. We'll show how EKAS frames it, finds the evidence, and defines how to verify the answer.
+              </p>
             </motion.div>
 
             {/* Right: Dashboard screenshot — 7 columns */}
@@ -330,6 +304,55 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          WORKED EXAMPLE (CONDENSED) — proof within the first ~1.5 screens (H-4)
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 md:py-20 bg-[oklch(0.11_0.025_255)] relative overflow-hidden border-b border-white/[0.06]">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }} />
+        <div className="container relative">
+          <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 items-center">
+            <AnimSection>
+              <p className="section-label mb-4" style={{ color: "oklch(0.65 0.2 255)" }}>What "governed" looks like</p>
+              <h2 className="font-display text-2xl md:text-3xl font-semibold text-white tracking-tight leading-[1.15] mb-4">
+                A real answer, with its evidence and its limits stated.
+              </h2>
+              <p className="text-white/55 leading-relaxed text-base">
+                This is the difference between a dashboard number and a governed decision: EKAS shows what the evidence supports, what it does not, and what to verify next — before anyone acts.
+              </p>
+            </AnimSection>
+
+            <AnimSection delay={0.15}>
+              <div className="bg-[oklch(0.09_0.02_255)] rounded-2xl p-6 md:p-7 border border-white/[0.06] shadow-xl">
+                <div className="flex items-start gap-3 mb-5">
+                  <div className="w-8 h-8 rounded-full bg-white/[0.06] flex items-center justify-center shrink-0 border border-white/[0.06]">
+                    <span className="text-[10px] font-display font-semibold text-white/50">Q</span>
+                  </div>
+                  <p className="text-sm text-white/70 italic pt-1.5">"Which workcenter at Millbrook Plant had the most unplanned downtime last week?"</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-full bg-[oklch(0.55_0.2_255_/_0.15)] flex items-center justify-center shrink-0 border border-[oklch(0.55_0.2_255_/_0.2)]">
+                    <BarChart3 className="w-4 h-4 text-[oklch(0.65_0.2_255)]" />
+                  </div>
+                  <div className="bg-[oklch(0.14_0.025_255)] rounded-xl p-5 border border-white/[0.04] flex-1">
+                    <p className="text-sm text-white/85 leading-relaxed">
+                      <strong className="text-white">Workcenter 7</strong> shows the highest unplanned downtime for the selected period. The largest contributor appears to be hydraulic-related downtime on PRESS-014 — a <span className="text-[oklch(0.65_0.2_255)] font-bold">candidate contributor</span>, not a confirmed root cause.
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-white/40 border-t border-white/[0.04] pt-3">
+                      <FileCheck className="w-3.5 h-3.5 text-[oklch(0.65_0.2_255)]" />
+                      <span className="font-display font-semibold text-[oklch(0.65_0.2_255)] tracking-wider">Evidence</span>
+                      <span>• window: May 19–25 2026 • coverage: 94% • 6,483 rows traced</span>
+                    </div>
+                    <div className="mt-2 text-xs text-amber-400/70">
+                      <span className="font-bold">Limitation:</span> Manual downtime codes not validated against PLC signals.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimSection>
+          </div>
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
@@ -497,10 +520,66 @@ export default function Home() {
                     <button
                       key={i}
                       onClick={() => setActiveSolution(i)}
+                      aria-label={`Show workflow step ${i + 1}: ${solutions[i].title}`}
+                      aria-current={activeSolution === i}
                       className={`h-2 rounded-full transition-all duration-300 ${activeSolution === i ? "w-10 bg-[oklch(0.55_0.2_255)]" : "w-3 bg-gray-200 hover:bg-gray-300"}`}
                     />
                   ))}
                 </div>
+              </div>
+            </AnimSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          ARCHITECTURE TEASER — condensed stack, links to Technical Overview
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 md:py-32 bg-[oklch(0.12_0.03_255)] noise-overlay overflow-hidden">
+        <div className="pointer-events-none absolute -top-20 left-1/3 w-[30rem] h-[30rem] rounded-full" style={{ background: "radial-gradient(circle, oklch(0.72 0.17 155 / 0.08), transparent 70%)" }} />
+        <div className="pointer-events-none absolute bottom-0 right-1/4 w-[30rem] h-[30rem] rounded-full" style={{ background: "radial-gradient(circle, oklch(0.74 0.15 70 / 0.07), transparent 70%)" }} />
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+            {/* Left: copy */}
+            <AnimSection>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[oklch(0.7_0.15_210)]">The EKAS Stack</span>
+              <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-white leading-[1.08]">
+                Foundation first.<br /><span className="text-[oklch(0.65_0.18_240)]">Intelligence on top.</span>
+              </h2>
+              <p className="mt-5 font-display text-lg text-white/80 italic">It acts — correctly, and provably.</p>
+              <p className="mt-5 text-base text-white/55 leading-relaxed max-w-md">
+                Every layer rests on a governed, traceable data foundation — ISO 22400-2 grain, ISA-95 hierarchy, ratio-of-sums. Intelligence is added on top, never in place of, the evidence.
+              </p>
+              <Link href="/technical-overview">
+                <span className="group inline-flex items-center gap-2 mt-8 font-display text-sm font-semibold uppercase tracking-[0.05em] text-[oklch(0.65_0.18_240)] hover:text-white transition-colors">
+                  See the full architecture
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+            </AnimSection>
+
+            {/* Right: condensed three-tier stack */}
+            <AnimSection delay={0.1}>
+              <div className="space-y-3">
+                {[
+                  { label: "Automate", title: "Governed action", sub: "every action human-approved", color: "oklch(0.72 0.17 155)", border: "oklch(0.72 0.17 155 / 0.4)", bg: "oklch(0.72 0.17 155 / 0.06)" },
+                  { label: "Reason", title: "Engines & metric families", sub: "OEE · downtime · quality · reliability · cost", color: "oklch(0.7 0.15 210)", border: "oklch(0.6 0.18 240 / 0.45)", bg: "oklch(0.55 0.2 255 / 0.09)" },
+                  { label: "Analyze", title: "Machine learning · digital twins · agentic AI", sub: "deep analysis on deterministic data · refuses to guess", color: "oklch(0.7 0.15 210)", border: "oklch(0.6 0.18 240 / 0.45)", bg: "oklch(0.55 0.2 255 / 0.09)" },
+                  { label: "Trust", title: "Connected data foundation", sub: "ISO 22400-2 · ISA-95 · every number traceable", color: "oklch(0.74 0.15 70)", border: "oklch(0.74 0.15 70 / 0.45)", bg: "oklch(0.74 0.15 70 / 0.07)" },
+                ].map((tier, i) => (
+                  <div key={tier.title}>
+                    {i > 0 && (
+                      <div className="flex justify-center py-1" aria-hidden="true">
+                        <ArrowRight className="w-4 h-4 text-white/25 -rotate-90" strokeWidth={2.5} />
+                      </div>
+                    )}
+                    <div className="rounded-xl px-5 py-5" style={{ background: tier.bg, border: `1px solid ${tier.border}` }}>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.15em] mb-1" style={{ color: tier.color }}>{tier.label}</div>
+                      <div className="font-display text-base font-semibold tracking-tight" style={{ color: tier.color === "oklch(0.7 0.15 210)" ? "#fff" : tier.color }}>{tier.title}</div>
+                      <div className="mt-1 text-[13px] text-white/55 leading-relaxed">{tier.sub}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </AnimSection>
           </div>
@@ -541,7 +620,8 @@ export default function Home() {
             <img src={METAL_STAMPING_HERO} alt="Precision manufacturing" className="w-full h-full object-cover absolute inset-0" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10 flex flex-col items-center justify-center gap-5">
               <button
-                onClick={() => setVideoOpen(true)}
+                onClick={openVideo}
+                aria-label="Watch how EKAS works (video)"
                 className="group relative w-24 h-24 rounded-full bg-white/15 backdrop-blur-md flex items-center justify-center hover:bg-white/25 transition-all duration-300 hover:scale-110"
               >
                 <div className="absolute inset-0 rounded-full border-2 border-white/20 animate-ping opacity-30" />
@@ -552,6 +632,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Consolidated standards & credentials (restates existing claims only) */}
+      {/* CredentialsStrip replaced by CredibilityStrip — see Task 4 */}
+      <CredibilityStrip variant="light" />
 
       {/* ═══════════════════════════════════════════════════════════════
           THREE CORE PROBLEMS — Alternating background
@@ -679,14 +763,14 @@ export default function Home() {
           <AnimSection>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
               {[
-                { target: 5, suffix: "", prefix: "", label: "Canonical Decision Roles", color: "text-[oklch(0.55_0.2_255)]" },
-                { target: 6, suffix: "", prefix: "", label: "Governed Workflow Steps", color: "text-foreground" },
-                { target: 22, suffix: "", prefix: "", label: "No-Data Reason Codes", color: "text-[oklch(0.55_0.2_255)]" },
-                { target: 0, suffix: "", prefix: "", label: "Unsupported Financial Claims", color: "text-foreground" },
+                { target: 5, suffix: "", prefix: "", text: "", label: "Canonical Decision Roles", color: "text-[oklch(0.55_0.2_255)]" },
+                { target: 6, suffix: "", prefix: "", text: "", label: "Governed Workflow Steps", color: "text-foreground" },
+                { target: 22, suffix: "", prefix: "", text: "", label: "No-Data Reason Codes", color: "text-[oklch(0.55_0.2_255)]" },
+                { target: 0, suffix: "", prefix: "", text: "100%", label: "Financial figures backed by a governed cost model", color: "text-[oklch(0.55_0.2_255)]" },
               ].map((stat) => (
                 <div key={stat.label} className="group">
                   <div className={`font-display text-6xl md:text-8xl font-semibold ${stat.color} transition-transform duration-300 group-hover:scale-105`}>
-                    <CountUp target={stat.target} suffix={stat.suffix} prefix={stat.prefix} />
+                    {stat.text ? stat.text : <CountUp target={stat.target} suffix={stat.suffix} prefix={stat.prefix} />}
                   </div>
                   <div className="w-12 h-0.5 bg-[oklch(0.55_0.2_255_/_0.3)] mx-auto mt-4 mb-3 rounded-full" />
                   <p className="text-sm text-foreground/60 font-medium">{stat.label}</p>
@@ -742,6 +826,8 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           CTA — Final conversion section
       ═══════════════════════════════════════════════════════════════ */}
+      <FoundingCustomerBlock variant="light" />
+
       <section id="cta" className="py-32 bg-[oklch(0.97_0.003_255)]">
         <div className="container">
           <AnimSection>

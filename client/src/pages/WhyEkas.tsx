@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useContactModal } from "@/components/ContactModal";
+import { FoundingCustomerBlock } from "@/components/FoundingCustomerBlock";
+import { CredibilityStrip } from "@/components/CredibilityStrip";
 import {
   ArrowRight, CheckCircle2, ChevronDown, Shield, Clock,
-  FileCheck, Layers, Lock, Server, Zap, Eye, Database
+  FileCheck, Layers, Lock, Server, Zap, Eye, Database, ShieldCheck, ClipboardList
 } from "lucide-react";
 
 const CLARIFICATION_UI = "https://dkcto6vm4oej9.cloudfront.net/manus-storage/ekas-clarification-ui_728968cd.png";
@@ -141,6 +143,22 @@ export default function WhyEkas() {
               </AnimSection>
             ))}
           </div>
+
+          <AnimSection>
+            <a
+              href="/resources/decision-integrity"
+              className="group mt-8 flex flex-col sm:flex-row sm:items-center justify-center gap-2 sm:gap-3 text-center text-sm font-semibold text-foreground hover:text-[oklch(0.55_0.2_255)] transition-colors"
+            >
+              <span className="inline-flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[oklch(0.55_0.2_255)]" />
+                See “no-data honesty” in action
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[oklch(0.55_0.2_255)]">
+                <span className="border-b border-dashed border-current/40 group-hover:border-current">Try the Decision Integrity Demo</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </a>
+          </AnimSection>
         </div>
       </section>
 
@@ -169,6 +187,16 @@ export default function WhyEkas() {
                   </div>
                   <h3 className="font-display text-base font-semibold text-white mb-2">{step.title}</h3>
                   <p className="text-sm text-white/50 leading-relaxed">{step.desc}</p>
+                  {step.num === "03" && (
+                    <a
+                      href="/resources/pilot-scope"
+                      className="group mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[oklch(0.7_0.15_255)] hover:text-white transition-colors"
+                    >
+                      <ClipboardList className="w-3.5 h-3.5" />
+                      <span className="border-b border-dashed border-current/40 group-hover:border-current">Configure your 60-day pilot scope</span>
+                      <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                    </a>
+                  )}
                 </div>
               </AnimSection>
             ))}
@@ -229,6 +257,9 @@ export default function WhyEkas() {
       </section>
 
       {/* CTA */}
+      <CredibilityStrip variant="light" />
+      <FoundingCustomerBlock variant="dark" />
+
       <section className="py-24 bg-white">
         <div className="container">
           <AnimSection>
@@ -241,12 +272,20 @@ export default function WhyEkas() {
                 <p className="text-white/80 text-lg max-w-xl mx-auto mb-8">
                   Tell us about one operating challenge your team is trying to govern. We will show how EKAS frames the question, identifies the evidence required, and defines how the result should be verified.
                 </p>
-                <button
-                  onClick={openContact}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[oklch(0.55_0.2_255)] font-bold text-base rounded-lg hover:bg-white/90 transition-all duration-200 active:scale-[0.97] shadow-xl uppercase tracking-wide cursor-pointer"
-                >
-                  Request Executive Platform Review <ArrowRight className="w-5 h-5" />
-                </button>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <button
+                    onClick={openContact}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[oklch(0.55_0.2_255)] font-bold text-base rounded-lg hover:bg-white/90 transition-all duration-200 active:scale-[0.97] shadow-xl uppercase tracking-wide cursor-pointer"
+                  >
+                    Request a Demo <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <a
+                    href="/resources/roi-calculator"
+                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/40 text-white font-bold text-base rounded-lg hover:bg-white/10 transition-all duration-200 active:scale-[0.97] uppercase tracking-wide"
+                  >
+                    Run the ROI Calculator
+                  </a>
+                </div>
                 <div className="flex items-center justify-center gap-6 mt-8 flex-wrap">
                   {["Governed decision workflows", "Human-approved actions", "Verified outcomes"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
