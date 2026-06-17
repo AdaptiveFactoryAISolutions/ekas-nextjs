@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronRight, ArrowRight } from "lucide-react";
 import { useContactModal } from "./ContactModal";
+import TalkToEkasFAB from "./TalkToEkasFAB";
 
 /* ─── Nav Link Data ─── */
 const platformLinks = [
@@ -21,7 +22,14 @@ const solutionLinks = [
 
 const resourceLinks = [
   { href: "/resources", label: "Resources Hub", desc: "Everything to evaluate EKAS without a sales call" },
-  { href: "/resources/roi-calculator", label: "ROI Calculator", desc: "Model the payback on your own numbers" },
+  { href: "/resources/intake", label: "Talk to EKAS", desc: "A short, honest conversation to check pilot fit" },
+  { href: "/founding-customers", label: "Founding-Customer Program", desc: "First live deployments — direct architect access & roadmap influence" },
+  { href: "/resources/roi-calculator", label: "Governed Impact Model", desc: "Model the payback on your own numbers" },
+  { href: "/resources/downtime-cost-builder", label: "Downtime Cost Builder", desc: "A defensible cost per downtime hour" },
+  { href: "/resources/oee-methodology", label: "OEE Methodology Explorer", desc: "Ratio-of-sums vs average-of-averages" },
+  { href: "/resources/decision-integrity", label: "Decision Integrity Demo", desc: "When evidence is missing, EKAS refuses" },
+  { href: "/resources/failure-taxonomy", label: "Failure Taxonomy Browser", desc: "130 governed failure modes" },
+  { href: "/resources/pilot-scope", label: "Pilot Scope Configurator", desc: "Define what your 60-day pilot measures" },
   { href: "/resources/faqs", label: "FAQs", desc: "Product, deployment, security, and commercial" },
   { href: "/technical-overview", label: "Technical Overview", desc: "Architecture, governance, and security" },
 ];
@@ -195,7 +203,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Mobile Toggle */}
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-foreground">
+          <button onClick={() => setMobileOpen(!mobileOpen)} aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileOpen} className="lg:hidden p-2 text-foreground">
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -229,6 +237,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* Main Content */}
       <main>{children}</main>
 
+      {/* Site-wide floating intake entry point */}
+      <TalkToEkasFAB />
+
       {/* Footer */}
       <footer className="bg-[oklch(0.12_0.03_255)] text-white pt-20 pb-8 relative">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.55_0.2_255_/_0.4)] to-transparent" />
@@ -254,7 +265,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-[11px] text-white/35">by</span>
+                <span className="text-[11px] text-white/55">by</span>
                 <img
                   src="https://dkcto6vm4oej9.cloudfront.net/manus-storage/logo-white-transparent-500w_e898b30d.png"
                   alt="Adaptive Factory AI Solutions"
@@ -267,7 +278,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             {/* Platform */}
             <div>
-              <h4 className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Platform</h4>
+              <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Platform</div>
               <div className="space-y-2.5">
                 <Link href="/platform" className="block text-sm text-white/50 hover:text-white transition-colors">Platform Overview</Link>
                 <Link href="/roles" className="block text-sm text-white/50 hover:text-white transition-colors">Role-Based Views</Link>
@@ -276,7 +287,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             {/* Solutions */}
             <div>
-              <h4 className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Solutions</h4>
+              <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Solutions</div>
               <div className="space-y-2.5">
                 <Link href="/solutions" className="block text-sm text-white/50 hover:text-white transition-colors">Use Cases</Link>
                 <Link href="/industries/metal-stamping" className="block text-sm text-white/50 hover:text-white transition-colors">Metal Stamping</Link>
@@ -286,16 +297,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
             {/* Resources */}
             <div>
-              <h4 className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Resources</h4>
+              <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Resources</div>
               <div className="space-y-2.5">
                 <Link href="/resources" className="block text-sm text-white/50 hover:text-white transition-colors">Resources Hub</Link>
-                <Link href="/resources/roi-calculator" className="block text-sm text-white/50 hover:text-white transition-colors">ROI Calculator</Link>
+                <Link href="/resources/roi-calculator" className="block text-sm text-white/50 hover:text-white transition-colors">Governed Impact Model</Link>
+                <Link href="/resources/downtime-cost-builder" className="block text-sm text-white/50 hover:text-white transition-colors">Downtime Cost Builder</Link>
+                <Link href="/resources/oee-methodology" className="block text-sm text-white/50 hover:text-white transition-colors">OEE Methodology Explorer</Link>
+                <Link href="/resources/decision-integrity" className="block text-sm text-white/50 hover:text-white transition-colors">Decision Integrity Demo</Link>
+                <Link href="/resources/failure-taxonomy" className="block text-sm text-white/50 hover:text-white transition-colors">Failure Taxonomy Browser</Link>
+                <Link href="/resources/pilot-scope" className="block text-sm text-white/50 hover:text-white transition-colors">Pilot Scope Configurator</Link>
                 <Link href="/resources/faqs" className="block text-sm text-white/50 hover:text-white transition-colors">FAQs</Link>
               </div>
             </div>
             {/* Company */}
             <div>
-              <h4 className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Company</h4>
+              <div className="font-display text-xs font-semibold uppercase tracking-[0.12em] text-white/80 mb-4">Company</div>
               <div className="space-y-2.5">
                 <Link href="/why-ekas" className="block text-sm text-white/50 hover:text-white transition-colors">Why EKAS Is Different</Link>
                 <Link href="/why-ekas#approach" className="block text-sm text-white/50 hover:text-white transition-colors">Engagement Model</Link>
@@ -305,11 +321,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <p className="text-xs text-white/40">&copy; {new Date().getFullYear()} Adaptive Factory AI Solutions. All rights reserved.</p>
-              <Link href="/privacy" className="text-xs text-white/40 hover:text-white/70 transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="text-xs text-white/40 hover:text-white/70 transition-colors">Terms of Service</Link>
+              <p className="text-xs text-white/60">&copy; {new Date().getFullYear()} Adaptive Factory AI Solutions. All rights reserved.</p>
+              <Link href="/privacy" className="text-xs text-white/60 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-xs text-white/60 hover:text-white transition-colors">Terms of Service</Link>
             </div>
-            <p className="text-xs text-white/40 max-w-lg text-right">EKAS does not claim ROI, EBITDA, dollar savings, margin impact, revenue impact, or payback without a governed cost model. Demo examples use representative manufacturing data.</p>
+            <p className="text-xs text-white/60 max-w-lg text-right">EKAS does not claim ROI, EBITDA, dollar savings, margin impact, revenue impact, or payback without a governed cost model. Demo examples use representative manufacturing data.</p>
           </div>
         </div>
       </footer>

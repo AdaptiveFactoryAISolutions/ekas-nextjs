@@ -7,8 +7,11 @@ import {
 } from "lucide-react";
 
 // ── Context for global modal control ──
+// `open` may be passed a prefill message (from a calculator/tool) OR be used
+// directly as an onClick handler (in which case it receives a MouseEvent we
+// must ignore). The `unknown` arg keeps both call styles type-safe.
 interface ContactModalContextType {
-  open: () => void;
+  open: (prefillMessage?: unknown) => void;
   close: () => void;
   isOpen: boolean;
 }
@@ -25,10 +28,20 @@ export function useContactModal() {
 
 export function ContactModalProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [prefill, setPrefill] = useState<string | undefined>(undefined);
   return (
-    <ContactModalContext.Provider value={{ open: () => setIsOpen(true), close: () => setIsOpen(false), isOpen }}>
+    <ContactModalContext.Provider
+      value={{
+        open: (prefillMessage?: unknown) => {
+          setPrefill(typeof prefillMessage === "string" ? prefillMessage : undefined);
+          setIsOpen(true);
+        },
+        close: () => setIsOpen(false),
+        isOpen,
+      }}
+    >
       {children}
-      <ContactModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <ContactModal isOpen={isOpen} onClose={() => setIsOpen(false)} prefillMessage={prefill} />
     </ContactModalContext.Provider>
   );
 }
@@ -89,7 +102,7 @@ function isFreeEmailDomain(email: string): boolean {
 }
 
 // ── The Modal ──
-function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function ContactModal({ isOpen, onClose, prefillMessage }: { isOpen: boolean; onClose: () => void; prefillMessage?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -114,6 +127,18 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
       return () => clearTimeout(timer);
     }
   }, [isOpen, submitted]);
+
+  // Seed the message field with a tool-provided summary when the modal is opened
+  // from a calculator/tool. Only sets it once per open, and never clobbers text
+  // the user has already typed.
+  const prefilledRef = useRef(false);
+  useEffect(() => {
+    if (isOpen && prefillMessage && !prefilledRef.current) {
+      prefilledRef.current = true;
+      setFormData((prev) => (prev.message.trim() ? prev : { ...prev, message: prefillMessage }));
+    }
+    if (!isOpen) prefilledRef.current = false;
+  }, [isOpen, prefillMessage]);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -207,10 +232,88 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
     if (!validateAll()) return;
 
     setSubmitting(true);
-    // Simulate API call — replace with real endpoint when backend is connected
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setSubmitting(false);
-    setSubmitted(true);
+
+    // ── HubSpot Forms Submissions API v3 ──
+    const PORTAL_ID = "246054670";
+    const FORM_GUID = "b9d421ef-67a9-4613-99d2-9821f1fe2f96";
+    const endpoint = `https://api-na2.hsforms.com/submissions/v3/integration/submit/${PORTAL_ID}/${FORM_GUID}`;
+
+    // Map our fields to HubSpot default contact properties
+    const nameParts = formData.name.trim().split(/\s+/);
+    const firstname = nameParts[0] || "";
+    const lastname = nameParts.slice(1).join(" ") || "";
+
+    // Base fields mapped to HubSpot default contact properties
+    const baseFields = [
+      { name: "firstname", value: firstname },
+      { name: "lastname", value: lastname },
+      { name: "email", value: formData.email.trim() },
+      { name: "company", value: formData.company.trim() },
+      { name: "jobtitle", value: formData.role },
+    ];
+    if (formData.phone.trim()) baseFields.push({ name: "phone", value: formData.phone.trim() });
+    if (formData.message.trim()) baseFields.push({ name: "message", value: formData.message.trim() });
+
+    // Dedicated custom property for the EKAS persona (create "ekas_persona" in HubSpot).
+    // Sent on the first attempt; if the property does not exist yet, we retry without it
+    // so the submission still succeeds.
+    const fieldsWithPersona = [...baseFields, { name: "ekas_persona", value: formData.role }];
+
+    // Read the HubSpot tracking cookie (hutk) for lead attribution, when available.
+    const getHutk = () => {
+      if (typeof document === "undefined") return undefined;
+      const match = document.cookie.match(/hubspotutk=([^;]+)/);
+      return match ? match[1] : undefined;
+    };
+    const hutk = getHutk();
+
+    const buildPayload = (fields: { name: string; value: string }[]) => ({
+      fields,
+      context: {
+        ...(hutk ? { hutk } : {}),
+        pageUri: typeof window !== "undefined" ? window.location.href : "",
+        pageName: "EKAS — Request an Executive Platform Review",
+      },
+    });
+
+    const submit = (fields: { name: string; value: string }[]) =>
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(buildPayload(fields)),
+      });
+
+    try {
+      let res = await submit(fieldsWithPersona);
+
+      // If the custom property isn't set up in HubSpot yet, retry without it.
+      if (!res.ok) {
+        const errBody = await res.clone().json().catch(() => null);
+        const detail = errBody?.errors?.[0]?.message || errBody?.message || "";
+        const personaIssue = /ekas_persona/i.test(JSON.stringify(errBody)) || /ekas_persona/i.test(detail);
+        if (personaIssue) {
+          res = await submit(baseFields);
+        }
+      }
+
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => null);
+        const detail = errBody?.errors?.[0]?.message || errBody?.message;
+        throw new Error(detail || `Submission failed (${res.status})`);
+      }
+
+      setSubmitting(false);
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitting(false);
+      toast.error("We couldn't submit your request", {
+        description:
+          err instanceof Error
+            ? err.message
+            : "Please try again, or email us directly at contact@adaptivefactory.ai.",
+        duration: 7000,
+      });
+    }
   }
 
   function handleClose() {
@@ -423,6 +526,12 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                         <MessageSquare className="w-4 h-4 text-gray-400" />
                         What challenge would you like to explore?
                       </label>
+                      {prefillMessage && formData.message === prefillMessage && (
+                        <p className="mb-1.5 flex items-center gap-1.5 text-[11.5px] font-medium text-[oklch(0.5_0.2_255)]">
+                          <Sparkles className="w-3.5 h-3.5" />
+                          We added your tool results below — edit or add context as needed.
+                        </p>
+                      )}
                       <textarea
                         value={formData.message}
                         onChange={(e) => updateField("message", e.target.value)}
@@ -432,7 +541,9 @@ function ContactModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
                       />
                       {formData.message.length > 0 && (
                         <p className="text-[11px] text-gray-400 text-right mt-0.5">
-                          {formData.message.length} / 500
+                          {formData.message.length <= 500
+                            ? `${formData.message.length} / 500`
+                            : `${formData.message.length} characters`}
                         </p>
                       )}
                     </div>

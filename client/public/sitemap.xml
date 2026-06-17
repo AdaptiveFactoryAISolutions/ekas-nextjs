@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Update the domain below to the production domain once the custom domain is bound. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://ekas.manus.space/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ekas.manus.space/platform</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ekas.manus.space/solutions</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://ekas.manus.space/why-ekas</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ekas.manus.space/industries</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ekas.manus.space/industries/metal-stamping</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/industries/automotive</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/industries/industrial-manufacturing</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/roles</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ekas.manus.space/technical-overview</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ekas.manus.space/resources</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/faqs</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/roi-calculator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/downtime-cost-builder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/oee-methodology</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/decision-integrity</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/failure-taxonomy</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/resources/pilot-scope</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ekas.manus.space/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ekas.manus.space/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

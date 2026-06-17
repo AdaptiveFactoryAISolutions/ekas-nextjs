@@ -7,11 +7,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight, Database, Code2, FileCheck, ShieldAlert,
-  Server, Clock, Lock, Eye
+  Server, Clock, Lock, Eye, Calculator, ShieldCheck
 } from "lucide-react";
 import { useContactModal } from "@/components/ContactModal";
-
-const ARCH_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-technical-architecture-Bpw9yWQPN9TfL7bGRjUSSJ.webp";
+import ArchitectureDiagram from "@/components/ArchitectureDiagram";
 
 function AnimSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const ref = useRef(null);
@@ -35,6 +34,7 @@ const sections = [
     title: "Deterministic metrics — the AI never computes the number",
     content: "Every metric is computed in versioned SQL built to ISO 22400-2 (ratio-of-sums OEE, not average-of-averages). The AI's job is to understand your question and select the right metric and tools — it never calculates the result itself. That separation is why EKAS can't hallucinate a number.",
     badge: "Governance",
+    tool: { href: "/resources/oee-methodology", label: "See ratio-of-sums vs. average-of-averages on sample data", icon: Calculator },
   },
   {
     icon: FileCheck,
@@ -47,6 +47,7 @@ const sections = [
     title: "Controlled refusal",
     content: "When data coverage drops below the confidence floor, EKAS returns a structured refusal and what's missing — it does not approximate. A metric you can't trust is worse than no metric.",
     badge: "Honesty",
+    tool: { href: "/resources/decision-integrity", label: "Watch EKAS refuse to guess in the live demo", icon: ShieldCheck },
   },
   {
     icon: Server,
@@ -83,21 +84,27 @@ export default function TechnicalOverview() {
         </div>
       </section>
 
-      {/* Architecture Diagram */}
-      <section className="py-16 bg-[oklch(0.12_0.03_255)]">
-        <div className="container">
+      {/* Architecture Diagram — native, animated */}
+      <section className="relative py-20 md:py-28 bg-navy-section noise-overlay overflow-hidden">
+        {/* ambient glows */}
+        <div className="pointer-events-none absolute -top-24 left-1/4 w-[28rem] h-[28rem] rounded-full" style={{ background: "radial-gradient(circle, oklch(0.72 0.17 155 / 0.1), transparent 70%)" }} />
+        <div className="pointer-events-none absolute bottom-0 right-1/4 w-[28rem] h-[28rem] rounded-full" style={{ background: "radial-gradient(circle, oklch(0.74 0.15 70 / 0.08), transparent 70%)" }} />
+        <div className="container relative z-10 max-w-4xl">
           <AnimSection>
-            <div className="text-center mb-8">
-              <span className="text-xs font-semibold uppercase tracking-[0.15em] text-[oklch(0.7_0.15_210)]">Platform Architecture</span>
-            </div>
-            <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-              <img
-                src={ARCH_IMG}
-                alt="EKAS Manufacturing Intelligence Platform Architecture — Source Systems → Governance Engine → Role-Based Views"
-                className="w-full"
-              />
+            <div className="text-center mb-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[oklch(0.7_0.15_210)]">The EKAS Stack</span>
+              <h2 className="mt-4 font-display text-3xl md:text-5xl font-semibold tracking-tight text-white leading-[1.05]">
+                Foundation first. <span className="text-[oklch(0.65_0.18_240)]">Intelligence on top.</span>
+              </h2>
+              <p className="mt-4 font-display text-lg md:text-xl text-white/80 italic">
+                It acts — correctly, and provably.
+              </p>
+              <p className="mt-4 text-sm md:text-base text-white/55 max-w-2xl mx-auto leading-relaxed">
+                A standards-based analytics platform. The full ISO 22400-2 and ISA-95 metric library — not just OEE.
+              </p>
             </div>
           </AnimSection>
+          <ArchitectureDiagram />
         </div>
       </section>
 
@@ -130,6 +137,16 @@ export default function TechnicalOverview() {
                     <p className="text-muted-foreground leading-relaxed">
                       {sec.content}
                     </p>
+                    {sec.tool && (
+                      <a
+                        href={sec.tool.href}
+                        className="group mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[oklch(0.55_0.2_255)] hover:text-[oklch(0.48_0.2_255)] transition-colors"
+                      >
+                        <sec.tool.icon className="w-4 h-4" />
+                        <span className="border-b border-dashed border-current/40 group-hover:border-current">{sec.tool.label}</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </AnimSection>

@@ -1,6 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { StatusBadge } from "@/components/StatusBadge";
 import { useContactModal } from "@/components/ContactModal";
+import { FoundingCustomerBlock } from "@/components/FoundingCustomerBlock";
+import { CredibilityStrip } from "@/components/CredibilityStrip";
+import { StatusBadgeLegend } from "@/components/StatusBadgeLegend";
+import { useVideoModal } from "@/components/VideoModal";
 import {
   ArrowRight, BarChart3, Clock, Zap, FileCheck, Shield,
   Database, Lock, CheckCircle2, Eye, Settings, Layers, TrendingUp,
@@ -95,6 +100,7 @@ const capabilities = [
 export default function Platform() {
   const [activeTab, setActiveTab] = useState(0);
   const { open: openContact } = useContactModal();
+  const { open: openVideo } = useVideoModal();
 
   return (
     <>
@@ -123,11 +129,20 @@ export default function Platform() {
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#cta" className="btn-primary">
-                  Request Executive Platform Review <ArrowRight className="w-4 h-4" />
+                  Request a Demo <ArrowRight className="w-4 h-4" />
                 </a>
                 <a href="#capabilities" className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-white/30 text-white font-display font-semibold text-sm rounded-lg hover:bg-white/10 transition-all duration-200 active:scale-[0.97] uppercase tracking-wide">
                   See How It Works
                 </a>
+                <button
+                  onClick={openVideo}
+                  className="inline-flex items-center gap-2.5 px-3 py-3.5 text-white/80 font-display font-semibold text-sm rounded-lg hover:text-white transition-all duration-200 active:scale-[0.97] uppercase tracking-wide group cursor-pointer"
+                >
+                  <span className="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                    <Play className="w-3.5 h-3.5 text-white fill-white ml-0.5" />
+                  </span>
+                  Watch the 2-min overview
+                </button>
               </div>
             </motion.div>
 
@@ -168,12 +183,12 @@ export default function Platform() {
             <div className="text-center max-w-3xl mx-auto mb-16">
               <p className="section-label mb-3">Core Intelligence Engine</p>
               <h2 className="heading-xl text-4xl md:text-5xl text-foreground mb-5">
-                Real-time analytics.
+                Cycle-current analytics.
                 <br />
-                <span className="text-[oklch(0.55_0.2_255)]">Predictive & prescriptive intelligence.</span>
+                <span className="text-[oklch(0.55_0.2_255)]">Governed decision intelligence.</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                EKAS doesn't just govern decisions — it powers them with a streaming analytics engine, predictive models that forecast operational drift before it impacts production, and prescriptive recommendations that suggest the next best action.
+                EKAS governs decisions with an analytics engine that keeps governed metrics current on your source systems' data cycle. Predictive and prescriptive capabilities are designed into the architecture and on the roadmap — introduced as the governed-metric foundation matures.
               </p>
             </div>
           </AnimSection>
@@ -182,25 +197,25 @@ export default function Platform() {
           <div className="grid lg:grid-cols-2 gap-14 items-center mb-24">
             <AnimSection>
               <div className="rounded-2xl overflow-hidden border border-border shadow-2xl ring-1 ring-black/5">
-                <img src={REALTIME_ANALYTICS} alt="EKAS Real-Time Analytics Engine" className="w-full" />
+                <img src={REALTIME_ANALYTICS} alt="EKAS Cycle-Current Analytics Engine" className="w-full" />
               </div>
             </AnimSection>
             <AnimSection delay={0.15}>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-5">
                 <Radio className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-xs font-display font-semibold text-emerald-700 uppercase tracking-wider">Live Streaming</span>
+                <span className="text-xs font-display font-semibold text-emerald-700 uppercase tracking-wider">Cycle-Current</span>
               </div>
               <h3 className="heading-xl text-3xl md:text-4xl text-foreground mb-4">
-                Real-Time Analytics Engine
+                Cycle-Current Analytics Engine
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                EKAS processes streaming operational data from connected machines, sensors, and systems in real time. Metrics update continuously — not on refresh cycles or batch intervals. When conditions change, EKAS detects it immediately.
+                EKAS keeps your governed metrics current on your source systems' data cycle. As your MES, ERP, historian, and quality systems update, EKAS recalculates OEE, downtime, throughput, and quality using one controlled definition — so the number every role sees is the same number, derived the same way. EKAS reads from your systems of record; it does not connect to PLCs or machine controllers, and it makes no sub-second streaming claims it cannot honor.
               </p>
               <div className="space-y-4">
                 {[
-                  { icon: Activity, label: "Streaming Data Ingestion", desc: "Continuous processing from MES, historians, IoT sensors, and machine interfaces" },
-                  { icon: Gauge, label: "Sub-Second Metric Updates", desc: "OEE, throughput, quality, and custom KPIs calculated in real time" },
-                  { icon: Monitor, label: "Live Condition Monitoring", desc: "Immediate detection of drift, anomalies, and threshold breaches across all connected assets" },
+                  { icon: Activity, label: "Source-System Ingestion", desc: "Reads governed data from MES, ERP, historian, CMMS, QMS, and quality systems via read-only adapters" },
+                  { icon: Gauge, label: "Cycle-Current Metrics", desc: "OEE, throughput, and quality recalculated as your source data refreshes — with time window and source coverage shown on every answer" },
+                  { icon: Monitor, label: "Governed Condition Monitoring", desc: "Detects drift, anomalies, and threshold breaches against governed definitions on each data cycle" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center shrink-0">
@@ -219,21 +234,28 @@ export default function Platform() {
           {/* Predictive & Prescriptive */}
           <div className="grid lg:grid-cols-2 gap-14 items-center mb-24">
             <AnimSection delay={0.15} className="order-2 lg:order-1">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 mb-5">
-                <Brain className="w-3.5 h-3.5 text-amber-600" />
-                <span className="text-xs font-display font-semibold text-amber-700 uppercase tracking-wider">AI-Powered</span>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200">
+                  <Brain className="w-3.5 h-3.5 text-amber-600" />
+                  <span className="text-xs font-display font-semibold text-amber-700 uppercase tracking-wider">AI-Powered</span>
+                </div>
+                <StatusBadge type="ROADMAP" />
               </div>
               <h3 className="heading-xl text-3xl md:text-4xl text-foreground mb-4">
                 Predictive & Prescriptive Intelligence
               </h3>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                EKAS forecasts operational drift 7–21 days ahead using time-series models trained on your production data. When a prediction crosses a governed threshold, EKAS generates prescriptive recommendations — specific, actionable steps with evidence provenance and stated confidence.
+              <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+                EKAS is designed to forecast operational drift 7–21 days ahead using time-series models trained on your production data. When a prediction crosses a governed threshold, EKAS is designed to generate prescriptive recommendations — specific, actionable steps with evidence provenance and stated confidence.
               </p>
+              <div className="rounded-xl border border-amber-200/60 bg-amber-50/40 p-5 mb-6 text-sm text-amber-900/80 leading-relaxed">
+                <p className="font-semibold text-amber-800 mb-1">On the roadmap, not yet live.</p>
+                Predictive maintenance, reliability forecasting, and 7–21 day demand projection are designed into the EKAS architecture and scheduled for delivery as the governed-metric foundation matures. We list them here because they're committed direction — but we won't show them as shipping capability until they are. Today, EKAS governs the decisions you can make from data you already trust.
+              </div>
               <div className="space-y-4">
                 {[
-                  { icon: LineChart, label: "Predictive Forecasting", desc: "7–21 day horizon for asset degradation, quality drift, and throughput decline" },
-                  { icon: Sparkles, label: "Prescriptive Recommendations", desc: "AI-generated action plans with severity, impact assessment, and evidence trails" },
-                  { icon: Shield, label: "Governed Confidence Bounds", desc: "Every prediction includes stated confidence intervals and data coverage" },
+                  { icon: LineChart, label: "Predictive Forecasting", desc: "Designed for a 7–21 day horizon for asset degradation, quality drift, and throughput decline" },
+                  { icon: Sparkles, label: "Prescriptive Recommendations", desc: "Designed to generate AI action plans with severity, impact assessment, and evidence trails" },
+                  { icon: Shield, label: "Governed Confidence Bounds", desc: "Every prediction will include stated confidence intervals and data coverage" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
@@ -559,9 +581,19 @@ export default function Platform() {
         </div>
       </section>
 
+      {/* ── STATUS BADGE LEGEND ──────────────────────────────────────────── */}
+      <section className="py-10 bg-white">
+        <div className="container">
+          <StatusBadgeLegend variant="light" />
+        </div>
+      </section>
+
       {/* ═══════════════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════════════ */}
+      <CredibilityStrip variant="dark" />
+      <FoundingCustomerBlock variant="dark" />
+
       <section id="cta" className="py-28 bg-white">
         <div className="container">
           <AnimSection>
@@ -575,12 +607,20 @@ export default function Platform() {
                 <p className="text-white/80 text-lg max-w-xl mx-auto mb-10">
                   Tell us about one operating challenge your team is trying to govern. We will show how EKAS frames the question, identifies the evidence required, and defines how the result should be verified.
                 </p>
-                <button
-                  onClick={openContact}
-                  className="inline-flex items-center gap-2 px-10 py-4 bg-white text-[oklch(0.55_0.2_255)] font-display font-semibold text-base rounded-lg hover:bg-white/90 transition-all duration-200 active:scale-[0.97] shadow-xl uppercase tracking-wide cursor-pointer"
-                >
-                  Request Executive Platform Review <ArrowRight className="w-5 h-5" />
-                </button>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <button
+                    onClick={openContact}
+                    className="inline-flex items-center gap-2 px-10 py-4 bg-white text-[oklch(0.55_0.2_255)] font-display font-semibold text-base rounded-lg hover:bg-white/90 transition-all duration-200 active:scale-[0.97] shadow-xl uppercase tracking-wide cursor-pointer"
+                  >
+                    Request a Demo <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <a
+                    href="/resources/roi-calculator"
+                    className="inline-flex items-center gap-2 px-10 py-4 border-2 border-white/40 text-white font-display font-semibold text-base rounded-lg hover:bg-white/10 transition-all duration-200 active:scale-[0.97] uppercase tracking-wide"
+                  >
+                    Run the ROI Calculator
+                  </a>
+                </div>
               </div>
             </div>
           </AnimSection>

@@ -4,7 +4,7 @@
    Full FAQ set — Product, Deployment, Security, Commercial
 ═══════════════════════════════════════════════════════════ */
 import { useRef, useState, useMemo } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -22,12 +22,13 @@ function AnimSection({ children, className = "", delay = 0 }: { children: React.
   );
 }
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [open, setOpen] = useState(false);
+function FAQItem({ question, answer, defaultOpen = false }: { question: string; answer: string; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="border-b border-border last:border-0">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="w-full flex items-start justify-between gap-4 py-5 text-left group"
       >
         <span className="font-display text-sm md:text-base font-semibold text-foreground group-hover:text-[oklch(0.55_0.2_255)] transition-colors">
@@ -35,19 +36,15 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         </span>
         <ChevronDown className={`w-5 h-5 text-muted-foreground shrink-0 mt-0.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="text-sm text-muted-foreground leading-relaxed pb-5 pr-8">{answer}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Answer is always rendered in the DOM (crawlable + validates FAQ JSON-LD); CSS grid handles collapse */}
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.23,1,0.32,1)]"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className={`overflow-hidden transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0"}`}>
+          <p className="text-sm text-muted-foreground leading-relaxed pb-5 pr-8">{answer}</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -107,7 +104,7 @@ const categories = [
       },
       {
         q: "Are you SOC 2 certified?",
-        a: "The platform is designed to meet SOC 2 and ISO 27001 requirements. We'll share our current status and roadmap under NDA.",
+        a: "EKAS is designed to meet SOC 2 and ISO 27001 control requirements, with role-based access, logged queries, and an air-gapped deployment option. Ask us directly where we are in formal certification — we'll give you the current status in writing, not a marketing claim.",
       },
       {
         q: "Does this help with IATF 16949?",
@@ -125,7 +122,7 @@ const categories = [
       },
       {
         q: "Do you have customers?",
-        a: "We're in production pilot with a Tier-2 automotive precision stamping supplier; a reference call is available under NDA.",
+        a: "EKAS is not yet deployed in a live customer plant. The platform was built and validated inside a working precision-stamping operation against real production data — real machines, real downtime, real OEE — not synthetic benchmarks. We are now opening a small founding-customer program for first live deployments. If you want a vendor with a hundred logos, that isn’t us yet. If you want a decision layer built by people who’ve run the floor and are honest about where it stands, let’s talk.",
       },
       {
         q: "What about ROI?",
@@ -186,8 +183,8 @@ export default function FAQs() {
                   <h2 className="font-display text-xl font-semibold text-foreground">{cat.title}</h2>
                 </div>
                 <div className="bg-white border border-border rounded-xl px-6">
-                  {cat.faqs.map((faq) => (
-                    <FAQItem key={faq.q} question={faq.q} answer={faq.a} />
+                  {cat.faqs.map((faq, fi) => (
+                    <FAQItem key={faq.q} question={faq.q} answer={faq.a} defaultOpen={fi === 0} />
                   ))}
                 </div>
               </AnimSection>

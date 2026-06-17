@@ -5,8 +5,9 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>EKAS | Enterprise Knowledge & Analytics System for Manufacturing Decision Intelligence</title>
+      content="width=device-width, initial-scale=1.0" />
+    <!-- Default title/meta below are for first paint only; per-route values are set at runtime by client/src/components/Seo.tsx -->
+    <title>EKAS — Governed Manufacturing Decision Intelligence</title>
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <meta name="description" content="EKAS is a governed manufacturing decision-intelligence platform that helps enterprise manufacturers convert operational evidence into role-specific decisions, recommendations, human-approved action workflows, and verified improvement." />
@@ -15,7 +16,7 @@
     <meta property="og:title" content="EKAS | Governed Manufacturing Decision Intelligence" />
     <meta property="og:description" content="EKAS is a governed manufacturing decision-intelligence platform. Convert operational evidence into role-specific decisions, human-approved action workflows, and verified improvement." />
     <meta property="og:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-dashboard-mockup-5VjjBaD9F4gzh3mELmqDKS.webp" />
-    <meta property="og:url" content="https://adaptivefactory.ai" />
+    <meta property="og:url" content="https://ekas.manus.space" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Adaptive Factory" />
 
@@ -32,10 +33,39 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      defer
-      src="%VITE_ANALYTICS_ENDPOINT%/umami"
-      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <!--
+      Analytics loaders are guarded so the site stays clean on generic hosts
+      (e.g. AWS Amplify). The Manus build substitutes the %VITE_ANALYTICS_*%
+      placeholders; if they are left unsubstituted (raw "%VITE..."), we skip
+      loading the script entirely. HubSpot only loads when a real portal id is
+      present. Adjust HS_PORTAL_ID below for your own HubSpot portal.
+    -->
+    <script>
+      (function () {
+        // ---- Umami (Manus-hosted) ----
+        var umamiSrc = "%VITE_ANALYTICS_ENDPOINT%/umami";
+        var umamiId = "%VITE_ANALYTICS_WEBSITE_ID%";
+        if (umamiSrc.indexOf("%VITE") === -1 && umamiId.indexOf("%VITE") === -1) {
+          var u = document.createElement("script");
+          u.defer = true;
+          u.src = umamiSrc;
+          u.setAttribute("data-website-id", umamiId);
+          document.body.appendChild(u);
+        }
+
+        // ---- HubSpot ----
+        var HS_PORTAL_ID = "246054670"; // Portal 246054670, NA2 region
+        if (HS_PORTAL_ID) {
+          var h = document.createElement("script");
+          h.type = "text/javascript";
+          h.id = "hs-script-loader";
+          h.async = true;
+          h.defer = true;
+          h.src = "//js-na2.hs-scripts.com/" + HS_PORTAL_ID + ".js";
+          document.body.appendChild(h);
+        }
+      })();
+    </script>
   </body>
 
 </html>

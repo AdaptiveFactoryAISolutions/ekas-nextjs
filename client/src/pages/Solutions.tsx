@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { StatusBadge } from "@/components/StatusBadge";
 import { useContactModal } from "@/components/ContactModal";
 import {
   ArrowRight, CheckCircle2, Factory, Wrench, Cog,
   Users, TrendingUp, ClipboardCheck, DollarSign, BarChart3,
-  Activity, Brain, Play, Radio, Zap, LineChart, Timer
+  Activity, Brain, Play, Radio, Zap, LineChart, Timer, Calculator
 } from "lucide-react";
 
 const REALTIME_ANALYTICS = "https://d2xsxph8kpxj0f.cloudfront.net/310519663721473839/3PrY7bBgJ4ifdWrhBj5kmo/ekas-realtime-analytics-YrnGo8fVqkWgEPdRU88UZL.webp";
@@ -46,6 +47,7 @@ const industries = [
       "Verification workflow to confirm improvement against targeted metric",
     ],
     image: METAL_STAMPING_HERO,
+    tool: { href: "/resources/downtime-cost-builder", label: "Build your defensible downtime cost per hour", name: "Downtime Cost Builder" },
   },
   {
     id: "oee",
@@ -61,6 +63,7 @@ const industries = [
       "Role-specific interpretation governed by authority level",
     ],
     image: PRODUCTION_LINE,
+    tool: { href: "/resources/oee-methodology", label: "Compare OEE calculation methods on sample data", name: "OEE Methodology Explorer" },
   },
   {
     id: "quality",
@@ -76,6 +79,7 @@ const industries = [
       "Human-approved containment or investigation steps with verification",
     ],
     image: QUALITY_INSPECTION,
+    tool: { href: "/resources/failure-taxonomy", label: "Browse the governed failure-mode taxonomy", name: "Failure Taxonomy Browser" },
   },
 ];
 
@@ -149,7 +153,7 @@ export default function Solutions() {
                 Intelligence capabilities behind every solution
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Every EKAS solution is powered by three core intelligence capabilities that work together: real-time streaming analytics, predictive and prescriptive AI, and an interactive decision workflow you can experience firsthand.
+                Every EKAS solution is powered by three core intelligence capabilities: cycle-current governed analytics, a predictive and prescriptive AI layer (on the roadmap), and an interactive decision workflow you can experience firsthand.
               </p>
             </div>
           </AnimSection>
@@ -159,10 +163,10 @@ export default function Solutions() {
               {
                 icon: Radio,
                 color: "emerald",
-                badge: "Live",
-                title: "Real-Time Analytics",
-                desc: "Data ingestion from SAP, Epicor, Plex, QAD, and other MES, ERP, CMMS, QMS, and historian systems. Metrics update on your systems' production data cycle.",
-                features: ["Continuous OEE, throughput, quality calculation", "Live anomaly and drift detection", "Immediate threshold breach alerts"],
+                badge: "Cycle-Current",
+                title: "Cycle-Current Analytics",
+                desc: "Read-only ingestion from SAP, Epicor, Plex, QAD, and other MES, ERP, CMMS, QMS, and historian systems. Governed metrics recalculate on your systems' production data cycle — no PLC connection, no sub-second streaming claims.",
+                features: ["Governed OEE, throughput, quality on each data cycle", "Anomaly and drift detection against governed definitions", "Threshold-breach flags with evidence and coverage"],
                 image: REALTIME_ANALYTICS,
               },
               {
@@ -170,9 +174,10 @@ export default function Solutions() {
                 color: "amber",
                 badge: "AI-Powered",
                 title: "Predictive & Prescriptive",
-                desc: "Forecast operational drift 7–21 days ahead. When predictions cross governed thresholds, receive prescriptive action recommendations with evidence trails.",
-                features: ["7–21 day failure prediction horizon", "Severity-ranked prescriptive actions", "Governed confidence intervals"],
+                desc: "Designed to forecast operational drift 7–21 days ahead. On the roadmap — not yet live. When predictions cross governed thresholds, prescriptive action recommendations with evidence trails.",
+                features: ["Designed for 7–21 day prediction horizon", "Severity-ranked prescriptive actions (roadmap)", "Governed confidence intervals on every prediction"],
                 image: PREDICTIVE_INTELLIGENCE,
+                roadmap: true,
               },
               {
                 icon: Play,
@@ -194,13 +199,14 @@ export default function Solutions() {
                 <AnimSection key={cap.title} delay={i * 0.12}>
                   <div className="feature-card h-full flex flex-col">
                     <div className="rounded-xl overflow-hidden border border-border mb-5 shadow-sm">
-                      <img src={cap.image} alt={cap.title} className="w-full h-[180px] object-cover object-top" />
+                      <img src={cap.image} alt={`EKAS ${cap.title}`} className="w-full h-[180px] object-cover object-top" />
                     </div>
-                    <div className="flex items-center gap-2 mb-3">
+                    <div className="flex items-center gap-2 mb-3 flex-wrap">
                       <div className={`w-8 h-8 rounded-lg ${c.bg} flex items-center justify-center`}>
                         <cap.icon className={`w-4 h-4 ${c.text}`} />
                       </div>
                       <span className={`text-[10px] font-display font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${c.badgeBg} ${c.badgeBorder} ${c.text}`}>{cap.badge}</span>
+                      {(cap as any).roadmap && <StatusBadge type="ROADMAP" />}
                     </div>
                     <h3 className="font-display text-lg font-semibold text-foreground mb-2">{cap.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{cap.desc}</p>
@@ -287,9 +293,23 @@ export default function Solutions() {
                       </li>
                     ))}
                   </ul>
-                  <a href="#cta" className="inline-flex items-center gap-2 text-sm font-semibold text-[oklch(0.55_0.2_255)] hover:underline uppercase tracking-wide">
-                    See how it works <ArrowRight className="w-4 h-4" />
-                  </a>
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                    <a href="#cta" className="inline-flex items-center gap-2 text-sm font-semibold text-[oklch(0.55_0.2_255)] hover:underline uppercase tracking-wide">
+                      See how it works <ArrowRight className="w-4 h-4" />
+                    </a>
+                    {industries[activeIndustry].tool && (
+                      <a
+                        href={industries[activeIndustry].tool!.href}
+                        className="group inline-flex items-center gap-2 text-sm font-semibold text-foreground hover:text-[oklch(0.55_0.2_255)] transition-colors"
+                      >
+                        <Calculator className="w-4 h-4 text-[oklch(0.55_0.2_255)]" />
+                        <span className="border-b border-dashed border-current/40 group-hover:border-current">
+                          {industries[activeIndustry].tool!.label}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
                 <div className="rounded-2xl overflow-hidden border border-border shadow-xl">
                   <img src={industries[activeIndustry].image} alt={industries[activeIndustry].title} className="w-full h-[400px] object-cover" />
@@ -344,12 +364,20 @@ export default function Solutions() {
                 <p className="text-white/60 text-lg max-w-xl mx-auto mb-8">
                   Tell us about one operating challenge your team is trying to govern. We will show how EKAS frames the question, identifies the evidence required, and defines how the result should be verified.
                 </p>
-                <button
-                  onClick={openContact}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[oklch(0.55_0.2_255)] text-white font-semibold text-base rounded-lg hover:bg-[oklch(0.48_0.2_255)] transition-all duration-200 active:scale-[0.97] shadow-xl shadow-[oklch(0.55_0.2_255_/_0.3)] uppercase tracking-wide cursor-pointer"
-                >
-                  Request Executive Platform Review <ArrowRight className="w-5 h-5" />
-                </button>
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <button
+                    onClick={openContact}
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-[oklch(0.55_0.2_255)] text-white font-semibold text-base rounded-lg hover:bg-[oklch(0.48_0.2_255)] transition-all duration-200 active:scale-[0.97] shadow-xl shadow-[oklch(0.55_0.2_255_/_0.3)] uppercase tracking-wide cursor-pointer"
+                  >
+                    Request a Demo <ArrowRight className="w-5 h-5" />
+                  </button>
+                  <a
+                    href="/resources/roi-calculator"
+                    className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/30 text-white font-semibold text-base rounded-lg hover:bg-white/10 transition-all duration-200 active:scale-[0.97] uppercase tracking-wide"
+                  >
+                    Run the ROI Calculator
+                  </a>
+                </div>
               </div>
             </div>
           </AnimSection>

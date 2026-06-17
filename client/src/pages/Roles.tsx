@@ -4,7 +4,7 @@
    One governed platform. The view your role needs.
 ═══════════════════════════════════════════════════════════ */
 import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import {
   ArrowRight, HardHat, BarChart3, Wrench, ShieldCheck,
@@ -78,7 +78,12 @@ const roles = [
 export default function Roles() {
   const { open: openContact } = useContactModal();
   const [activeRole, setActiveRole] = useState(roles[0].id);
-  const active = roles.find(r => r.id === activeRole) || roles[0];
+
+  const scrollToRole = (id: string) => {
+    setActiveRole(id);
+    const el = document.getElementById(`role-${id}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <div>
@@ -110,7 +115,7 @@ export default function Roles() {
                 {roles.map((role) => (
                   <button
                     key={role.id}
-                    onClick={() => setActiveRole(role.id)}
+                    onClick={() => scrollToRole(role.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-200 group ${
                       activeRole === role.id
                         ? "bg-[oklch(0.55_0.2_255_/_0.08)] border border-[oklch(0.55_0.2_255_/_0.2)]"
@@ -137,35 +142,39 @@ export default function Roles() {
               </nav>
             </AnimSection>
 
-            {/* Detail panel */}
-            <div className="min-h-[400px]">
-              <AnimatePresence mode="wait">
+            {/* Detail panels — all roles rendered in the DOM at load (crawlable + skimmable) */}
+            <div className="space-y-8">
+              {roles.map((role) => (
                 <motion.div
-                  key={active.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                  className="feature-card !p-8 md:!p-10"
+                  id={`role-${role.id}`}
+                  key={role.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.45, ease: [0.23, 1, 0.32, 1] }}
+                  onViewportEnter={() => setActiveRole(role.id)}
+                  className={`feature-card !p-8 md:!p-10 scroll-mt-[120px] transition-shadow duration-300 ${
+                    activeRole === role.id ? "ring-2 ring-[oklch(0.55_0.2_255_/_0.25)]" : ""
+                  }`}
                 >
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: `${active.color}15` }}>
-                      <active.icon className="w-7 h-7" style={{ color: active.color }} />
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ background: `${role.color}15` }}>
+                      <role.icon className="w-7 h-7" style={{ color: role.color }} />
                     </div>
                     <div>
                       <span className="section-label block mb-1">Role View</span>
-                      <h2 className="font-display text-2xl font-semibold text-foreground">{active.title}</h2>
+                      <h2 className="font-display text-2xl font-semibold text-foreground">{role.title}</h2>
                     </div>
                   </div>
 
                   <p className="text-muted-foreground leading-relaxed text-base mb-8">
-                    {active.desc}
+                    {role.desc}
                   </p>
 
                   <div className="grid sm:grid-cols-2 gap-3 mb-8">
-                    {active.highlights.map((h) => (
+                    {role.highlights.map((h) => (
                       <div key={h} className="flex items-center gap-2.5 px-4 py-3 bg-secondary/60 rounded-lg">
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: active.color }} />
+                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: role.color }} />
                         <span className="text-sm font-medium text-foreground">{h}</span>
                       </div>
                     ))}
@@ -175,7 +184,7 @@ export default function Roles() {
                     See this view in a demo <ArrowRight className="w-4 h-4" />
                   </button>
                 </motion.div>
-              </AnimatePresence>
+              ))}
             </div>
           </div>
         </div>

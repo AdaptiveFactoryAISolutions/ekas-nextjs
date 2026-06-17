@@ -66,7 +66,7 @@ export default function Industries() {
               <span className="text-[oklch(0.55_0.2_255)]">tuned to your standards.</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-              EKAS governs the metrics your industry is judged on, mapped to the standards your customers and auditors expect. Our current deployments are in precision metal stamping; the platform extends to adjacent discrete-manufacturing operations on the same governed foundation.
+              EKAS governs the metrics your industry is judged on, mapped to the standards your customers and auditors expect. We went deep in precision metal stamping first — the hardest place to govern OEE, because multi-out tooling, companion parts, and hit-rate variance break textbook formulas. The same governed foundation now extends across discrete manufacturing. We earn each vertical by proving the metrics survive its audits, not by claiming coverage we haven't validated.
             </p>
           </AnimSection>
         </div>
