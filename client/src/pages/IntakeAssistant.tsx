@@ -27,10 +27,10 @@ const PROXY_URL =
 // ───────────────────────────────────────────────────────────────────────────
 
 const GREETING =
-  "Hi — I'm the intake assistant for EKAS. I'd like to understand your operation so I can tell you honestly whether we're a fit. To start: what do you manufacture, and roughly how many machines or lines are you thinking about?";
+  "Hi — I'm the EKAS assistant. I help manufacturers figure out quickly whether EKAS is a fit, answer your questions straight, and point you to the right next step. To start: what do you manufacture, and what problem are you hoping to solve?";
 
 const FOUNDING_GREETING =
-  "Hi — I'm the intake assistant for EKAS. I can see you're interested in the Founding-Customer Program — thank you for taking the time. I'd like to understand your operation so we can assess fit honestly, including telling you if we're not the right tool. To start: what do you manufacture, and roughly how many machines or lines are you thinking about?";
+  "Hi — I'm the EKAS assistant. I can see you're interested in the Founding-Customer Program — thanks for taking the time. I help manufacturers figure out quickly whether EKAS is a fit, answer your questions straight, and point you to the right next step. To start: what do you manufacture, and what problem are you hoping to solve?";
 
 /** Read ?context=founding from the URL (works with Wouter's hash/history routing) */
 function isFoudingContext(): boolean {
