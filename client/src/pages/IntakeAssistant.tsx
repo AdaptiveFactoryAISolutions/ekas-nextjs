@@ -27,10 +27,10 @@ const PROXY_URL =
 // ───────────────────────────────────────────────────────────────────────────
 
 const GREETING =
-  "Hi — I'm the EKAS assistant. I help manufacturers figure out quickly whether EKAS is a fit, answer your questions straight, and point you to the right next step. To start: what do you manufacture, and what problem are you hoping to solve?";
+  "Hi, I'm Petra. Tell me what kind of operation you're running — stamping, machining, assembly, fabrication, or something else — and what problem you're trying to get under control first.";
 
 const FOUNDING_GREETING =
-  "Hi — I'm the EKAS assistant. I can see you're interested in the Founding-Customer Program — thanks for taking the time. I help manufacturers figure out quickly whether EKAS is a fit, answer your questions straight, and point you to the right next step. To start: what do you manufacture, and what problem are you hoping to solve?";
+  "Hi, I'm Petra. I can see you're interested in the Founding-Customer Program — thanks for taking the time. Tell me what kind of operation you're running — stamping, machining, assembly, fabrication, or something else — and what problem you're trying to get under control first.";
 
 /** Read ?context=founding from the URL (works with Wouter's hash/history routing) */
 function isFoudingContext(): boolean {
@@ -330,7 +330,7 @@ export default function IntakeAssistant() {
         {
           role: "assistant",
           content:
-            "Our intake assistant is briefly offline. I don't want to waste your time — leave your details below and someone from the EKAS team will reach out directly to pick this up.",
+            "Petra is briefly offline. I don't want to waste your time — leave your details below and someone from the EKAS team will reach out directly to pick this up.",
           at: now(),
         },
       ]);
@@ -366,7 +366,7 @@ export default function IntakeAssistant() {
         eyebrow="Talk to EKAS"
         title="Tell us about your"
         accent="operation."
-        intro="A short, honest conversation — not a sales script. Answer a few questions about your plant and the assistant will tell you, straight, whether EKAS is a fit and what a 60-day pilot would measure."
+        intro="A short, confident conversation with Petra, the EKAS discovery guide. Tell her about your operation — downtime, OEE trust, maintenance, quality, reporting — and she'll help you see the decision problem clearly and point you to the right EKAS capability and next step."
       />
 
       <section className="py-16 md:py-20 bg-background">
@@ -384,7 +384,7 @@ export default function IntakeAssistant() {
               <EkasMark />
               <div className="flex-1 min-w-0">
                 <div className="font-display font-bold text-[15px] tracking-tight text-navy leading-tight">
-                  EKAS Intake Assistant
+                  Petra · EKAS Discovery
                 </div>
                 <div className="text-[12.5px] text-muted-foreground mt-0.5">
                   {endpointDown
