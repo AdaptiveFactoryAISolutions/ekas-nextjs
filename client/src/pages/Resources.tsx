@@ -68,7 +68,7 @@ const tools = [
   {
     icon: MessagesSquare,
     title: "Talk to EKAS",
-    desc: "A short, honest conversation about your plant. The intake assistant tells you straight whether EKAS is a fit — and when it isn't yet.",
+    desc: "Petra, the EKAS discovery guide, walks your plant and what EKAS can get under control — straight talk, no sales script.",
     href: "/resources/intake",
     tag: "Intake",
   },

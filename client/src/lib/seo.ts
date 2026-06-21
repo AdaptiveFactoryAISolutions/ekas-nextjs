@@ -115,9 +115,9 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       "Configure your 60-day EKAS pilot. Pick machines, data sources, and timeframe, and see exactly which governed metrics the pilot will measure and deliver.",
   },
   "/resources/intake": {
-    title: "Talk to EKAS — Intake Assistant",
+    title: "Talk to EKAS — Discovery with Petra",
     description:
-      "A short, honest conversation about your operation. The EKAS intake assistant tells you straight whether EKAS is a fit and what a 60-day pilot would measure — no sales script.",
+      "A short, honest conversation about your operation with Petra, the EKAS discovery guide — what EKAS can get under control and what a 60-day pilot would measure. No sales script.",
   },
   "/privacy": {
     title: "Privacy Policy | EKAS by Adaptive Factory",

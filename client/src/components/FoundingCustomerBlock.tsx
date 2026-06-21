@@ -90,7 +90,7 @@ export function FoundingCustomerBlock({ variant = "dark" }: FoundingCustomerBloc
                   : "border-foreground/20 text-foreground/70 hover:bg-foreground/5"
               }`}
             >
-              Talk to the intake assistant
+              Talk to Petra
             </a>
           </div>
         </div>

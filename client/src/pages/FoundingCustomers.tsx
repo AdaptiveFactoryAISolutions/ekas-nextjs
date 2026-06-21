@@ -160,7 +160,7 @@ export default function FoundingCustomers() {
                     href="/resources/intake?context=founding"
                     className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-white/25 text-white/80 font-display font-semibold text-sm rounded-lg hover:bg-white/10 transition-all duration-200 active:scale-[0.97] uppercase tracking-wide"
                   >
-                    Talk to the intake assistant
+                    Talk to Petra
                   </a>
                 </div>
               </div>
@@ -342,7 +342,7 @@ export default function FoundingCustomers() {
                   </div>
                   <h3 className="font-display font-semibold text-white text-xl mb-3">Application received.</h3>
                   <p className="text-white/60 leading-relaxed mb-6">
-                    Thank you for taking the time. We'll review your application and follow up within two business days — with an honest assessment of whether EKAS is the right fit for your operation.
+                    Thank you for taking the time. We'll review your application and follow up within two business days — with an honest read on where EKAS fits your operation.
                   </p>
                   <div className="flex flex-wrap gap-3 justify-center">
                     <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 bg-[oklch(0.55_0.2_255)] text-white font-display font-semibold text-sm rounded-lg hover:bg-[oklch(0.5_0.2_255)] transition-colors uppercase tracking-wide">
